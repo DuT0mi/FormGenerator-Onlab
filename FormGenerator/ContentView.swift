@@ -24,5 +24,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-// https://github.com/DuT0mi/FormGenerator-Onlab.git
-
