@@ -52,8 +52,10 @@
 		1A282EE229AE79BF00DAFD9B /* FormGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				1A282EF529AE85DA00DAFD9B /* ViewModels */,
+				1A282EF429AE85C700DAFD9B /* Models */,
+				1A282EF329AE85BA00DAFD9B /* Views */,
 				1A282EE329AE79BF00DAFD9B /* FormGeneratorApp.swift */,
-				1A282EE529AE79BF00DAFD9B /* ContentView.swift */,
 				1A282EE729AE79BF00DAFD9B /* Assets.xcassets */,
 				1A282EE929AE79BF00DAFD9B /* FormGenerator.entitlements */,
 				1A282EEA29AE79BF00DAFD9B /* Preview Content */,
@@ -67,6 +69,28 @@
 				1A282EEB29AE79BF00DAFD9B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1A282EF329AE85BA00DAFD9B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A282EE529AE79BF00DAFD9B /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A282EF429AE85C700DAFD9B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A282EF529AE85DA00DAFD9B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
