@@ -40,6 +40,7 @@
 		1A319D1D29B39F2D00183B94 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D1C29B39F2D00183B94 /* FirebaseRemoteConfigSwift */; };
 		1A319D1F29B39F2D00183B94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D1E29B39F2D00183B94 /* FirebaseStorage */; };
 		1A319D2129B39F2D00183B94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D2029B39F2D00183B94 /* FirebaseStorageCombine-Community */; };
+		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		1A282EEB29AE79BF00DAFD9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		1A319CE929B39CE100183B94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +112,10 @@
 		1A282EE229AE79BF00DAFD9B /* FormGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				1A319D2429B3AC3C00183B94 /* Additional */,
 				1A282EF429AE85C700DAFD9B /* Models */,
 				1A282EF329AE85BA00DAFD9B /* Views */,
 				1A282EE329AE79BF00DAFD9B /* FormGeneratorApp.swift */,
-				1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */,
 				1A282EE729AE79BF00DAFD9B /* Assets.xcassets */,
 				1A282EE929AE79BF00DAFD9B /* FormGenerator.entitlements */,
 				1A319CE929B39CE100183B94 /* GoogleService-Info.plist */,
@@ -143,6 +145,15 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1A319D2429B3AC3C00183B94 /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				1A319D2229B3AC3200183B94 /* Constants.swift */,
+				1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */,
+			);
+			path = Additional;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +262,7 @@
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
+				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
