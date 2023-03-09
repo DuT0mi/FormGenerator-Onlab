@@ -10,7 +10,7 @@ import SwiftUI
 struct FormGeneratorView: View {
  
     var body: some View {
-       Text("Hello")
+       Text("Welcome Page")
     }
    
 }
