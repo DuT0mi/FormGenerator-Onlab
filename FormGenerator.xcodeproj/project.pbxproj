@@ -41,6 +41,9 @@
 		1A319D1F29B39F2D00183B94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D1E29B39F2D00183B94 /* FirebaseStorage */; };
 		1A319D2129B39F2D00183B94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D2029B39F2D00183B94 /* FirebaseStorageCombine-Community */; };
 		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
+		1A8A415C29B9CA9800957094 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A415B29B9CA9800957094 /* CircleImage.swift */; };
+		1A8A415E29B9CE9300957094 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A415D29B9CE9300957094 /* MapView.swift */; };
+		1A8A416129B9D2B800957094 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A416029B9D2B800957094 /* FormModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
 		1AFD473929B4E723000A47D5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473829B4E723000A47D5 /* LoginView.swift */; };
 		1AFD473B29B4ECB4000A47D5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473A29B4ECB4000A47D5 /* SignUpView.swift */; };
@@ -56,6 +59,9 @@
 		1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		1A319CE929B39CE100183B94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1A8A415B29B9CA9800957094 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		1A8A415D29B9CE9300957094 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1A8A416029B9D2B800957094 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1AFD473829B4E723000A47D5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1AFD473A29B4ECB4000A47D5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		1A282EF329AE85BA00DAFD9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A8A415F29B9CF7F00957094 /* SmallerComponents */,
 				1AD4A88829B6757900EF597C /* Auth */,
 				1A282EE529AE79BF00DAFD9B /* FormGeneratorView.swift */,
 			);
@@ -151,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9D202529B4B20100127A91 /* UserViewModel.swift */,
+				1A8A416029B9D2B800957094 /* FormModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +170,15 @@
 				1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */,
 			);
 			path = Additional;
+			sourceTree = "<group>";
+		};
+		1A8A415F29B9CF7F00957094 /* SmallerComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1A8A415B29B9CA9800957094 /* CircleImage.swift */,
+				1A8A415D29B9CE9300957094 /* MapView.swift */,
+			);
+			path = SmallerComponents;
 			sourceTree = "<group>";
 		};
 		1AD4A88829B6757900EF597C /* Auth */ = {
@@ -277,11 +294,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AFD473929B4E723000A47D5 /* LoginView.swift in Sources */,
+				1A8A415C29B9CA9800957094 /* CircleImage.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
+				1A8A416129B9D2B800957094 /* FormModel.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AFD473B29B4ECB4000A47D5 /* SignUpView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
+				1A8A415E29B9CE9300957094 /* MapView.swift in Sources */,
 				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
