@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct AuthHomeView: View {
     @State private var selectedPage: Pages = .login
     
     var body: some View {
@@ -22,8 +22,8 @@ struct LoginView: View {
     
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct AuthHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        AuthHomeView()
     }
 }

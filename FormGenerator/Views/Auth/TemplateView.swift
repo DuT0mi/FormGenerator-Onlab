@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct TemplateView: View {
     @StateObject var user = UserViewModel()
@@ -27,8 +28,7 @@ struct TemplateView: View {
                     .frame(width: 30.0, height: 30.0)
                     .opacity(0.5)
                 TextField("Email", text: $user.email)
-                    .keyboardType(.emailAddress)
-                    .textInputAutocapitalization(.words)
+                    .textInputAutocapitalization(.never)
             }
             .padding(0.02 * ScreenDimensions.height)
             HStack{
@@ -42,7 +42,16 @@ struct TemplateView: View {
             Spacer()
                 .frame(idealHeight: 0.05 * ScreenDimensions.height)
                 .fixedSize()
-            Button(action: user.login) {
+            Button {
+                if type == .login {
+                    user.login()
+                    if user.alertMessage.isEmpty {
+                        user.isSignedIn = true
+                    }
+                } else if type == .signup {
+                    user.signUp()
+                }
+            } label: {
                 Text("\(type.rawValue)".uppercased())
                     .foregroundColor(.white)
                     .font(.title2)
@@ -91,6 +100,7 @@ struct TemplateView: View {
                 })
             }
         }
+        .ignoresSafeArea()
     }
     
     func isLoginPage() -> Bool {

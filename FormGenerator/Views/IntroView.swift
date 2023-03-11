@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct IntroView: View {
     var body: some View {
         Label("Home",systemImage: "house.fill")
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct IntroView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        IntroView()
     }
 }

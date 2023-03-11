@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class UserViewModel: ObservableObject {
     
-    @AppStorage("isSignedIn") var isSignedIn: Bool = false
+    @Published var isSignedIn:Bool = false
     
     @Published var email: String = ""
     @Published var password: String = ""
@@ -30,8 +30,8 @@ class UserViewModel: ObservableObject {
         }
         // sign in with email and password
         Auth.auth().signIn(withEmail: email, password: password){ result, error in
-            if let error = error {
-                self.alertMessage = error.localizedDescription
+            if  error != nil {
+                self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
             } else {
                 self.isSignedIn = true
@@ -46,8 +46,8 @@ class UserViewModel: ObservableObject {
             return
         }
         Auth.auth().createUser(withEmail: email, password: password){result, error in
-            if let error = error {
-                self.alertMessage = error.localizedDescription
+            if  error != nil {
+                self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
             } else {
                 self.login()
@@ -64,4 +64,5 @@ class UserViewModel: ObservableObject {
             print("Error signing out.")
         }
     }
+ 
 }

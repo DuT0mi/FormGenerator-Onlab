@@ -22,7 +22,6 @@ enum Pages: String, CaseIterable, Equatable {
     case login = "login"
     case signup = "signup"
 }
-
 class ScreenDimensions {
     #if os(iOS) || os(tvOS)
         static var width: CGFloat = UIScreen.main.bounds.size.width

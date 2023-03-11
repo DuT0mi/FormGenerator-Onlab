@@ -43,10 +43,14 @@
 		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
 		1A8A416129B9D2B800957094 /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A416029B9D2B800957094 /* FormModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
-		1ADFF44129BC8D860071F54C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44029BC8D860071F54C /* HomeView.swift */; };
+		1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44029BC8D860071F54C /* IntroView.swift */; };
 		1ADFF44329BC96910071F54C /* ChoosePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44229BC96910071F54C /* ChoosePageView.swift */; };
 		1ADFF44529BC9BDB0071F54C /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44429BC9BDB0071F54C /* TemplateView.swift */; };
-		1AFD473929B4E723000A47D5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473829B4E723000A47D5 /* LoginView.swift */; };
+		1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44729BCF06C0071F54C /* HomeView.swift */; };
+		1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44929BCF6230071F54C /* FormsListView.swift */; };
+		1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */; };
+		1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF45129BCF6BA0071F54C /* SettingsView.swift */; };
+		1AFD473929B4E723000A47D5 /* AuthHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473829B4E723000A47D5 /* AuthHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,10 +65,14 @@
 		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A8A416029B9D2B800957094 /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		1ADFF44029BC8D860071F54C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1ADFF44029BC8D860071F54C /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		1ADFF44229BC96910071F54C /* ChoosePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePageView.swift; sourceTree = "<group>"; };
 		1ADFF44429BC9BDB0071F54C /* TemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
-		1AFD473829B4E723000A47D5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1ADFF44729BCF06C0071F54C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1ADFF44929BCF6230071F54C /* FormsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsListView.swift; sourceTree = "<group>"; };
+		1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsFormsView.swift; sourceTree = "<group>"; };
+		1ADFF45129BCF6BA0071F54C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1AFD473829B4E723000A47D5 /* AuthHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +155,10 @@
 		1A282EF329AE85BA00DAFD9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1ADFF44629BCF0580071F54C /* Contents */,
 				1AD4A88829B6757900EF597C /* Auth */,
 				1A282EE529AE79BF00DAFD9B /* FormGeneratorView.swift */,
-				1ADFF44029BC8D860071F54C /* HomeView.swift */,
+				1ADFF44029BC8D860071F54C /* IntroView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,11 +184,22 @@
 		1AD4A88829B6757900EF597C /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				1AFD473829B4E723000A47D5 /* LoginView.swift */,
-				1ADFF44229BC96910071F54C /* ChoosePageView.swift */,
 				1ADFF44429BC9BDB0071F54C /* TemplateView.swift */,
+				1AFD473829B4E723000A47D5 /* AuthHomeView.swift */,
+				1ADFF44229BC96910071F54C /* ChoosePageView.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		1ADFF44629BCF0580071F54C /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFF44729BCF06C0071F54C /* HomeView.swift */,
+				1ADFF45129BCF6BA0071F54C /* SettingsView.swift */,
+				1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */,
+				1ADFF44929BCF6230071F54C /* FormsListView.swift */,
+			);
+			path = Contents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,13 +305,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADFF44129BC8D860071F54C /* HomeView.swift in Sources */,
-				1AFD473929B4E723000A47D5 /* LoginView.swift in Sources */,
+				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
+				1AFD473929B4E723000A47D5 /* AuthHomeView.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A8A416129B9D2B800957094 /* FormModel.swift in Sources */,
 				1ADFF44329BC96910071F54C /* ChoosePageView.swift in Sources */,
+				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
+				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
+				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
+				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
 				1ADFF44529BC9BDB0071F54C /* TemplateView.swift in Sources */,
 				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,

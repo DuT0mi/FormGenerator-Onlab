@@ -11,11 +11,11 @@ struct FormGeneratorView: View {
  
     var body: some View {
         TabView {
-            HomeView()
+            IntroView()
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
-            LoginView()
+            AuthHomeView()
                 .tabItem {
                     Label("Start", systemImage: "person.fill")
                 }
