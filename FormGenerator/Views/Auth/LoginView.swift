@@ -8,57 +8,25 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isLoggedIn: Bool = false
+    @State private var selectedPage: Pages = .login
     
-    var content: some View {
-        ZStack{
-            Color.gray.opacity(0.7)
-            RoundedRectangle(cornerRadius: 30,style: .continuous)
-                .foregroundStyle(.linearGradient(colors: [.blue,.gray], startPoint: .topLeading, endPoint: .bottomLeading))
-                .frame(width: 1000,height: 400)
-                .rotationEffect(.degrees(135))
-            RoundedRectangle(cornerRadius: 30,style: .continuous)
-                .foregroundStyle(.linearGradient(colors: [.blue,.gray], startPoint: .topLeading, endPoint: .bottomLeading))
-                .frame(width: 1000,height: 400)
-                .rotationEffect(.degrees(-135))
-            
-            VStack(spacing:20){
-                Text("Login")
-                    .foregroundColor(.white)
-                    .font(.system(size: 40,weight: .bold,design: .serif))
-                TextField("Email",text: $email)
-                    .foregroundColor(.white)
-                    .textFieldStyle(.plain)
-                    .placeholder(when: email.isEmpty){
-                        Text("Email")
-                            .foregroundColor(.white)
-                            .bold()
-                    }
-                Rectangle()
-                    .frame(width: 350, height: 1)
-                    .foregroundColor(.white)
-                
-                SecureField("Password",text: $password)
-                    .foregroundColor(.white)
-                    .textFieldStyle(.plain)
-                    .placeholder(when: password.isEmpty, placeholder: {
-                        Text("Password").foregroundColor(.white)
-                            .bold()
-                    })
-                
-                Rectangle()
-                    .frame(width: 350, height: 1)
-                    .foregroundColor(.white)
-            }
-            .frame(width: 350)
-        }
-        .ignoresSafeArea()
-    }
     var body: some View {
-        content
+        NavigationView {
+            VStack {
+                Picker("", selection: $selectedPage) {
+                    ForEach(Pages.allCases, id:\.self){
+                        Text($0.rawValue)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                Spacer()
+                ChoosePageView(selectedPage: selectedPage)
+                Spacer()
+            }
+        }
     }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {

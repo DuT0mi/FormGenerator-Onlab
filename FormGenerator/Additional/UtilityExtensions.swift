@@ -18,3 +18,7 @@ extension View {
         }
     }
 }
+enum Pages: String, CaseIterable, Equatable {
+    case login = "login"
+    case signup = "signup"
+}

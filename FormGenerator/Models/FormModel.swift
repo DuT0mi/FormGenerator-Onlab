@@ -11,8 +11,15 @@ import CoreLocation
 
 
 struct FormModel: Hashable, Codable {
-    private var imageName: String
     
+    private var imageName: String
+    private var coordinates: Coordinates
+    
+    
+    
+    var locationCoordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
     var image: Image {
         Image(imageName)
     }
@@ -20,4 +27,11 @@ struct FormModel: Hashable, Codable {
     var description: String
     var name: String
     var place: String
+    
+    
+    
+    private struct Coordinates: Hashable, Codable {
+        var latitude: Double
+        var longitude: Double
+    }
 }
