@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChoosePageView: View {
-    var selectedPage: Pages
+    @State private var selectedPage: Pages
     
     init(selectedPage: Pages) {
         self.selectedPage = selectedPage

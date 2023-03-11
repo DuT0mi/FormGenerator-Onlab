@@ -13,13 +13,6 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("", selection: $selectedPage) {
-                    ForEach(Pages.allCases, id:\.self){
-                        Text($0.rawValue)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
                 Spacer()
                 ChoosePageView(selectedPage: selectedPage)
                 Spacer()

@@ -47,7 +47,6 @@
 		1ADFF44329BC96910071F54C /* ChoosePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44229BC96910071F54C /* ChoosePageView.swift */; };
 		1ADFF44529BC9BDB0071F54C /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44429BC9BDB0071F54C /* TemplateView.swift */; };
 		1AFD473929B4E723000A47D5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473829B4E723000A47D5 /* LoginView.swift */; };
-		1AFD473B29B4ECB4000A47D5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD473A29B4ECB4000A47D5 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +65,6 @@
 		1ADFF44229BC96910071F54C /* ChoosePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePageView.swift; sourceTree = "<group>"; };
 		1ADFF44429BC9BDB0071F54C /* TemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		1AFD473829B4E723000A47D5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		1AFD473A29B4ECB4000A47D5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,6 @@
 				1AFD473829B4E723000A47D5 /* LoginView.swift */,
 				1ADFF44229BC96910071F54C /* ChoosePageView.swift */,
 				1ADFF44429BC9BDB0071F54C /* TemplateView.swift */,
-				1AFD473A29B4ECB4000A47D5 /* SignUpView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				1A8A416129B9D2B800957094 /* FormModel.swift in Sources */,
 				1ADFF44329BC96910071F54C /* ChoosePageView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
-				1AFD473B29B4ECB4000A47D5 /* SignUpView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
 				1ADFF44529BC9BDB0071F54C /* TemplateView.swift in Sources */,
