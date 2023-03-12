@@ -10,8 +10,8 @@ import FirebaseAuth
 
 class UserViewModel: ObservableObject {
     
-    @Published var isSignedIn:Bool = false
-    
+   // @AppStorage("isSignedIn") var isSignedIn = false
+    @Published var isSignedIn = false
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var alert: Bool = false
@@ -34,7 +34,8 @@ class UserViewModel: ObservableObject {
                 self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
             } else {
-                self.isSignedIn = true
+               // self.isSignedIn = true
+                UserDefaults.standard.set(self.isSignedIn, forKey: "signedIn")
             }
         }
         
@@ -42,7 +43,7 @@ class UserViewModel: ObservableObject {
     func signUp(){
         // Check if all fields are inputted in the correct way
         if email.isEmpty || password.isEmpty {
-            showAlertMessage("Error")
+            showAlertMessage("Neither email nor password can be empty.")
             return
         }
         Auth.auth().createUser(withEmail: email, password: password){result, error in
@@ -57,7 +58,8 @@ class UserViewModel: ObservableObject {
     func logout(){
         do {
             try Auth.auth().signOut()
-                isSignedIn = false
+              //  isSignedIn = false
+            UserDefaults.standard.removeObject(forKey: "signedIn")
                 email = ""
                 password = ""
         } catch {

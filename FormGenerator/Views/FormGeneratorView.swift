@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct FormGeneratorView: View {
- 
+ @ObservedObject var user = UserViewModel()
     var body: some View {
         TabView {
             IntroView()
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
-            AuthHomeView()
+            LoginView()
                 .tabItem {
                     Label("Start", systemImage: "person.fill")
                 }

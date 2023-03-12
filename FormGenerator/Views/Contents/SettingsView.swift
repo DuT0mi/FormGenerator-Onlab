@@ -19,7 +19,7 @@ struct SettingsView: View {
                 
             } header: {
                 Text("Profile")
-            }
+            }	
             Section {
                 HStack {
                     Text("Version")
@@ -32,7 +32,6 @@ struct SettingsView: View {
             Section{
                 Button {
                     user.logout()
-                    user.isSignedIn = false
                 }label: {
                     HStack{
                         Spacer()

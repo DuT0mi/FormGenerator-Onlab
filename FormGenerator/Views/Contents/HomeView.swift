@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var user = UserViewModel()
-    // TODO: make it false
-    
     var body: some View {
-        if user.isSignedIn{
+        let isSignedIn = UserDefaults.standard.bool(forKey: "signedIn")
+        if isSignedIn{
             TabView{
                 FormsListView()
                     .tabItem {
@@ -31,6 +29,7 @@ struct HomeView: View {
             FormGeneratorView()
         }
     }
+        
 }
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
