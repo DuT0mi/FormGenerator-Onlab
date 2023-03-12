@@ -10,7 +10,6 @@ import FirebaseAuth
 
 class UserViewModel: ObservableObject {
     
-   // @AppStorage("isSignedIn") var isSignedIn = false
     @Published var isSignedIn = false
     @Published var email: String = ""
     @Published var password: String = ""
@@ -34,8 +33,8 @@ class UserViewModel: ObservableObject {
                 self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
             } else {
-               // self.isSignedIn = true
-                UserDefaults.standard.set(self.isSignedIn, forKey: "signedIn")
+                self.isSignedIn = true
+                print("Logged in")
             }
         }
         
@@ -58,8 +57,7 @@ class UserViewModel: ObservableObject {
     func logout(){
         do {
             try Auth.auth().signOut()
-              //  isSignedIn = false
-            UserDefaults.standard.removeObject(forKey: "signedIn")
+                isSignedIn = false
                 email = ""
                 password = ""
         } catch {

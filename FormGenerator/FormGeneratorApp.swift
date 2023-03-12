@@ -17,7 +17,7 @@ struct FormGeneratorApp: App {
     
     var body: some Scene {
         WindowGroup {
-            FormGeneratorView()
+            FormGeneratorView(user:UserViewModel())
         }
     }
 }

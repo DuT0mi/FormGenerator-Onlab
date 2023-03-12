@@ -10,16 +10,16 @@ import Firebase
 
 
 struct LoginView: View {
-    @StateObject var user = UserViewModel()
+    @ObservedObject var user: UserViewModel
     @State private var type: Pages = .login
     @State private var signUpViewisPresented: Bool = false
     
-    var body: some View {
+    var loginContent: some View {
         VStack{
             Text("\(type.rawValue)".uppercased())
                 .font(.title)
                 .frame(idealHeight: 0.1 * ScreenDimensions.height)
-            
+            // Email text
             HStack{
                 Label("",systemImage:  "person.circle.fill")
                     .scaledToFit()
@@ -32,6 +32,7 @@ struct LoginView: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
             .frame(width: ScreenDimensions.width * 0.8)
             
+            // Password text
             HStack{
                 Label("",systemImage: "lock.fill")
                     .scaledToFit()
@@ -46,10 +47,8 @@ struct LoginView: View {
             Spacer()
                 .frame(idealHeight: 0.05 * ScreenDimensions.height)
                 .fixedSize()
-            
-            Button {
-                user.login()
-            } label: {
+            // Login button
+            Button(action: user.login){
                 Text("\(type.rawValue)".uppercased())
                     .foregroundColor(.white)
                     .font(.title2)
@@ -62,7 +61,7 @@ struct LoginView: View {
             Spacer()
                 .frame(idealHeight: 0.05 * ScreenDimensions.height)
                 .fixedSize()
-            
+            // Sign up
             HStack{
                 Text("Don't have an account?")
                 Button(action: {
@@ -85,13 +84,16 @@ struct LoginView: View {
                 )
             })
         }
-        .ignoresSafeArea()
     }
+    
+    var body: some View {
+            loginContent
+        }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(user: UserViewModel())
     }
 }
 

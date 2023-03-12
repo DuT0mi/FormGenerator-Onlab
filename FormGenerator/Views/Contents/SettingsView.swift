@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var user = UserViewModel()
+    @ObservedObject var user: UserViewModel
     
     var body: some View {
         Form {
@@ -50,6 +50,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(user: UserViewModel())
     }
 }

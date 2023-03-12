@@ -8,24 +8,34 @@
 import SwiftUI
 
 struct FormGeneratorView: View {
- @ObservedObject var user = UserViewModel()
+    @StateObject var user: UserViewModel = UserViewModel()
+    
+    var homeView: some View {
+        HomeView(user: user)
+    }
+    
     var body: some View {
-        TabView {
-            IntroView()
-                .tabItem {
-                    Label("Home",systemImage: "house.fill")
-                }
-            LoginView()
-                .tabItem {
-                    Label("Start", systemImage: "person.fill")
-                }
+        if !user.isSignedIn{
+            TabView {
+                IntroView()
+                    .tabItem {
+                        Label("Home",systemImage: "house.fill")
+                    }
+                LoginView(user: user)
+                    .tabItem {
+                        Label("Start", systemImage: "person.fill")
+                    }
+            }
+        } else {
+            homeView
         }
     }
    
 }
 struct FormGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
-            FormGeneratorView()
+        FormGeneratorView()
     }
 }
     
+
