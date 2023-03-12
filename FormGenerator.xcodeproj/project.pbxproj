@@ -153,10 +153,9 @@
 		1A282EF329AE85BA00DAFD9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1ADFF44629BCF0580071F54C /* Contents */,
+				1A298FDD29BE20EB007DE28F /* Starter */,
+				1ADFF44629BCF0580071F54C /* Authed */,
 				1AD4A88829B6757900EF597C /* Auth */,
-				1A282EE529AE79BF00DAFD9B /* FormGeneratorView.swift */,
-				1ADFF44029BC8D860071F54C /* IntroView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +167,15 @@
 				1A8A416029B9D2B800957094 /* FormModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1A298FDD29BE20EB007DE28F /* Starter */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFF44029BC8D860071F54C /* IntroView.swift */,
+				1A282EE529AE79BF00DAFD9B /* FormGeneratorView.swift */,
+			);
+			path = Starter;
 			sourceTree = "<group>";
 		};
 		1A319D2429B3AC3C00183B94 /* Additional */ = {
@@ -188,7 +196,7 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		1ADFF44629BCF0580071F54C /* Contents */ = {
+		1ADFF44629BCF0580071F54C /* Authed */ = {
 			isa = PBXGroup;
 			children = (
 				1ADFF44729BCF06C0071F54C /* HomeView.swift */,
@@ -196,7 +204,7 @@
 				1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */,
 				1ADFF44929BCF6230071F54C /* FormsListView.swift */,
 			);
-			path = Contents;
+			path = Authed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

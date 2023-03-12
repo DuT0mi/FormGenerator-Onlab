@@ -34,7 +34,6 @@ class UserViewModel: ObservableObject {
                 self.alert.toggle()
             } else {
                 self.isSignedIn = true
-                print("Logged in")
             }
         }
         

@@ -11,57 +11,53 @@ import Firebase
 
 struct LoginView: View {
     @ObservedObject var user: UserViewModel
-    @State private var type: Pages = .login
+    @State private(set) var type: Pages = .login
     @State private var signUpViewisPresented: Bool = false
+    typealias LGC = LoginViewConstants
     
-    var loginContent: some View {
-        VStack{
+        var title: some View {
             Text("\(type.rawValue)".uppercased())
                 .font(.title)
-                .frame(idealHeight: 0.1 * ScreenDimensions.height)
-            // Email text
+                .frame(idealHeight: LGC.titleFrameHeightFactor * ScreenDimensions.height)
+                .bold()
+        }
+        var emailTextInput: some View {
             HStack{
                 Label("",systemImage:  "person.circle.fill")
                     .scaledToFit()
-                    .frame(width: 30.0, height: 30.0)
-                    .opacity(0.5)
+                    .frame(width: LGC.textFieldFrameWidthFactor, height: LGC.textFieldFrameHeightFactor)
+                    .opacity(LGC.textFieldOpacityFactor)
                 TextField("Email", text: $user.email)
                     .textInputAutocapitalization(.never)
             }
-            .padding(0.02 * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-            
-            // Password text
+            .padding(LGC.StackParameters.paddingFactor * ScreenDimensions.height)
+            .background(RoundedRectangle(cornerRadius: LGC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * LGC.StackParameters.frameWidthForDimensionsFactor)
+        }
+        var passwordTextInput: some View {
             HStack{
                 Label("",systemImage: "lock.fill")
                     .scaledToFit()
-                    .frame(width: 30.0, height: 30.0)
-                    .opacity(0.5)
+                    .frame(width: LGC.textFieldFrameWidthFactor, height: LGC.textFieldFrameHeightFactor)
+                    .opacity(LGC.textFieldOpacityFactor)
                 SecureField("Password", text: $user.password)
             }
-            .padding(0.02 * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-            
-            Spacer()
-                .frame(idealHeight: 0.05 * ScreenDimensions.height)
-                .fixedSize()
-            // Login button
+            .padding(LGC.StackParameters.paddingFactor * ScreenDimensions.height)
+            .background(RoundedRectangle(cornerRadius: LGC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * LGC.StackParameters.frameWidthForDimensionsFactor)
+        }
+        var loginButton: some View {
             Button(action: user.login){
                 Text("\(type.rawValue)".uppercased())
                     .foregroundColor(.white)
                     .font(.title2)
                     .bold()
             }
-            .padding(0.025 * ScreenDimensions.height)
+            .padding(LGC.buttonPaddingFactor * ScreenDimensions.height)
             .background(Capsule().fill(Color(.systemTeal)))
             .buttonStyle(BorderlessButtonStyle())
-            
-            Spacer()
-                .frame(idealHeight: 0.05 * ScreenDimensions.height)
-                .fixedSize()
-            // Sign up
+        }
+        var signUpAction: some View {
             HStack{
                 Text("Don't have an account?")
                 Button(action: {
@@ -74,26 +70,39 @@ struct LoginView: View {
                     SignupView(user: user, isPresented: $signUpViewisPresented)
                 })
                 .buttonStyle(BorderlessButtonStyle())
-                   
+                
             }
-            .alert(isPresented: $user.alert, content: {
-                Alert(
-                title: Text("Message"),
-                message: Text(user.alertMessage),
-                dismissButton: .destructive(Text("OK"))
-                )
-            })
         }
-    }
+        var loginContent: some View {
+            VStack{
+                title
+                emailTextInput
+                passwordTextInput
+                Spacer()
+                    .frame(idealHeight: LGC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                    .fixedSize()
+                loginButton
+                Spacer()
+                    .frame(idealHeight: LGC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                    .fixedSize()
+                signUpAction
+                    .alert(isPresented: $user.alert, content: {
+                        Alert(
+                            title: Text("Message"),
+                            message: Text(user.alertMessage),
+                            dismissButton: .destructive(Text("OK"))
+                        )
+                    })
+            }
+        }
     
     var body: some View {
             loginContent
         }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct LoginView_Preview: PreviewProvider {
     static var previews: some View {
         LoginView(user: UserViewModel())
     }
 }
-
