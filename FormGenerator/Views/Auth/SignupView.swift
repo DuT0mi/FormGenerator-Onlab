@@ -9,69 +9,83 @@ import SwiftUI
 
 struct SignupView: View {
     @ObservedObject var user: UserViewModel
-    @Binding var isPresented: Bool
     @State private var type: Pages = .signup
+    @Binding var isPresented: Bool
     
-    var body: some View {
-        VStack{
+    typealias AVC = AuthenticationViewsConstants
+    
+    var title: some View {
+        Text("\(type.rawValue)".uppercased())
+            .font(.title)
+            .frame(idealHeight: AVC.titleFrameHeightFactor * ScreenDimensions.height)
+            .bold()
+    }
+    var emailTextInput: some View {
+        HStack{
+            Label("",systemImage:  "person.circle.fill")
+                .scaledToFit()
+                .frame(width: AVC.textFieldFrameWidthFactor, height: AVC.textFieldFrameHeightFactor)
+                .opacity(AVC.textFieldOpacityFactor)
+            TextField("Email", text: $user.email)
+                .textInputAutocapitalization(.never)
+        }
+        .padding(AVC.StackParameters.paddingFactor * ScreenDimensions.height)
+        .background(RoundedRectangle(cornerRadius: AVC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
+        .frame(width: ScreenDimensions.width * AVC.StackParameters.frameWidthForDimensionsFactor)
+    }
+    var passwordTextInput: some View {
+        HStack{
+            Label("",systemImage: "lock.fill")
+                .scaledToFit()
+                .frame(width: AVC.textFieldFrameWidthFactor, height: AVC.textFieldFrameHeightFactor)
+                .opacity(AVC.textFieldOpacityFactor)
+            SecureField("Password", text: $user.password)
+        }
+        .padding(0.02 * ScreenDimensions.height)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
+        .frame(width: ScreenDimensions.width * AVC.StackParameters.frameWidthForDimensionsFactor)
+    }
+    var loginButton: some View {
+        Button {
+            user.signUp()
+        } label: {
             Text("\(type.rawValue)".uppercased())
-                .font(.title)
-                .frame(idealHeight: 0.1 * ScreenDimensions.height)
-            
-            HStack{
-                Label("",systemImage:  "person.circle.fill")
-                    .scaledToFit()
-                    .frame(width: 30.0, height: 30.0)
-                    .opacity(0.5)
-                TextField("Email", text: $user.email)
-                    .textInputAutocapitalization(.never)
-            }
-            .padding(0.02 * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-            
-            HStack{
-                Label("",systemImage: "lock.fill")
-                    .scaledToFit()
-                    .frame(width: 30.0, height: 30.0)
-                    .opacity(0.5)
-                SecureField("Password", text: $user.password)
-            }
-            .padding(0.02 * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * 0.8)
-            
-            Spacer()
-                .frame(idealHeight: 0.05 * ScreenDimensions.height)
-                .fixedSize()
-            
-            Button {
-                user.signUp()
-            } label: {
-                Text("\(type.rawValue)".uppercased())
-                    .foregroundColor(.white)
-                    .font(.title2)
+                .foregroundColor(.white)
+                .font(.title2)
+                .bold()
+        }
+        .padding(AVC.buttonPaddingFactor * ScreenDimensions.height)
+        .background(Capsule().fill(Color(.systemTeal)))
+        .buttonStyle(BorderlessButtonStyle())
+    }
+    var signUpAction: some View {
+        HStack{
+            Text("Already have an account?")
+            Button(action: {
+                isPresented = false
+            }) {
+                Text("login".uppercased())
                     .bold()
             }
-            .padding(0.025 * ScreenDimensions.height)
-            .background(Capsule().fill(Color(.systemTeal)))
             .buttonStyle(BorderlessButtonStyle())
-            
+               
+        }
+    }
+    var loginContent: some View {
+        VStack{
+                title
+                emailTextInput
+                passwordTextInput
             Spacer()
-                .frame(idealHeight: 0.05 * ScreenDimensions.height)
+                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                 .fixedSize()
             
-            HStack{
-                Text("Already have an account?")
-                Button(action: {
-                    isPresented = false
-                }) {
-                    Text("login".uppercased())
-                        .bold()
-                }
-                .buttonStyle(BorderlessButtonStyle())
-                   
-            }
+                loginButton
+            
+            Spacer()
+                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                .fixedSize()
+            signUpAction
             .alert(isPresented: $user.alert, content: {
                 Alert(
                 title: Text("Message"),
@@ -81,6 +95,10 @@ struct SignupView: View {
             })
         }
         .ignoresSafeArea()
+    }
+    
+    var body: some View {
+        loginContent
     }
 }
 

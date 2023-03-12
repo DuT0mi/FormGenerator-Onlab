@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginViewConstants {
+struct AuthenticationViewsConstants {
     static let titleFrameHeightFactor: CGFloat = 0.1
     
     static let textFieldFrameWidthFactor: CGFloat = 30.0

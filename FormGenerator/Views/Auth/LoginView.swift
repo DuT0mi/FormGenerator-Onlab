@@ -13,38 +13,39 @@ struct LoginView: View {
     @ObservedObject var user: UserViewModel
     @State private(set) var type: Pages = .login
     @State private var signUpViewisPresented: Bool = false
-    typealias LGC = LoginViewConstants
+    
+    typealias AVC = AuthenticationViewsConstants
     
         var title: some View {
             Text("\(type.rawValue)".uppercased())
                 .font(.title)
-                .frame(idealHeight: LGC.titleFrameHeightFactor * ScreenDimensions.height)
+                .frame(idealHeight:AVC.titleFrameHeightFactor * ScreenDimensions.height)
                 .bold()
         }
         var emailTextInput: some View {
             HStack{
                 Label("",systemImage:  "person.circle.fill")
                     .scaledToFit()
-                    .frame(width: LGC.textFieldFrameWidthFactor, height: LGC.textFieldFrameHeightFactor)
-                    .opacity(LGC.textFieldOpacityFactor)
+                    .frame(width:AVC.textFieldFrameWidthFactor, height:AVC.textFieldFrameHeightFactor)
+                    .opacity(AVC.textFieldOpacityFactor)
                 TextField("Email", text: $user.email)
                     .textInputAutocapitalization(.never)
             }
-            .padding(LGC.StackParameters.paddingFactor * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: LGC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * LGC.StackParameters.frameWidthForDimensionsFactor)
+            .padding(AVC.StackParameters.paddingFactor * ScreenDimensions.height)
+            .background(RoundedRectangle(cornerRadius:AVC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * AVC.StackParameters.frameWidthForDimensionsFactor)
         }
         var passwordTextInput: some View {
             HStack{
                 Label("",systemImage: "lock.fill")
                     .scaledToFit()
-                    .frame(width: LGC.textFieldFrameWidthFactor, height: LGC.textFieldFrameHeightFactor)
-                    .opacity(LGC.textFieldOpacityFactor)
+                    .frame(width:AVC.textFieldFrameWidthFactor, height:AVC.textFieldFrameHeightFactor)
+                    .opacity(AVC.textFieldOpacityFactor)
                 SecureField("Password", text: $user.password)
             }
-            .padding(LGC.StackParameters.paddingFactor * ScreenDimensions.height)
-            .background(RoundedRectangle(cornerRadius: LGC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
-            .frame(width: ScreenDimensions.width * LGC.StackParameters.frameWidthForDimensionsFactor)
+            .padding(AVC.StackParameters.paddingFactor * ScreenDimensions.height)
+            .background(RoundedRectangle(cornerRadius:AVC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
+            .frame(width: ScreenDimensions.width * AVC.StackParameters.frameWidthForDimensionsFactor)
         }
         var loginButton: some View {
             Button(action: user.login){
@@ -53,7 +54,7 @@ struct LoginView: View {
                     .font(.title2)
                     .bold()
             }
-            .padding(LGC.buttonPaddingFactor * ScreenDimensions.height)
+            .padding(AVC.buttonPaddingFactor * ScreenDimensions.height)
             .background(Capsule().fill(Color(.systemTeal)))
             .buttonStyle(BorderlessButtonStyle())
         }
@@ -79,11 +80,11 @@ struct LoginView: View {
                 emailTextInput
                 passwordTextInput
                 Spacer()
-                    .frame(idealHeight: LGC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                    .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                     .fixedSize()
                 loginButton
                 Spacer()
-                    .frame(idealHeight: LGC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                    .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                     .fixedSize()
                 signUpAction
                     .alert(isPresented: $user.alert, content: {
