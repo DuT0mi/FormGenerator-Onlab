@@ -34,7 +34,7 @@ struct LoginView: View {
         }
         var loginContent: some View {
             VStack{
-                let templateView = TemplateAuthView(user:user, type: type)
+                let templateView = TemplateAuthView(user: user, type: type)
                         templateView.getTitle()
                         templateView.getEmailTextInput()
                         templateView.getPasswordTextInput()

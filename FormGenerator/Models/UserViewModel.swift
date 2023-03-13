@@ -24,7 +24,7 @@ class UserViewModel: ObservableObject {
     func login(){
         // Check if all fields are inputted in the correct way
         if email.isEmpty || password.isEmpty {
-            showAlertMessage("Error")
+            showAlertMessage("Neither email nor password can be empty.")
             return
         }
         // sign in with email and password
@@ -60,7 +60,7 @@ class UserViewModel: ObservableObject {
                 email = ""
                 password = ""
         } catch {
-            print("Error signing out.")
+            print("Error signing out, error: \(error)")
         }
     }
  

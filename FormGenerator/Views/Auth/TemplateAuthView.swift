@@ -39,7 +39,8 @@ struct TemplateAuthView: View {
                 .scaledToFit()
                 .frame(width: AVC.textFieldFrameWidthFactor, height: AVC.textFieldFrameHeightFactor)
                 .opacity(AVC.textFieldOpacityFactor)
-            SecureField("Password", text: $user.password)
+          //  SecureField("Password", text: $user.password)
+            SecureTextField(secureText: $user.password)
         }
         .padding(AVC.StackParameters.paddingFactor * ScreenDimensions.height)
         .background(RoundedRectangle(cornerRadius: AVC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
@@ -47,7 +48,7 @@ struct TemplateAuthView: View {
     }
     private var loginButton: some View {
         Button {
-            type == .login ? user.login() : user.signUp() // There are not any othet option
+            type == .login ? user.login() : user.signUp() // There are not any other option
         } label: {
             Text("\(type!.rawValue )".uppercased())
                 .foregroundColor(.white)
