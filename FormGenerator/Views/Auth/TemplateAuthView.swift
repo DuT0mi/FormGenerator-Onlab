@@ -39,14 +39,13 @@ struct TemplateAuthView: View {
                 .scaledToFit()
                 .frame(width: AVC.textFieldFrameWidthFactor, height: AVC.textFieldFrameHeightFactor)
                 .opacity(AVC.textFieldOpacityFactor)
-          //  SecureField("Password", text: $user.password)
             SecureTextField(secureText: $user.password)
         }
         .padding(AVC.StackParameters.paddingFactor * ScreenDimensions.height)
         .background(RoundedRectangle(cornerRadius: AVC.StackParameters.rectangleRadiusFactor).fill(Color(.systemGray5)))
         .frame(width: ScreenDimensions.width * AVC.StackParameters.frameWidthForDimensionsFactor)
     }
-    private var loginButton: some View {
+    private var userHandlerButton: some View {
         Button {
             type == .login ? user.login() : user.signUp() // There are not any other option
         } label: {
@@ -73,8 +72,8 @@ struct TemplateAuthView: View {
     func getPasswordTextInput() -> some View {
         passwordTextInput
     }
-    func getLoginButton() -> some View {
-        loginButton
+    func getUserHandlerButton() -> some View {
+        userHandlerButton
     }
     
     

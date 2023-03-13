@@ -14,7 +14,7 @@ struct LoginView: View {
     @State private var signUpViewisPresented: Bool = false
     
     typealias AVC = AuthenticationViewsConstants
-    
+
     
         var signUpAction: some View {
             HStack{
@@ -43,7 +43,7 @@ struct LoginView: View {
                     .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                     .fixedSize()
                 
-                    templateView.getLoginButton()
+                    templateView.getUserHandlerButton()
                 
                 Spacer()
                     .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)

@@ -14,7 +14,7 @@ struct SignupView: View {
     
     typealias AVC = AuthenticationViewsConstants
     
-    var signUpAction: some View {
+    var logInAction: some View {
         HStack{
             Text("Already have an account?")
             Button(action: {
@@ -37,12 +37,12 @@ struct SignupView: View {
                 .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                 .fixedSize()
             
-            templateView.getLoginButton()
+            templateView.getUserHandlerButton()
             
             Spacer()
                 .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                 .fixedSize()
-            signUpAction
+            logInAction
             .alert(isPresented: $user.alert, content: {
                 Alert(
                 title: Text("Message"),
