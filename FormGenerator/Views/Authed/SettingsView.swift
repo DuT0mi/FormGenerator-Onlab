@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var user: UserViewModel
+    @State var stayLoggedIn: Bool = false
     
     var body: some View {
         Form {
@@ -16,6 +17,7 @@ struct SettingsView: View {
                 Text("Text")
                 Text("Text")
                 Text("Text")
+                Toggle("Stay Logged In", isOn: $stayLoggedIn) // TODO: MAKE IT optional, now it is just autologins
                 
             } header: {
                 Text("Profile")

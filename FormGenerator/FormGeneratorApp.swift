@@ -10,7 +10,6 @@ import FirebaseCore
 
 @main
 struct FormGeneratorApp: App {
-    
     init(){
         FirebaseApp.configure()
     }
