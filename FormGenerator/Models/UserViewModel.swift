@@ -16,10 +16,16 @@ class UserViewModel: ObservableObject {
     @Published var alert: Bool = false
     @Published var alertMessage: String = ""
     
+    @Published var isStayLoggedIn: Bool = false
+    
     private func showAlertMessage(_ message: String){
         self.alertMessage = message
         alert.toggle()
     }
+    
+    
+    
+    
     
     func login(){
         // Check if all fields are inputted in the correct way
