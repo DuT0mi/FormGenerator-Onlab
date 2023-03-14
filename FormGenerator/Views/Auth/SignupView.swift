@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignupView: View {
     @ObservedObject var user: UserViewModel
-    @State private var type: Pages = .signup
+    @State private(set) var type: Pages = .signup
     @Binding var isPresented: Bool
     
     typealias AVC = AuthenticationViewsConstants

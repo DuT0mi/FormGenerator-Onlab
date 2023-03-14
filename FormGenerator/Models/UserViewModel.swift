@@ -9,12 +9,20 @@ import SwiftUI
 import FirebaseAuth
 
 class UserViewModel: ObservableObject {
-    
-    @Published var isSignedIn = false
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var alert: Bool = false
     @Published var alertMessage: String = ""
+    @Published var isSignedIn = false
+    
+    init(autoLogin: Bool = true){
+        if autoLogin{
+            let user = Auth.auth().currentUser
+            if let _ = user {
+                isSignedIn = true
+            }
+        } else {}
+    }
     
     private func showAlertMessage(_ message: String){
         self.alertMessage = message
@@ -63,5 +71,5 @@ class UserViewModel: ObservableObject {
             print("Error signing out, error: \(error)")
         }
     }
- 
+
 }

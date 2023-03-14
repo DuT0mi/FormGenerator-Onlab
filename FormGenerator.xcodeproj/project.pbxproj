@@ -189,12 +189,20 @@
 			path = Additional;
 			sourceTree = "<group>";
 		};
+		1A77351829BFC0FC00A69DD8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1A298FE029BE3222007DE28F /* TemplateAuthView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		1AD4A88829B6757900EF597C /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				1A77351829BFC0FC00A69DD8 /* Shared */,
 				1A2C2FB729BDDE31008ED194 /* LoginView.swift */,
 				1A2C2FB929BDDFC3008ED194 /* SignupView.swift */,
-				1A298FE029BE3222007DE28F /* TemplateAuthView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
