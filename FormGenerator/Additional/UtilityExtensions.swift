@@ -5,6 +5,7 @@
 //  Created by Dudas Tamas Alex on 2023. 02. 28..
 //
 import SwiftUI
+import FirebaseDatabase
 
 enum Pages: String, CaseIterable, Equatable {
     case login = "login"
@@ -41,4 +42,10 @@ struct SecureTextField: View {
         }
     }
     
+}
+
+extension Database {
+    class var root: DatabaseReference {
+        return database().reference()
+    }
 }

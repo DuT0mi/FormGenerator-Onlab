@@ -51,6 +51,7 @@
 		1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */; };
 		1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF45129BCF6BA0071F54C /* SettingsView.swift */; };
 		1AE94CF829C1E01F00589D55 /* Answers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF729C1E01F00589D55 /* Answers.swift */; };
+		1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsFormsView.swift; sourceTree = "<group>"; };
 		1ADFF45129BCF6BA0071F54C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1AE94CF729C1E01F00589D55 /* Answers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answers.swift; sourceTree = "<group>"; };
+		1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9D202529B4B20100127A91 /* UserViewModel.swift */,
+				1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
