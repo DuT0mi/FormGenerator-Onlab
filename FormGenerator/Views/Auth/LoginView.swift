@@ -61,7 +61,12 @@ struct LoginView: View {
         }
     
     var body: some View {
+        ZStack{
             loginContent
+            if user.loading {
+                ProgressView()
+            }
+        }
         }
 }
 

@@ -52,6 +52,7 @@
 		1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF45129BCF6BA0071F54C /* SettingsView.swift */; };
 		1AE94CF829C1E01F00589D55 /* Answers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF729C1E01F00589D55 /* Answers.swift */; };
 		1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */; };
+		1AE94CFD29C2210B00589D55 /* SuccessPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CFC29C2210B00589D55 /* SuccessPopUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		1ADFF45129BCF6BA0071F54C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1AE94CF729C1E01F00589D55 /* Answers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answers.swift; sourceTree = "<group>"; };
 		1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
+		1AE94CFC29C2210B00589D55 /* SuccessPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		1A282EF329AE85BA00DAFD9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1AE94CFB29C220DA00589D55 /* Extension */,
 				1A298FDD29BE20EB007DE28F /* Starter */,
 				1ADFF44629BCF0580071F54C /* Authed */,
 				1AD4A88829B6757900EF597C /* Auth */,
@@ -235,6 +238,14 @@
 				1AE94CF729C1E01F00589D55 /* Answers.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1AE94CFB29C220DA00589D55 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1AE94CFC29C2210B00589D55 /* SuccessPopUpView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +360,7 @@
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE94CF829C1E01F00589D55 /* Answers.swift in Sources */,
+				1AE94CFD29C2210B00589D55 /* SuccessPopUpView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,

@@ -14,6 +14,7 @@ final class UserViewModel: ObservableObject {
     @Published var alert: Bool = false
     @Published var alertMessage: String = ""
     @Published var isSignedIn = false
+    @Published var loading: Bool = false
     
     init(autoLogin: Bool = true){
         if autoLogin{
@@ -30,9 +31,11 @@ final class UserViewModel: ObservableObject {
     }
     
     func login(){
+        loading.toggle()
         // Check if all fields are inputted in the correct way
         if email.isEmpty || password.isEmpty {
             showAlertMessage("Neither email nor password can be empty.")
+            loading.toggle()
             return
         }
         // sign in with email and password
@@ -40,33 +43,41 @@ final class UserViewModel: ObservableObject {
             if  error != nil {
                 self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
+                self.loading.toggle()
             } else {
                 self.isSignedIn = true
+                self.loading.toggle()
             }
         }
         
     }
     func signUp(){
+        self.loading.toggle()
         // Check if all fields are inputted in the correct way
         if email.isEmpty || password.isEmpty {
             showAlertMessage("Neither email nor password can be empty.")
+            self.loading.toggle()
             return
         }
         Auth.auth().createUser(withEmail: email, password: password){result, error in
             if  error != nil {
                 self.alertMessage = error!.localizedDescription
                 self.alert.toggle()
+                self.loading.toggle()
             } else {
                 self.login()
+                self.loading.toggle()
             }
         }
     }
     func logout(){
+        self.loading.toggle()
         do {
             try Auth.auth().signOut()
                 isSignedIn = false
                 email = ""
                 password = ""
+        self.loading.toggle()
         } catch {
             print("Error signing out, error: \(error)")
         }
