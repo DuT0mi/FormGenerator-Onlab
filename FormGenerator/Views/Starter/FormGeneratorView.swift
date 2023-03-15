@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FormGeneratorView: View {
     @StateObject var user: UserViewModel = UserViewModel()
+    @State private var shouldShowSuccessView: Bool = true
     
     var homeView: some View {
         HomeView(user: user)
@@ -25,9 +26,28 @@ struct FormGeneratorView: View {
                     .tabItem {
                         Label("Start", systemImage: "person.fill")
                     }
+
             }
         } else {
             homeView
+                .overlay{
+                    if shouldShowSuccessView {
+                        Text("a")
+                    }
+                }
+             /*   .overlay {
+                    if shouldShowSuccessView {
+                        SuccessPopUpView(startAngle: Angle(degrees: 120), endAngle: Angle(degrees: -10), clockwise: true)
+                            .onAppear{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                                    withAnimation(.spring()){
+                                        shouldShowSuccessView.toggle()
+                                    }
+                                }
+                            }
+                    }
+                } */
+            
         }
     }
    

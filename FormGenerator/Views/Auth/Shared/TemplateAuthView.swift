@@ -57,6 +57,7 @@ struct TemplateAuthView: View {
         .padding(AVC.buttonPaddingFactor * ScreenDimensions.height)
         .background(Capsule().fill(Color(.systemTeal)))
         .buttonStyle(BorderlessButtonStyle())
+
     }
     
     var body: some View {
