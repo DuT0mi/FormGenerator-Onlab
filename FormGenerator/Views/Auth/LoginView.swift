@@ -11,7 +11,7 @@ import Firebase
 struct LoginView: View {
     @ObservedObject var user: UserViewModel
     @State private(set) var type: Pages = .login
-    @State private var signUpViewisPresented: Bool = false
+    @State private var signUpViewIsPresented: Bool = false
     
     typealias AVC = AuthenticationViewsConstants
 
@@ -20,13 +20,13 @@ struct LoginView: View {
             HStack{
                 Text("Don't have an account?")
                 Button(action: {
-                    signUpViewisPresented = true
+                    signUpViewIsPresented = true
                 }) {
                     Text("sign up".uppercased())
                         .bold()
                 }
-                .sheet(isPresented: $signUpViewisPresented, content: {
-                    SignupView(user: user, isPresented: $signUpViewisPresented)
+                .sheet(isPresented: $signUpViewIsPresented, content: {
+                    SignupView(user: user, isPresented: $signUpViewIsPresented)
                 })
                 .buttonStyle(BorderlessButtonStyle())
                 
@@ -61,7 +61,12 @@ struct LoginView: View {
         }
     
     var body: some View {
+        ZStack{
             loginContent
+            if user.loading {
+                ProgressView()
+            }
+        }
         }
 }
 

@@ -5,25 +5,14 @@
 //  Created by Dudas Tamas Alex on 2023. 02. 28..
 //
 import SwiftUI
-
-extension View {
-    func placeholder<Content: View>(
-        when shouldShow: Bool,
-        alignment: Alignment = .leading,
-        @ViewBuilder placeholder: () -> Content) -> some View {
-
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
-        }
-    }
-}
+import FirebaseDatabase
 
 enum Pages: String, CaseIterable, Equatable {
     case login = "login"
     case signup = "signup"
 }
 
+// Constants for device's sizes
 class ScreenDimensions {
     #if os(iOS) || os(tvOS)
         static var width: CGFloat = UIScreen.main.bounds.size.width
@@ -34,6 +23,7 @@ class ScreenDimensions {
     #endif
 }
 
+// Homemade View, makes an oppurtinity to show and unshow the password's field
 struct SecureTextField: View {
     @State private var isSecureField: Bool = true
     @Binding var secureText: String
@@ -55,3 +45,13 @@ struct SecureTextField: View {
     }
     
 }
+
+
+// Reaching the db easily
+extension Database {
+    class var root: DatabaseReference {
+        return database().reference()
+    }
+}
+
+
