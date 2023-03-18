@@ -25,4 +25,6 @@ struct AuthenticationViewsConstants {
         static let frameIdealHeightFactor: CGFloat = 0.05
     }
 }
-
+struct PopUpMessageTimer{
+    static let onScreenTime: Double = 1.0
+}

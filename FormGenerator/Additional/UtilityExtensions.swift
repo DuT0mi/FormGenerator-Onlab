@@ -12,6 +12,7 @@ enum Pages: String, CaseIterable, Equatable {
     case signup = "signup"
 }
 
+// Constants for device's sizes
 class ScreenDimensions {
     #if os(iOS) || os(tvOS)
         static var width: CGFloat = UIScreen.main.bounds.size.width
@@ -22,6 +23,7 @@ class ScreenDimensions {
     #endif
 }
 
+// Homemade View, makes an oppurtinity to show and unshow the password's field
 struct SecureTextField: View {
     @State private var isSecureField: Bool = true
     @Binding var secureText: String
@@ -44,8 +46,12 @@ struct SecureTextField: View {
     
 }
 
+
+// Reaching the db easily
 extension Database {
     class var root: DatabaseReference {
         return database().reference()
     }
 }
+
+
