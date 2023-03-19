@@ -9,42 +9,42 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var user: UserViewModel
-    
+
     var body: some View {
-        Form {
-            Section {
-                Text("Text")
-                Text("Text")
-                Text("Text")
-                
-            } header: {
-                Text("Profile")
-            }	
-            Section {
-                HStack {
-                    Text("Version")
-                    Spacer()
-                    Text("\(10.0)")
+            Form {
+                Section {
+                    Text("Text")
+                    Text("Text")
+                    Text("Text")
+                    
+                } header: {
+                    Text("Profile")
                 }
-            } header: {
-                Text("About")
-            }
-            Section{
-                Button {
-                    user.logout()
-                }label: {
-                    HStack{
+                Section {
+                    HStack {
+                        Text("Version")
                         Spacer()
-                        Label("Log Out", systemImage: "figure.walk.arrival")
-                            .foregroundColor(.red)
-                            .bold()
-                        Spacer()
+                        Text("\(10.0)")
                     }
+                } header: {
+                    Text("About")
                 }
-            } header: {
-                Text("log out".uppercased())
+                Section{
+                    Button {
+                        user.logout()
+                    }label: {
+                        HStack{
+                            Spacer()
+                            Label("Log Out", systemImage: "figure.walk.arrival")
+                                .foregroundColor(.red)
+                                .bold()
+                            Spacer()
+                        }
+                    }
+                } header: {
+                    Text("log out".uppercased())
+                }
             }
-        }
     }
 }
 

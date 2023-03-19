@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FormGeneratorView: View {
-    @ObservedObject var user: UserViewModel = UserViewModel()
+    @StateObject var user: UserViewModel = UserViewModel()
     @StateObject var networkManager: NetworkManager = NetworkManager()
     @State private var shouldShowSuccessView: Bool = true
     @State private var isConnected:Bool = false
@@ -36,7 +36,7 @@ struct FormGeneratorView: View {
     }
     var tabView: some View {
         TabView {
-            IntroView()
+            IntroView(networkManager: networkManager)
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignupView: View {
     @ObservedObject var user: UserViewModel
+
     @State private(set) var type: Pages = .signup
     @Binding var isPresented: Bool
     
@@ -55,12 +56,12 @@ struct SignupView: View {
     }
     
     var body: some View {
-        ZStack{
-            loginContent
-            if user.loading {
-                ProgressView()
+            ZStack{
+                loginContent
+                if user.loading {
+                    ProgressView()
+                }
             }
-        }
     }
 }
 

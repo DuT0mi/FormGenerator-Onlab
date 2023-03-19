@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var user: UserViewModel
+
     @State private var selection: Tab = .all
     var body: some View {
             TabView(selection: $selection){
@@ -28,7 +29,7 @@ struct HomeView: View {
                     }
                     .tag(Tab.profile)
             }
-        }
+    }
     private enum Tab{
         case all
         case recent
