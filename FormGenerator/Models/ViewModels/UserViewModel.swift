@@ -4,7 +4,6 @@
 //
 //  Created by Dudas Tamas Alex on 2023. 03. 05..
 //
-
 import SwiftUI
 import FirebaseAuth
 
@@ -83,4 +82,5 @@ final class UserViewModel: ObservableObject {
             print("Error signing out, error: \(error)")
         }
     }
+    
 }

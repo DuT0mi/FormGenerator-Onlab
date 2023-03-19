@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+struct UITextConstants{
+    static let retryConnectionText = "Retry"
+}
 struct AuthenticationViewsConstants {
     static let titleFrameHeightFactor: CGFloat = 0.1
     
