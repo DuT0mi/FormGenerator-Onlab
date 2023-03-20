@@ -155,6 +155,6 @@ struct SpaceView: View {
 
 struct SpaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceView(networkManager: NetworkManager())
+        SpaceView(networkManager: NetworkManagerViewModel())
     }
 }

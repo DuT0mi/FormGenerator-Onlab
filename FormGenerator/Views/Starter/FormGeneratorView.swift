@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FormGeneratorView: View {
     @StateObject var user: UserViewModel = UserViewModel()
-    @StateObject var networkManager: NetworkManagerViewModel = NetworkManager()
+    @StateObject var networkManager: NetworkManagerViewModel = NetworkManagerViewModel()
     @State private var shouldShowSuccessView: Bool = true
     @State private var isConnected:Bool = false
     @State private var spaceViewIsPresented: Bool = false
