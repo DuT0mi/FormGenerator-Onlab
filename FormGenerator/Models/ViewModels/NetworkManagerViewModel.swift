@@ -2,7 +2,7 @@ import Network
 import SwiftUI
 
 @MainActor
-class NetworkManager: ObservableObject{
+final class NetworkManagerViewModel: ObservableObject{
     @Published var isChecking:Bool = false
     @Published var isConnected:Bool = false
     
@@ -28,14 +28,4 @@ class NetworkManager: ObservableObject{
             return connection
         }
     }
-    func automatedChecker() async -> Bool {
-        isChecking.toggle()
-        var response:Bool
-        repeat {
-                response =  await isInternetAvailable()
-        } while response != true
-        isChecking.toggle()
-        return response
-    }
-
 }

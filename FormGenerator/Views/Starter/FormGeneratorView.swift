@@ -1,15 +1,8 @@
-//
-//  ContentView.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 02. 28..
-//
-
 import SwiftUI
 
 struct FormGeneratorView: View {
     @StateObject var user: UserViewModel = UserViewModel()
-    @StateObject var networkManager: NetworkManager = NetworkManager()
+    @StateObject var networkManager: NetworkManagerViewModel = NetworkManager()
     @State private var shouldShowSuccessView: Bool = true
     @State private var isConnected:Bool = false
     @State private var spaceViewIsPresented: Bool = false
@@ -31,12 +24,12 @@ struct FormGeneratorView: View {
         }
     }
     
-    var homeView: some View {
+    fileprivate var homeView: some View {
         HomeView(user: user)
     }
-    var tabView: some View {
+    fileprivate var tabView: some View {
         TabView {
-            IntroView(networkManager: networkManager)
+            IntroView()
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
@@ -55,12 +48,11 @@ struct FormGeneratorView: View {
                     tabView
                 } else {
                     homeView
-                        .overlay{
-                            if shouldShowSuccessView {
-                                getPopUpContent(content: popUpContent, extratime: PopUpMessageTimer.onScreenTime)
+                            .overlay{
+                                if shouldShowSuccessView {
+                                    getPopUpContent(content: popUpContent, extratime: PopUpMessageTimer.onScreenTime)
+                                }
                             }
-                        }
-                    
                 }
             } else {
                 SpaceView(networkManager: networkManager)

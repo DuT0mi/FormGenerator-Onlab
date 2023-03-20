@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 03. 11..
-//
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -24,7 +17,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("\(10.0)")
+                        Text("\(AppConstants.appVersionNumber, specifier: "%.2f")")
                     }
                 } header: {
                     Text("About")
