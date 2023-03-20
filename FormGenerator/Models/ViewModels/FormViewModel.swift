@@ -1,15 +1,8 @@
-//
-//  FormViewModel.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 03. 15..
-//
-
 import FirebaseAuth
 import FirebaseDatabase
 import Combine
 
-class FormViewModel: ObservableObject, Identifiable {
+final class FormViewModel: ObservableObject, Identifiable {
     @Published var id: String
     @Published var uid: String
     @Published var author: String

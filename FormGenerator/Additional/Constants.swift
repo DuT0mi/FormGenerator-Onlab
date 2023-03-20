@@ -1,14 +1,24 @@
-//
-//  Constants.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 03. 04..
-//
-
 import Foundation
-struct UITextConstants{
-    static let retryConnectionText = "Retry"
+
+// Constants about the App
+struct AppConstants {
+    static let appVersionNumber: Double = 1.0
 }
+
+// Constants for the error screen (space view)
+struct AnimatedSpaceScreen{
+    static let numberOfStars: Int = 250
+}
+
+// Constants strings for UI texts
+struct UITextConstants{
+    struct NetworkStateTexts{
+        static let connectedSuccessfully: String = "Connected, get started"
+        static let retryConnectionText: String = "Retry connecting"
+    }
+    static let any = 10
+}
+// Constants for the Views that are participiate in authentication method
 struct AuthenticationViewsConstants {
     static let titleFrameHeightFactor: CGFloat = 0.1
     
@@ -27,6 +37,7 @@ struct AuthenticationViewsConstants {
         static let frameIdealHeightFactor: CGFloat = 0.05
     }
 }
+// Constant for the View that is popping up when succed a login or signup
 struct PopUpMessageTimer{
     static let onScreenTime: Double = 1.0
 }

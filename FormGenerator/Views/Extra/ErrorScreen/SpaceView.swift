@@ -2,9 +2,11 @@ import SwiftUI
 import Dispatch
 
 struct SpaceView: View {
-    @ObservedObject var networkManager: NetworkManager
+    @ObservedObject var networkManager: NetworkManagerViewModel
     @State private var hasConnected:Bool = false
+    @State var stars: [Star] = []
     
+    // Local Model for the Stars
     struct Star: Identifiable, Equatable {
         let id = UUID()
         let color: Color
@@ -13,19 +15,17 @@ struct SpaceView: View {
         var isAnimating: Bool = false
     }
     
-    let starColors: [Color] = [.white, .gray, .yellow, .orange]
-    let numStars = 250
-    
-    @State var stars: [Star] = []
+    fileprivate let starColors: [Color] = [.white, .gray, .yellow, .orange]
+    fileprivate let numStars = AnimatedSpaceScreen.numberOfStars
     
     fileprivate var navigationLinkComponent: some View {
         NavigationLink(destination: FormGeneratorView().navigationBarBackButtonHidden(true)) {
-            Text("Connected, get started")
+            Text(UITextConstants.NetworkStateTexts.connectedSuccessfully)
                 .bold()
         }
     }
     fileprivate var alertTextComponent: some View {
-            Text(UITextConstants.retryConnectionText)
+        Text(UITextConstants.NetworkStateTexts.retryConnectionText)
                 .foregroundColor(.white)
                 .bold()
     }
@@ -110,10 +110,10 @@ struct SpaceView: View {
     }
     
     var body: some View {
-            NavigationView{
+            NavigationStack{
                 ZStack{
                     VStack{
-                        animation
+                        animation // Always on-screen
                         if hasConnected{
                             HStack{
                                 navigationLinkComponent
@@ -123,7 +123,7 @@ struct SpaceView: View {
                             .padding()
                         } else {
                             Button{
-                                Task{
+                                Task{// If the user's device does not has connection, then he/she can retry it
                                    let response =  await networkManager.isInternetAvailable()
                                     if response{
                                         hasConnected = true
@@ -138,10 +138,9 @@ struct SpaceView: View {
                                 .padding()
                             }
                         }
-                            
                     }
                     .background(.black)
-                    .task{
+                    .task{ // Checking if the user's device has connection
                         let response = await networkManager.isInternetAvailable()
                         if response{
                             self.hasConnected = true
@@ -156,6 +155,6 @@ struct SpaceView: View {
 
 struct SpaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceView(networkManager: NetworkManager())
+        SpaceView(networkManager: NetworkManagerViewModel())
     }
 }

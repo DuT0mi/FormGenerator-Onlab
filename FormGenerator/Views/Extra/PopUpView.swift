@@ -1,14 +1,7 @@
-//
-//  SuccessPopUpView.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 03. 15..
-//
-
 import SwiftUI
 
 
-struct SuccessPopUpView: Shape {
+struct PopUpView: Shape {
     var startAngle: Angle
     var endAngle: Angle
     var clockwise: Bool = false
