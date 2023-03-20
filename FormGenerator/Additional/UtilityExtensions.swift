@@ -47,5 +47,3 @@ extension Database {
         return database().reference()
     }
 }
-
-

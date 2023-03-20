@@ -40,7 +40,11 @@ struct TemplateAuthView: View {
     }
     private var userHandlerButton: some View {
         Button {
-            type == .login ? user.login() : user.signUp() // There are not any other option
+            Task{
+                do{
+                    (type == .login) ? try await user.logIn() : try await user.signUp() // There are not any other option
+                } catch { /* error handled in user view model */}
+            }
         } label: {
             Text("\(type!.rawValue )".uppercased())
                 .foregroundColor(.white)

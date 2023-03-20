@@ -1,11 +1,15 @@
 import SwiftUI
 import FirebaseAuth
 
+@MainActor
 final class UserViewModel: ObservableObject {
-    // Variables used for authentication
+    // Variables and objects used for authentication
         @Published var email: String = ""
         @Published var password: String = ""
         @Published var alert: Bool = false
+        // object
+        fileprivate var authenticationManager: AuthenticationManager = AuthenticationManager()
+    
     // Variables used for interact with the User
         @Published var alertMessage: String = ""
         @Published var isSignedIn = false
@@ -24,50 +28,54 @@ final class UserViewModel: ObservableObject {
         self.alertMessage = message
         alert.toggle()
     }
-    func login(){
+    
+    
+    // MARK: TEST phase
+    func logIn() async throws {
         loading.toggle()
         // Check if all fields are inputted in the correct way
-        if email.isEmpty || password.isEmpty {
+        guard !email.isEmpty || !password.isEmpty else{
             showAlertMessage("Neither email nor password can be empty.")
             loading.toggle()
             return
         }
         // sign in with email and password
-        Auth.auth().signIn(withEmail: email, password: password){ result, error in
-            if  error != nil {
-                self.alertMessage = error!.localizedDescription
-                self.alert.toggle()
-                self.loading.toggle()
-            } else {
-                self.isSignedIn = true
-                self.loading.toggle()
-            }
+        do{
+            try await authenticationManager.signInUser(email: email, password: password)
+            // If it did not throw
+            self.loading.toggle()
+            self.isSignedIn = true
+        } catch {
+            self.alertMessage = error.localizedDescription
+            self.alert.toggle()
+            self.loading.toggle()
         }
         
     }
-    func signUp(){
+    func signUp() async throws {
         self.loading.toggle()
         // Check if all fields are inputted in the correct way
-        if email.isEmpty || password.isEmpty {
+        guard !email.isEmpty || !password.isEmpty else{
             showAlertMessage("Neither email nor password can be empty.")
             self.loading.toggle()
             return
         }
-        Auth.auth().createUser(withEmail: email, password: password){result, error in
-            if  error != nil {
-                self.alertMessage = error!.localizedDescription
-                self.alert.toggle()
-                self.loading.toggle()
-            } else {
-                self.login()
-                self.loading.toggle()
-            }
+        do{
+            try await authenticationManager.createUser(email: email, password: password)
+            // If it did not throw
+            self.loading.toggle()
+            self.isSignedIn = true
+        } catch {
+            self.alertMessage = error.localizedDescription
+            self.alert.toggle()
+            self.loading.toggle()
         }
+
     }
-    func logout(){
+    func logout() throws{
         self.loading.toggle()
         do {
-            try Auth.auth().signOut()
+            try authenticationManager.signOut()
                 isSignedIn = false
                 email = ""
                 password = ""
@@ -75,6 +83,5 @@ final class UserViewModel: ObservableObject {
         } catch {
             print("Error signing out, error: \(error)")
         }
-    }
-    
+    }    
 }

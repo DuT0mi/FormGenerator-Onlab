@@ -9,7 +9,7 @@ struct FormGeneratorApp: App {
     
     var body: some Scene {
         WindowGroup {
-                    FormGeneratorView(user:UserViewModel())
+            FormGeneratorView(user:UserViewModel())
         }
     }
 }
