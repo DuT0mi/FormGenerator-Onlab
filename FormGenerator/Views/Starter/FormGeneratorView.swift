@@ -3,26 +3,8 @@ import SwiftUI
 struct FormGeneratorView: View {
     @StateObject var user: UserViewModel = UserViewModel()
     @StateObject var networkManager: NetworkManagerViewModel = NetworkManagerViewModel()
-    @State private var shouldShowSuccessView: Bool = true
     @State private var isConnected:Bool = false
     @State private var spaceViewIsPresented: Bool = false
-    
-    /// Which contexts are involved in the popup message only works when the app is started. (Quit the app and then start it again)
-    private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
-        content
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(truncating: (extratime) as! NSNumber)){
-                    withAnimation{
-                       shouldShowSuccessView.toggle()
-                    }
-                }
-            }
-    }
-    fileprivate var popUpContent: some View {
-        get {
-            Text("a") // TODO: Animated pop up
-        }
-    }
     
     fileprivate var homeView: some View {
         HomeView(user: user)
@@ -48,11 +30,6 @@ struct FormGeneratorView: View {
                     tabView
                 } else {
                     homeView
-                            .overlay{
-                                if shouldShowSuccessView {
-                                    getPopUpContent(content: popUpContent, extratime: PopUpMessageTimer.onScreenTime)
-                                }
-                            }
                 }
             } else {
                 SpaceView(networkManager: networkManager)

@@ -24,7 +24,11 @@ struct SettingsView: View {
                 }
                 Section{
                     Button {
-                        user.logout()
+                        Task{
+                            do{
+                                try user.logout()
+                            } catch {/* error handled in user view model */}
+                        }
                     }label: {
                         HStack{
                             Spacer()
