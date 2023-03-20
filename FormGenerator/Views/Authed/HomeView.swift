@@ -10,13 +10,12 @@ struct HomeView: View {
         content
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(truncating: (extratime) as! NSNumber)){
-                    withAnimation{
+                    withAnimation(.easeInOut(duration: 1.5)){
                        shouldShowSuccessView.toggle()
                     }
                 }
             }
     }
-    
     private enum Tab{
         case all
         case recent
@@ -24,7 +23,7 @@ struct HomeView: View {
     }
     fileprivate var popUpContent: some View {
         get {
-            Text("a") // TODO: Animated pop up
+            PopUpView()
         }
     }
     
