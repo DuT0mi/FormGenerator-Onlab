@@ -29,8 +29,6 @@ final class UserViewModel: ObservableObject {
         alert.toggle()
     }
     
-    
-    // MARK: TEST phase
     func logIn() async throws {
         loading.toggle()
         // Check if all fields are inputted in the correct way
@@ -83,5 +81,5 @@ final class UserViewModel: ObservableObject {
         } catch {
             print("Error signing out, error: \(error)")
         }
-    }    
+    }
 }
