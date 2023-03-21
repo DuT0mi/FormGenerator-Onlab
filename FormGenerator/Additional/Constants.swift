@@ -7,7 +7,7 @@ struct AppConstants {
 
 // Constants for the error screen (space view)
 struct AnimatedSpaceScreen{
-    static let numberOfStars: Int = 250
+    static let numberOfStars: Int = 350
 }
 
 // Constants strings for UI texts
