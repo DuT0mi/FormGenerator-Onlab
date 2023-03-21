@@ -3,6 +3,7 @@ import Firebase
 
 struct LoginView: View {
     @ObservedObject var user: UserViewModel
+    @ObservedObject var networkManager: NetworkManagerViewModel
     @State private(set) var type: Pages = .login
     @State private var signUpViewIsPresented: Bool = false
     
@@ -19,7 +20,7 @@ struct LoginView: View {
                         .bold()
                 }
                 .sheet(isPresented: $signUpViewIsPresented, content: {
-                    SignupView(user: user, isPresented: $signUpViewIsPresented)
+                    SignupView(user: user, networkManager: networkManager, isPresented: $signUpViewIsPresented)
                 })
                 .buttonStyle(BorderlessButtonStyle())
                 
@@ -54,17 +55,21 @@ struct LoginView: View {
         }
     
     var body: some View {
+        if networkManager.isNetworkReachable{
             ZStack{
                 loginContent
                 if user.loading {
                     ProgressView()
                 }
             }
+        } else {
+            SpaceView(networkManager: networkManager)
+        }
     }
 }
 
 struct LoginView_Preview: PreviewProvider {
     static var previews: some View {
-        LoginView(user: UserViewModel())
+        LoginView(user: UserViewModel(), networkManager: NetworkManagerViewModel())
     }
 }

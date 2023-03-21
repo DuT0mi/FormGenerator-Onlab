@@ -18,15 +18,9 @@ struct SpaceView: View {
     fileprivate let starColors: [Color] = [.white, .gray, .yellow, .orange]
     fileprivate let numStars = AnimatedSpaceScreen.numberOfStars
     
-    fileprivate var navigationLinkComponent: some View {
-        NavigationLink(destination: FormGeneratorView().navigationBarBackButtonHidden(true)) {
-            Text(UITextConstants.NetworkStateTexts.connectedSuccessfully)
-                .bold()
-        }
-    }
     fileprivate var alertTextComponent: some View {
         Text(UITextConstants.NetworkStateTexts.retryConnectionText)
-                .foregroundColor(.white)
+                .foregroundColor(.orange)
                 .bold()
     }
     var animation: some View {
@@ -112,46 +106,16 @@ struct SpaceView: View {
         }
     
     var body: some View {
-            NavigationStack{
                 ZStack{
                     VStack{
-                        animation // Always on-screen
-                        if hasConnected{
-                            HStack{
-                                navigationLinkComponent
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                            }
-                            .padding()
-                        } else {
-                            Button{
-                                Task{// If the user's device does not has connection, then he/she can retry it
-                                   let response =  await networkManager.isInternetAvailable()
-                                    if response{
-                                        hasConnected = true
-                                    }
-                                }
-                            } label: {
-                                HStack{
-                                    alertTextComponent
-                                    Image(systemName: "gobackward")
-                                        .foregroundColor(.red)
-                                }
-                                .padding()
-                            }
-                        }
+                        animation
+                        alertTextComponent
+                        Image(systemName: "wifi.slash")
+                            .foregroundColor(.orange)
                     }
                     .background(.black)
-                    .task{ // Checking if the user's device has connection
-                        let response = await networkManager.isInternetAvailable()
-                        if response{
-                            self.hasConnected = true
-                        }
-                    }
                 }
-            }
-        .ignoresSafeArea()
-        .toolbar(.hidden)
+                .ignoresSafeArea()
         }
     }
 
