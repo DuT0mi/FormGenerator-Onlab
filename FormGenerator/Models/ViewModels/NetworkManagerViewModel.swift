@@ -1,10 +1,14 @@
 import Network
 import SwiftUI
+import Alamofire
 
 @MainActor
 final class NetworkManagerViewModel: ObservableObject{
-    @Published var isChecking:Bool = false
-    @Published var isConnected:Bool = false
+    @Published var isChecking: Bool = false
+    @Published var isConnected: Bool = false
+    @Published var isNetworkReachable: Bool = false
+    
+    private let networkReachabilityManager = NetworkReachabilityManager()
     
     func isInternetAvailable() async -> Bool {
         isChecking.toggle()
@@ -28,4 +32,19 @@ final class NetworkManagerViewModel: ObservableObject{
             return connection
         }
     }
+    
+    init() {
+        networkReachabilityManager?.startListening(onUpdatePerforming: { [weak self] status in
+            guard let self = self else { return }
+            switch status {
+            case .reachable:
+                self.isNetworkReachable = true
+            case .notReachable:
+                self.isNetworkReachable = false
+            case .unknown:
+                self.isNetworkReachable = false
+            }
+        })
+    }
+    
 }

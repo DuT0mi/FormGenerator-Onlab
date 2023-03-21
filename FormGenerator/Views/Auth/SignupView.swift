@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SignupView: View {
     @ObservedObject var user: UserViewModel
-
+    @ObservedObject var networkManager: NetworkManagerViewModel
     @State private(set) var type: Pages = .signup
     @Binding var isPresented: Bool
     
@@ -49,17 +49,21 @@ struct SignupView: View {
     }
     
     var body: some View {
+        if networkManager.isNetworkReachable{
             ZStack{
                 loginContent
                 if user.loading {
                     ProgressView()
                 }
             }
+        } else {
+            SpaceView(networkManager: networkManager)
+        }
     }
 }
 
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupView(user: UserViewModel(), isPresented: .constant(false))
+        SignupView(user: UserViewModel(), networkManager: NetworkManagerViewModel(), isPresented: .constant(false))
     }
 }

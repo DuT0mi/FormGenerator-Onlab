@@ -13,8 +13,7 @@ struct AnimatedSpaceScreen{
 // Constants strings for UI texts
 struct UITextConstants{
     struct NetworkStateTexts{
-        static let connectedSuccessfully: String = "Connected, get started"
-        static let retryConnectionText: String = "Retry connecting"
+        static let retryConnectionText: String = "Trying to reconnect..."
     }
     static let any = 10
 }

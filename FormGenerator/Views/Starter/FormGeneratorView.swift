@@ -7,15 +7,15 @@ struct FormGeneratorView: View {
     @State private var spaceViewIsPresented: Bool = false
     
     fileprivate var homeView: some View {
-        HomeView(user: user)
+        HomeView(user: user, networkManager: networkManager)
     }
     fileprivate var tabView: some View {
         TabView {
-            IntroView()
+            IntroView(networkManager: networkManager)
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
-            LoginView(user: user)
+            LoginView(user: user, networkManager: networkManager)
                 .tabItem {
                     Label("Start", systemImage: "person.fill")
                 }
@@ -25,7 +25,7 @@ struct FormGeneratorView: View {
     
     var body: some View {
         ZStack{
-            if isConnected{
+            if /* isConnected, */ networkManager.isNetworkReachable{
                 if !user.isSignedIn{
                     tabView
                 } else {
@@ -35,14 +35,14 @@ struct FormGeneratorView: View {
                 SpaceView(networkManager: networkManager)
             }
         }
-        .task {
+    /*    .task {
             do{
                 let response = await networkManager.isInternetAvailable()
                 if response {
                     self.isConnected.toggle()
                 }
             }
-        }
+        } */
     }
    
 }

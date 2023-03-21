@@ -6,7 +6,7 @@ struct PopUpView: View{
     var body: some View {
         VStack{
             Image(systemName: "person.crop.circle.badge.checkmark")
-                .foregroundColor(.black)
+                .foregroundColor(Color(red: 0, green: 0.4, blue: 0))
                 .bold()
                 .padding()
             Spacer()
