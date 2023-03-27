@@ -33,7 +33,7 @@ final class NetworkManagerViewModel: ObservableObject{
         }
     }
     
-    init() {
+    init() { /* Listening always */
         networkReachabilityManager?.startListening(onUpdatePerforming: { [weak self] status in
             guard let self = self else { return }
             switch status {

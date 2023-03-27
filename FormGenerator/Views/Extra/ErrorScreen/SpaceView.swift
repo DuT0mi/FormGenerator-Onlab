@@ -1,7 +1,5 @@
 import SwiftUI
 import Dispatch
-import UIKit
-
 
 struct SpaceView: View {
     @ObservedObject var networkManager: NetworkManagerViewModel
@@ -18,11 +16,16 @@ struct SpaceView: View {
     @State private var starColors: [Color] = [.white, .gray, .yellow, .orange]
     @State private var numStars = AnimatedSpaceScreen.numberOfStars
     @State private var position: CGPoint = CGPoint()
-    
+    @State private var shouldShowAlertComponents: Bool = false
     fileprivate var alertTextComponent: some View {
+        
         Text(UITextConstants.NetworkStateTexts.retryConnectionText)
             .foregroundColor(.orange)
             .bold()
+        
+    }
+    fileprivate var alertAnimatedTextComponent: some View{
+        LoadingText()
     }
     fileprivate var alertImageComponent: some View {
         Image(systemName: "wifi.slash")
@@ -63,7 +66,6 @@ struct SpaceView: View {
                                 )
                         }
                     }
-                    
                 }
                 .onAppear {
                     createStars(in: geometry)
@@ -74,12 +76,19 @@ struct SpaceView: View {
                     createStars(in: geometry)
                     animateStars()
                 })
-                alertTextComponent
-                    .padding()
-                    .bold()
-                alertImageComponent
-                    .padding(.top)
-                    .bold()
+                Group {
+                    VStack{
+                        alertAnimatedTextComponent
+                        alertImageComponent
+                    }
+                
+                }
+                .opacity(shouldShowAlertComponents ? 1.0 : 0.0)
+            }
+            .task {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+                    shouldShowAlertComponents = true
+                }
             }
         }
         .edgesIgnoringSafeArea(.all)
