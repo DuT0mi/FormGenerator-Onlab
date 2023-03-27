@@ -15,7 +15,7 @@ final class UserViewModel: ObservableObject {
         @Published var isSignedIn = false
         @Published var loading: Bool = false
     
-    init(autoLogin:Bool = true){
+    init(autoLogin:Bool = true){ /* Autologin method */
         if autoLogin {
             let user = Auth.auth().currentUser
             if let _ = user {

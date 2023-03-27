@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 // Constants about the App
 struct AppConstants {
@@ -7,7 +8,7 @@ struct AppConstants {
 
 // Constants for the error screen (space view)
 struct AnimatedSpaceScreen{
-    static let numberOfStars: Int = 250
+    static let numberOfStars: Int = 350
 }
 
 // Constants strings for UI texts
@@ -15,7 +16,14 @@ struct UITextConstants{
     struct NetworkStateTexts{
         static let retryConnectionText: String = "Trying to reconnect..."
     }
-    static let any = 10
+    struct TextAnimationIndicator{
+        static let size: CGFloat = 50
+        static let speed: Double = 0.5
+        static let speedDividerFactor: Double = 4.0
+        static let foregroundColor: Color = .orange
+        static let fontFactor: Double = 3.0
+        static let offsetFactor: Double = 8.0
+    }
 }
 // Constants for the Views that are participiate in authentication method
 struct AuthenticationViewsConstants {

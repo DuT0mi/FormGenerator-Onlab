@@ -25,7 +25,7 @@ struct FormGeneratorView: View {
     
     var body: some View {
         ZStack{
-            if /* isConnected, */ networkManager.isNetworkReachable{
+            if networkManager.isNetworkReachable{
                 if !user.isSignedIn{
                     tabView
                 } else {
@@ -35,14 +35,6 @@ struct FormGeneratorView: View {
                 SpaceView(networkManager: networkManager)
             }
         }
-    /*    .task {
-            do{
-                let response = await networkManager.isInternetAvailable()
-                if response {
-                    self.isConnected.toggle()
-                }
-            }
-        } */
     }
    
 }

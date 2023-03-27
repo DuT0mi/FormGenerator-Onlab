@@ -1,6 +1,12 @@
 import SwiftUI
 import FirebaseDatabase
 
+// User types
+enum UserType{
+    
+}
+
+// Separating the different pages (login/signup)
 enum Pages: String, CaseIterable, Equatable {
     case login = "login"
     case signup = "signup"
