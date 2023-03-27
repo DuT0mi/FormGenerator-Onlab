@@ -3,27 +3,13 @@ import Dispatch
 
 struct SpaceView: View {
     @ObservedObject var networkManager: NetworkManagerViewModel
-    @State var stars: [Star] = []
-    // Local Model for the Stars
-    struct Star: Identifiable, Equatable {
-        let id = UUID()
-        let color: Color
-        let size: CGFloat
-        var position: CGPoint
-        var isAnimating: Bool = false
-    }
     
+    @State var stars: [Star] = []
     @State private var starColors: [Color] = [.white, .gray, .yellow, .orange]
     @State private var numStars = AnimatedSpaceScreen.numberOfStars
     @State private var position: CGPoint = CGPoint()
     @State private var shouldShowAlertComponents: Bool = false
-    fileprivate var alertTextComponent: some View {
-        
-        Text(UITextConstants.NetworkStateTexts.retryConnectionText)
-            .foregroundColor(.orange)
-            .bold()
-        
-    }
+    
     fileprivate var alertAnimatedTextComponent: some View{
         LoadingText()
     }

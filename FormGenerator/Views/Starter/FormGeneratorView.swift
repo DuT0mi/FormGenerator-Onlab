@@ -22,6 +22,7 @@ struct FormGeneratorView: View {
             
         }
     }
+    
     var body: some View {
         ZStack{
             if networkManager.isNetworkReachable{
