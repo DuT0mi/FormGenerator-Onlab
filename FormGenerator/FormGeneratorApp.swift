@@ -9,8 +9,8 @@ struct FormGeneratorApp: App {
     
     var body: some Scene {
         WindowGroup {
-            // FormGeneratorView(user:UserViewModel())
-            SpaceView(networkManager: NetworkManagerViewModel())
+            FormGeneratorView(user:UserViewModel())
         }
     }
 }
+
