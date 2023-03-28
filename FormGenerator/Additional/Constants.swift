@@ -19,14 +19,19 @@ class ScreenDimensions {
 
 class ValidationContent{
     
-    enum ValidationError: String,Error {
+    enum EmailValidationError: String,Error {
         case invalidEmail = "The given email is invalid"
         case invalidRegexPattern = "Invalid regex pattern"
         case invalidCharactersInEmail = "Input email contains invalid characters."
     }
+    enum PasswordValidationError: String, Error {
+        case invalidPassword = "Password should containt at least 6 characters!"
+        case invalidPasswordRegex = "Invalid password regex!"
+    }
     
     static let emailRegexPattern = "^[^@]+@[^@]+\\.[a-zA-Z]{2,}$"
     static let expectationTimeInterval: TimeInterval = 5.0
+    static let passwordRegexPattern = "^.{6,}$"
 }
 
 // Constants about the App

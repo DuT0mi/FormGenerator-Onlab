@@ -109,6 +109,7 @@
 		1AA43EF829D355E600235CAD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA43EF729D355E600235CAD /* Alamofire */; };
 		1AA43EFB29D3561D00235CAD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA43EFA29D3561D00235CAD /* GoogleSignIn */; };
 		1AA43EFD29D3561D00235CAD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA43EFC29D3561D00235CAD /* GoogleSignInSwift */; };
+		1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43EFE29D361C800235CAD /* PasswordValidation.swift */; };
 		1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDA0C729D1E6C1008E60D8 /* LoadingTextView.swift */; };
 		1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDA0C929D1F8A6008E60D8 /* Star.swift */; };
 		1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44029BC8D860071F54C /* IntroView.swift */; };
@@ -161,6 +162,7 @@
 		1AA43E7B29D3405E00235CAD /* FormGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA43E7D29D3405E00235CAD /* LoginViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewTest.swift; sourceTree = "<group>"; };
 		1AA43E8629D3480E00235CAD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
+		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1ACDA0C729D1E6C1008E60D8 /* LoadingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTextView.swift; sourceTree = "<group>"; };
 		1ACDA0C929D1F8A6008E60D8 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		1ADFF44029BC8D860071F54C /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				1AA43E8629D3480E00235CAD /* EmailValidation.swift */,
+				1AA43EFE29D361C800235CAD /* PasswordValidation.swift */,
 			);
 			path = TesterHelpers;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				1AE94CF829C1E01F00589D55 /* Answers.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
+				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
 				1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,

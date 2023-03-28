@@ -6,24 +6,17 @@ import Foundation
 /// which means:
 /// This pattern matches any string that starts with one or more characters that are not "@" followed by "@" and one or more characters that are not "@", followed by a dot and at least two characters from a-z or A-Z.
 
-// for password:
-/// By default the password's length must be at least 6 character
-
-
-
 class EmailValidation {
     func validateEmail(email: String, completion: @escaping (Result<Void,Error>) -> Void ){
          let (_, emailCheckerErrorResult) = isValidEmail(email)
-        if emailCheckerErrorResult != nil { /* There was error*/
+        if emailCheckerErrorResult != nil { /* There was an error */
             completion(.failure(emailCheckerErrorResult!))
             return
         } else {
             return completion(.success(()))
         }
-        
-        
     }
-    private func isValidEmail(_ email: String) -> (Bool, ValidationContent.ValidationError?){
+    private func isValidEmail(_ email: String) -> (Bool, ValidationContent.EmailValidationError?){
         if let regex = try? NSRegularExpression(pattern: ValidationContent.emailRegexPattern){
             let inputString: String = email
             let range = NSRange(inputString.startIndex..<inputString.endIndex,in: inputString)
@@ -33,11 +26,11 @@ class EmailValidation {
                 return (true, nil)
             }
         } else {
-            print(ValidationContent.ValidationError.invalidCharactersInEmail.rawValue)
-            return (false,ValidationContent.ValidationError.invalidCharactersInEmail)
+            print(ValidationContent.EmailValidationError.invalidCharactersInEmail.rawValue)
+            return (false,ValidationContent.EmailValidationError.invalidCharactersInEmail)
         }
-        print(ValidationContent.ValidationError.invalidRegexPattern.rawValue)
-        return (false,ValidationContent.ValidationError.invalidRegexPattern)
+        print(ValidationContent.EmailValidationError.invalidRegexPattern.rawValue)
+        return (false,ValidationContent.EmailValidationError.invalidRegexPattern)
     }
 }
 
