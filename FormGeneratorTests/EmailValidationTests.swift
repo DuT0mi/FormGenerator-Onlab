@@ -14,12 +14,12 @@ final class EmailValidationTests: XCTestCase {
     private var sut: EmailValidation!
     
     override func setUpWithError() throws {
-        super.setUp()
+       try super.setUpWithError()
         sut = EmailValidation()
     }
     override func tearDownWithError() throws{
         sut = nil
-        super.tearDown()
+        try super.tearDownWithError()
     }
     
     func test_invalidEmailMissingAtSign_returnsErrorMessageWhenFail(){
@@ -74,7 +74,7 @@ final class EmailValidationTests: XCTestCase {
         }
         wait(for: [expectation], timeout: ValidationContent.expectationTimeInterval)
     }
-    func test_goodEmailWithTwoLetterAfterTheDot_returnsErrorMessageWhenFail(){
+    func test_validEmailWithTwoLetterAfterTheDot_returnsErrorMessageWhenFail(){
         let checkerEmail = "good@test.co"
         let expectation = XCTestExpectation(description: "Should be success!")
         sut.validateEmail(email: checkerEmail) { result in
@@ -87,7 +87,7 @@ final class EmailValidationTests: XCTestCase {
         }
         wait(for: [expectation], timeout: ValidationContent.expectationTimeInterval)
     }
-    func test_goodEmailWithThreeLetterAfterTheDot_returnsErrorMessageWhenFail(){
+    func test_validEmailWithThreeLetterAfterTheDot_returnsErrorMessageWhenFail(){
         let checkerEmail = "good@test.com"
         let expectation = XCTestExpectation(description: "Should be success!")
         sut.validateEmail(email: checkerEmail) { result in
@@ -100,7 +100,7 @@ final class EmailValidationTests: XCTestCase {
         }
         wait(for: [expectation], timeout: ValidationContent.expectationTimeInterval)
     }
-    func test_goodEmailWithMoreLetterAfterTheDot_returnsErrorMessageWhenFail(){
+    func test_validEmailWithMoreLetterAfterTheDot_returnsErrorMessageWhenFail(){
         let checkerEmail = "good@test.coooom"
         let expectation = XCTestExpectation(description: "Should be success!")
         sut.validateEmail(email: checkerEmail) { result in
