@@ -13,4 +13,3 @@ struct FormGeneratorApp: App {
         }
     }
 }
-
