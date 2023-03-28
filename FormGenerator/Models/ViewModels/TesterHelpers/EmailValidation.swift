@@ -11,7 +11,7 @@ import Foundation
 
 
 
-class Validation {
+class EmailValidation {
     func validateEmail(email: String, completion: @escaping (Result<Void,Error>) -> Void ){
          let (_, emailCheckerErrorResult) = isValidEmail(email)
         if emailCheckerErrorResult != nil { /* There was error*/
