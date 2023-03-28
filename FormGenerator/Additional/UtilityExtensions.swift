@@ -53,3 +53,13 @@ extension Database {
         return database().reference()
     }
 }
+
+class ValidationContent{
+    
+    enum ValidationError: String,Error {
+        case invalidEmail = "The given email is invalid"
+        case invalidRegexPattern = "Invalid regex pattern"
+        case invalidCharactersInEmail = "Input email contains invalid characters."
+    }
+    static let emailRegexPattern = "^[^@]+@[^@]+\\.[a-zA-Z]{2,}$"
+}
