@@ -7,9 +7,6 @@ import XCTest
 /// which means:
 /// This pattern matches any string that starts with one or more characters that are not "@" followed by "@" and one or more characters that are not "@", followed by a dot and at least two characters from a-z or A-Z.
 
-// for password:
-/// By default the password's length must be at least 6 character (can be also whitespace)
-
 final class EmailValidationTests: XCTestCase {
     private var sut: EmailValidation!
     

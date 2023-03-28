@@ -1,5 +1,9 @@
 import XCTest
 
+// for password: ^.{6,}$ - at least 6 char
+/// By default the password's length must be at least 6 character (can be also whitespace)
+
+
 @testable import FormGenerator
 
 final class PasswordValidationTests: XCTestCase {
