@@ -8,7 +8,6 @@ final class FormViewModel: ObservableObject, Identifiable {
     @Published var author: String
     @Published var title: String
     @Published var body: String
-    @Published var answers: [Answers] = []
     
     // DB instance for read/write <-- see: UtilityExtensions
     private var ref = Database.root

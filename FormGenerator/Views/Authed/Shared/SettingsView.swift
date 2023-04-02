@@ -11,7 +11,7 @@ struct SettingsView: View {
                     Section {
                         Text("Text")
                         Text("Text")
-                        Text("Text")
+                        Text("User type: \(user.selectedUserType.rawValue)")
                         
                     } header: {
                         Text("Profile")
@@ -57,3 +57,4 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView(user: UserViewModel(), networkManager: NetworkManagerViewModel())
     }
 }
+
