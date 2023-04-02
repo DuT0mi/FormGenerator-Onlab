@@ -4,10 +4,24 @@ struct SignupView: View {
     @ObservedObject var user: UserViewModel
     @ObservedObject var networkManager: NetworkManagerViewModel
     @State private(set) var type: Pages = .signup
+   // @State private var selectedUserType: UserType = .Standard
     @Binding var isPresented: Bool
-    
     typealias AVC = AuthenticationViewsConstants
     
+  /*  private enum UserType: String,CaseIterable {
+        case Standard
+        case Company
+    } */
+    
+    var picker: some View {
+        Picker("Account type", selection: $user.selectedUserType){
+            Text("Standard account")
+                .tag(UserType.Standard)
+            Text("Company account")
+                .tag(UserType.Company)
+        }
+        .pickerStyle(SegmentedPickerStyle())
+    }
     var logInAction: some View {
         HStack{
             Text("Already have an account?")
@@ -21,7 +35,7 @@ struct SignupView: View {
                
         }
     }
-    var loginContent: some View {
+    var signUpContent: some View {
         VStack{
             let templateView = TemplateAuthView(user: user, type: type)
                     templateView.getTitle()
@@ -30,7 +44,10 @@ struct SignupView: View {
             Spacer()
                 .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
                 .fixedSize()
-            
+            picker
+            Spacer()
+                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                .fixedSize()
             templateView.getUserHandlerButton()
             
             Spacer()
@@ -51,10 +68,10 @@ struct SignupView: View {
     var body: some View {
         if networkManager.isNetworkReachable{
             ZStack{
-                loginContent
                 if user.loading {
                     ProgressView()
                 }
+                signUpContent
             }
         } else {
             SpaceView(networkManager: networkManager)

@@ -14,6 +14,7 @@ final class UserViewModel: ObservableObject {
         @Published var alertMessage: String = ""
         @Published var isSignedIn = false
         @Published var loading: Bool = false
+        @Published var selectedUserType: UserType = .Standard
     
     init(autoLogin:Bool = true){ /* Autologin method */
         if autoLogin {
@@ -23,7 +24,6 @@ final class UserViewModel: ObservableObject {
             } else {}
         }
     }
-    
     private func showAlertMessage(_ message: String){
         self.alertMessage = message
         alert.toggle()
@@ -82,4 +82,9 @@ final class UserViewModel: ObservableObject {
             print("Error signing out, error: \(error)")
         }
     }
+}
+
+enum UserType: String,CaseIterable {
+    case Standard
+    case Company
 }
