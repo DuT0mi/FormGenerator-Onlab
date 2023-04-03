@@ -11,7 +11,7 @@ struct SettingsView: View {
                     Section {
                         Text("Text")
                         Text("Text")
-                        Text("User type: \(user.selectedUserType.rawValue)")
+                        Text("User type: \(user.selectedAccountType.rawValue)")
                         
                     } header: {
                         Text("Profile")
@@ -28,7 +28,7 @@ struct SettingsView: View {
                     Section{
                         Button {
                             Task{
-                                do{
+                                do{ 
                                     try user.logout()
                                 } catch {/* error handled in user view model */}
                             }

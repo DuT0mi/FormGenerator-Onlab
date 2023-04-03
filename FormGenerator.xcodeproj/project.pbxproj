@@ -44,6 +44,11 @@
 		1A319D1F29B39F2D00183B94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D1E29B39F2D00183B94 /* FirebaseStorage */; };
 		1A319D2129B39F2D00183B94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D2029B39F2D00183B94 /* FirebaseStorageCombine-Community */; };
 		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
+		1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDBD29DB66700086DA80 /* Account.swift */; };
+		1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC029DB68DB0086DA80 /* StandardAccount.swift */; };
+		1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */; };
+		1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */; };
+		1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC729DB75C30086DA80 /* AccountManager.swift */; };
 		1A6B321929C747D600551E8F /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B321829C747D600551E8F /* SpaceView.swift */; };
 		1A739E6A29CA30140031FD63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A739E6929CA30140031FD63 /* Alamofire */; };
 		1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */; };
@@ -154,6 +159,11 @@
 		1A2C2FB929BDDFC3008ED194 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		1A319CE929B39CE100183B94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1A4CEDBD29DB66700086DA80 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		1A4CEDC029DB68DB0086DA80 /* StandardAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardAccount.swift; sourceTree = "<group>"; };
+		1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAccount.swift; sourceTree = "<group>"; };
+		1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingKeys.swift; sourceTree = "<group>"; };
+		1A4CEDC729DB75C30086DA80 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		1A6B321829C747D600551E8F /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -380,6 +390,25 @@
 			path = Additional;
 			sourceTree = "<group>";
 		};
+		1A4CEDBF29DB68C40086DA80 /* AccountHandling */ = {
+			isa = PBXGroup;
+			children = (
+				1A4CEDC429DB70D40086DA80 /* Acient */,
+				1A4CEDC029DB68DB0086DA80 /* StandardAccount.swift */,
+				1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */,
+			);
+			path = AccountHandling;
+			sourceTree = "<group>";
+		};
+		1A4CEDC429DB70D40086DA80 /* Acient */ = {
+			isa = PBXGroup;
+			children = (
+				1A4CEDBD29DB66700086DA80 /* Account.swift */,
+				1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */,
+			);
+			path = Acient;
+			sourceTree = "<group>";
+		};
 		1A77351829BFC0FC00A69DD8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +458,7 @@
 				1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */,
 				1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */,
 				1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */,
+				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -480,6 +510,7 @@
 		1AE94CF629C1E00300589D55 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A4CEDBF29DB68C40086DA80 /* AccountHandling */,
 				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
 				1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */,
 			);
@@ -728,16 +759,21 @@
 				1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
+				1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */,
+				1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
 				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
+				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
+				1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */,
 				1AE4016B29C8E9CF004FAA89 /* AuthenticationManager.swift in Sources */,
 				1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
+				1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
