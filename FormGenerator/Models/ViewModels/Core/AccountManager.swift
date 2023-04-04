@@ -31,4 +31,13 @@ final class AccountManager{
     func getCompanyAccount(userID: String) async throws -> CompanyAccount {
         try await companyDocument(userID: userID).getDocument(as:CompanyAccount.self)
     }
+    
+    func getUserByJustID(userID: String) async throws -> Account {
+        if let user = try? await getStandardAccount(userID: userID) {
+            return user
+        } else {
+            let user = try await getCompanyAccount(userID: userID)
+            return user
+        }
+    }
 }

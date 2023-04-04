@@ -59,12 +59,12 @@ final class UserViewModel: ObservableObject {
             self.loading.toggle()
             self.isSignedIn = true
             switch selectedAccountType {
-            case .Standard:
-                let standardAccount = StandardAccount(auth: authDataResult)
-                try await AccountManager.shared.createNewStandardAccount(user: standardAccount)
-            case .Company:
-                let companyAccount = CompanyAccount(auth: authDataResult)
-                try await AccountManager.shared.createNewCompanyAccount(user: companyAccount)
+                case .Standard:
+                    let standardAccount = StandardAccount(auth: authDataResult)
+                    try await AccountManager.shared.createNewStandardAccount(user: standardAccount)
+                case .Company:
+                    let companyAccount = CompanyAccount(auth: authDataResult)
+                    try await AccountManager.shared.createNewCompanyAccount(user: companyAccount)
             }
         } catch {
             self.alertMessage = error.localizedDescription

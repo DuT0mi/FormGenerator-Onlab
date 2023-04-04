@@ -7,7 +7,8 @@ enum CodingKeys: String, CodingKey {
     case type = "account_type"
 }
 
-enum AccountType: String{
+enum AccountType: String {
     case Standard = "Standard"
     case Company = "Company"
+    
 }
