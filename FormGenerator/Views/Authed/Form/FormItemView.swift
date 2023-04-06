@@ -15,14 +15,23 @@ struct FormItemView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 150)
                 .clipped()
-            
-            VStack(alignment: .leading){
-                Text("Nice") // TODO: Make some nice UI element here e.g. pill view
-                Text("Title")
-                    .font(.system(.body, design: .rounded))
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
+                .overlay(alignment: .bottom) {
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: .infinity, height: 40)
+                            .foregroundColor(.gray.opacity(0.7))
+                            .padding(.top)
+                            .overlay(alignment: .leading) {
+                                    Text("Form's title")
+                                        .font(.headline)
+                                        .fontDesign(.serif)
+                                        .padding()
+                            }
+                    }
+                .overlay(alignment: .topLeading){
+                    Image(systemName: "hand.tap")
+                        .padding()
+                        .font(.largeTitle)
+                }
             
         }
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
@@ -31,7 +40,9 @@ struct FormItemView: View {
 
 struct FormItemView_Previews: PreviewProvider {
     static var previews: some View {
-        FormItemView()
-            .frame(width: 250)
+        NavigationStack{
+            FormItemView()
+                .frame(width: 250)
+        }
     }
 }

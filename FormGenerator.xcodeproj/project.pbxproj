@@ -53,6 +53,7 @@
 		1A739E6A29CA30140031FD63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A739E6929CA30140031FD63 /* Alamofire */; };
 		1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650C29DC6D470023067A /* SettingsViewModel.swift */; };
 		1A7E651029DCA0D30023067A /* FormItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650F29DCA0D30023067A /* FormItemView.swift */; };
+		1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E651129DCA74F0023067A /* FormViewDetail.swift */; };
 		1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
 		1AA43E7129D33CD400235CAD /* EmailValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43E7029D33CD400235CAD /* EmailValidationTests.swift */; };
@@ -169,6 +170,7 @@
 		1A6B321829C747D600551E8F /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		1A7E650C29DC6D470023067A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
+		1A7E651129DCA74F0023067A /* FormViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewDetail.swift; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1AA43E6E29D33CD400235CAD /* FormGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,7 +372,7 @@
 		1A282EF429AE85C700DAFD9B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1AE94CF629C1E00300589D55 /* Models */,
+				1AE94CF629C1E00300589D55 /* Model */,
 				1AE94CF529C1DFF600589D55 /* ViewModels */,
 			);
 			path = Models;
@@ -425,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				1A7E650F29DCA0D30023067A /* FormItemView.swift */,
+				1A7E651129DCA74F0023067A /* FormViewDetail.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -521,14 +524,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		1AE94CF629C1E00300589D55 /* Models */ = {
+		1AE94CF629C1E00300589D55 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1A4CEDBF29DB68C40086DA80 /* AccountHandling */,
 				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
 				1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1AE94CFB29C220DA00589D55 /* Extra */ = {
@@ -771,6 +774,7 @@
 				1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */,
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
 				1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */,
+				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
 				1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */,
