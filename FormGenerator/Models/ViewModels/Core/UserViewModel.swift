@@ -14,7 +14,7 @@ final class UserViewModel: ObservableObject {
         @Published var alertMessage: String = ""
         @Published var isSignedIn = false
         @Published var loading: Bool = false
-        @Published var selectedUserType: UserType = .Standard
+        @Published var selectedAccountType: AccountType = .Standard
     
     init(autoLogin:Bool = true){ /* Autologin method */
         if autoLogin {
@@ -31,16 +31,13 @@ final class UserViewModel: ObservableObject {
     
     func logIn() async throws {
         loading.toggle()
-        // Check if all fields are inputted in the correct way
         guard !email.isEmpty || !password.isEmpty else{
             showAlertMessage("Neither email nor password can be empty.")
             loading.toggle()
             return
         }
-        // sign in with email and password
         do{
             try await authenticationManager.signInUser(email: email, password: password)
-            // If it did not throw
             self.loading.toggle()
             self.isSignedIn = true
         } catch {
@@ -52,17 +49,23 @@ final class UserViewModel: ObservableObject {
     }
     func signUp() async throws {
         self.loading.toggle()
-        // Check if all fields are inputted in the correct way
         guard !email.isEmpty || !password.isEmpty else{
             showAlertMessage("Neither email nor password can be empty.")
             self.loading.toggle()
             return
         }
         do{
-            try await authenticationManager.createUser(email: email, password: password)
-            // If it did not throw
+            let authDataResult = try await authenticationManager.createUser(email: email, password: password)
             self.loading.toggle()
             self.isSignedIn = true
+            switch selectedAccountType {
+                case .Standard:
+                    let standardAccount = StandardAccount(auth: authDataResult)
+                    try await AccountManager.shared.createNewStandardAccount(user: standardAccount)
+                case .Company:
+                    let companyAccount = CompanyAccount(auth: authDataResult)
+                    try await AccountManager.shared.createNewCompanyAccount(user: companyAccount)
+            }
         } catch {
             self.alertMessage = error.localizedDescription
             self.alert.toggle()
@@ -82,9 +85,4 @@ final class UserViewModel: ObservableObject {
             print("Error signing out, error: \(error)")
         }
     }
-}
-
-enum UserType: String,CaseIterable {
-    case Standard
-    case Company
 }

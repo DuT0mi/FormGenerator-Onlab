@@ -4,21 +4,16 @@ struct SignupView: View {
     @ObservedObject var user: UserViewModel
     @ObservedObject var networkManager: NetworkManagerViewModel
     @State private(set) var type: Pages = .signup
-   // @State private var selectedUserType: UserType = .Standard
     @Binding var isPresented: Bool
+    
     typealias AVC = AuthenticationViewsConstants
     
-  /*  private enum UserType: String,CaseIterable {
-        case Standard
-        case Company
-    } */
-    
     var picker: some View {
-        Picker("Account type", selection: $user.selectedUserType){
+        Picker("Account type", selection: $user.selectedAccountType){
             Text("Standard account")
-                .tag(UserType.Standard)
+                .tag(AccountType.Standard)
             Text("Company account")
-                .tag(UserType.Company)
+                .tag(AccountType.Company)
         }
         .pickerStyle(SegmentedPickerStyle())
     }
