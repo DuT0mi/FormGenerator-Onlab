@@ -120,6 +120,8 @@
 		1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43EFE29D361C800235CAD /* PasswordValidation.swift */; };
 		1AA43F0129D3682B00235CAD /* PasswordValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */; };
 		1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */; };
+		1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BB29E2DDCA00665361 /* CreateFormView.swift */; };
+		1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BD29E2E18700665361 /* FormListViewModel.swift */; };
 		1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDA0C729D1E6C1008E60D8 /* LoadingTextView.swift */; };
 		1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACDA0C929D1F8A6008E60D8 /* Star.swift */; };
 		1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF44029BC8D860071F54C /* IntroView.swift */; };
@@ -182,6 +184,8 @@
 		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
+		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
+		1AC519BD29E2E18700665361 /* FormListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewModel.swift; sourceTree = "<group>"; };
 		1ACDA0C729D1E6C1008E60D8 /* LoadingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTextView.swift; sourceTree = "<group>"; };
 		1ACDA0C929D1F8A6008E60D8 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		1ADFF44029BC8D860071F54C /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -431,6 +435,7 @@
 				1A7E650F29DCA0D30023067A /* FormItemView.swift */,
 				1A7E651129DCA74F0023067A /* FormViewDetail.swift */,
 				1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */,
+				1AC519BB29E2DDCA00665361 /* CreateFormView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */,
 				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
 				1A7E650C29DC6D470023067A /* SettingsViewModel.swift */,
+				1AC519BD29E2E18700665361 /* FormListViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */,
 				1AE4016B29C8E9CF004FAA89 /* AuthenticationManager.swift in Sources */,
 				1A7E651029DCA0D30023067A /* FormItemView.swift in Sources */,
+				1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */,
 				1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
 				1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */,
@@ -803,6 +810,7 @@
 				1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */,
 				1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,
+				1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */,
 				1A2C2FBA29BDDFC3008ED194 /* SignupView.swift in Sources */,
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
 				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,
