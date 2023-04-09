@@ -134,7 +134,6 @@
 		1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF45129BCF6BA0071F54C /* SettingsView.swift */; };
 		1AE4016B29C8E9CF004FAA89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */; };
 		1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */; };
-		1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */; };
 		1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CFC29C2210B00589D55 /* PopUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -201,7 +200,6 @@
 		1ADFF45129BCF6BA0071F54C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataResult.swift; sourceTree = "<group>"; };
-		1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		1AE94CFC29C2210B00589D55 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -482,7 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				1A9D202529B4B20100127A91 /* UserViewModel.swift */,
-				1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */,
 				1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */,
 				1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */,
 				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
@@ -800,7 +797,6 @@
 				1AC519C429E2F12800665361 /* CreateFormViewModel.swift in Sources */,
 				1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */,
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
-				1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */,
 				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,

@@ -4,14 +4,25 @@ struct CreateFormView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
     
+    
+    fileprivate var submitButton: some View {
+        Button("Submit"){
+            dismiss.callAsFunction()
+            Task{
+                try await viewModel.createForm()
+                try await viewModel.uploadForm()
+            }
+        }
+    }
+    
     var body: some View {
         ScrollView{
             NavigationView {
                 LazyVStack(spacing: 50) {
                     HStack{
-                        TextField("AAAA", text: $viewModel.formText)
+                        TextField("Enter your question", text: $viewModel.formText)
                         Menu("Type: \(viewModel.formType.rawValue)"){
-                            ForEach(CreateFormViewModel.selectedType.allCases, id: \.self){
+                            ForEach(CreateFormViewModel.SelectedType.allCases, id: \.self){
                                 type in
                                 Button(type.rawValue){
                                     Task{
@@ -21,21 +32,23 @@ struct CreateFormView: View {
                             }
                         }
                     }
-                    Button("DONE"){
-                        dismiss.callAsFunction()
-                        Task{
-                            try await viewModel.createForm()
-                            try await viewModel.uploadForm()
-                        }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
+                    submitButton
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
                 }
                 .padding()
                 .navigationTitle("Create form!")
+                .toolbar {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName:"doc.badge.plus")
+                            .bold()
+                    }
+
+                }
             }
         }
-        .ignoresSafeArea()
     }
 }
 

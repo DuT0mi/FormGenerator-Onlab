@@ -54,7 +54,7 @@ struct FormViewDetail: View {
 struct FormViewDetailt_Previews: PreviewProvider {
     static var previews: some View {
         FormViewDetail(form:
-                        FormData(id: 10,
+                        FormData(id: UUID(),
                                  title: "title",
                                  type: "type",
                                  companyID: "companyID",

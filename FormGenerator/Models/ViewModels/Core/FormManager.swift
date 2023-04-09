@@ -14,7 +14,7 @@ final class FormManager{
     
     
     func uploadFormToDatabase(form: FormData) async throws {
-        try formDocument(formID: String(form.id)).setData(from: form, merge:false)
+        try formDocument(formID: (form.id.uuidString)).setData(from: form, merge:false)
     }
     func downloadAllForm() async throws -> [FormData]{
         try await formCollection.getDocuments(as: FormData.self)
