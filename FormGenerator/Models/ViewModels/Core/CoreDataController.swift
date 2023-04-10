@@ -34,4 +34,21 @@ class CoreDataController: ObservableObject {
         question.question = paramQ
         question.type = type
     }
+    
+    func resetCoreData(context: NSManagedObjectContext) {
+        // Fetch all entities from Core Data and delete them
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "QuestionCoreData")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            
+            // Save the changes to the persistent store
+            try context.save()
+            print("Core Data model reset successful")
+        } catch {
+            print("Failed to reset Core Data model: \(error.localizedDescription)")
+        }
+    }
+
 }
