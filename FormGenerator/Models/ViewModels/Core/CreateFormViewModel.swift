@@ -5,15 +5,14 @@ import SwiftUI
 final class CreateFormViewModel: ObservableObject {
     @Published private(set) var form: FormData?
     @Published var formText: String = ""
-    @Published var formType: selectedType = .none
+    @Published var formType: SelectedType = .none
     
     private var account: Account?
     private let authManager: AuthenticationManager = AuthenticationManager()
     
-    enum selectedType: String, CaseIterable{
-        case A
-        case B
-        case none
+    private func loadCurrentAccount() async throws {
+        let authDataResult = try authManager.getAuthenticatedUser()
+        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
     }
     
     init(){
@@ -23,12 +22,8 @@ final class CreateFormViewModel: ObservableObject {
 
     }
     
-    private func loadCurrentAccount() async throws {
-        let authDataResult = try authManager.getAuthenticatedUser()
-        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
-    }
     func createForm() async throws {
-        form = FormData(id: 10,
+        form = FormData(id: UUID(),
                         title: "Title",
                         type: formType.rawValue,
                         companyID: account?.userID ?? "Error",
@@ -42,8 +37,13 @@ final class CreateFormViewModel: ObservableObject {
     }
     
     // MARK: - Intent(s)
-    func typeSelected(type: selectedType) async throws {
+    func typeSelected(type: SelectedType) async throws {
         self.formType = type
     }
-    
+}
+
+enum SelectedType: String, CaseIterable{
+    case A
+    case B
+    case none
 }

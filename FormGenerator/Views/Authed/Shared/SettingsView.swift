@@ -12,8 +12,6 @@ struct SettingsView: View {
                         Section {
                             Text("Text")
                             Text("Account type: \(viewModel.account?.type.rawValue ?? "" ) ")
-                            //Text("User type: \(user.selectedAccountType.rawValue)")
-                            
                         } header: {
                             Text("Profile")
                         }

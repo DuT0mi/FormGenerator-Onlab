@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct FormGeneratorView: View {
+    @StateObject private var dataController: CoreDataController = CoreDataController()
     @StateObject var user: UserViewModel = UserViewModel()
     @StateObject var networkManager: NetworkManagerViewModel = NetworkManagerViewModel()
     @State private var isConnected:Bool = false
@@ -30,6 +31,7 @@ struct FormGeneratorView: View {
                     tabView
                 } else {
                     homeView
+                        .environment(\.managedObjectContext, dataController.container.viewContext)
                 }
             } else {
                 SpaceView(networkManager: networkManager)

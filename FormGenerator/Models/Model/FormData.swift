@@ -1,7 +1,7 @@
 import Foundation
 
 struct FormData: Identifiable, Codable, Hashable{
-    let id: Int
+    let id: UUID
     let title: String
     let type: String
     let companyID: String

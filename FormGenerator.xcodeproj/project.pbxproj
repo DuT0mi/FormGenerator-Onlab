@@ -49,6 +49,11 @@
 		1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */; };
 		1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */; };
 		1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC729DB75C30086DA80 /* AccountManager.swift */; };
+		1A514A8029E42759002EF2BA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A7F29E42759002EF2BA /* Question.swift */; };
+		1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */; };
+		1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8529E43C94002EF2BA /* CoreDataController.swift */; };
+		1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8729E4410C002EF2BA /* AddQuestionView.swift */; };
+		1A514A8A29E4479B002EF2BA /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8929E4479B002EF2BA /* EditQuestionView.swift */; };
 		1A6B321929C747D600551E8F /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B321829C747D600551E8F /* SpaceView.swift */; };
 		1A739E6A29CA30140031FD63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A739E6929CA30140031FD63 /* Alamofire */; };
 		1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650C29DC6D470023067A /* SettingsViewModel.swift */; };
@@ -134,7 +139,6 @@
 		1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFF45129BCF6BA0071F54C /* SettingsView.swift */; };
 		1AE4016B29C8E9CF004FAA89 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */; };
 		1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */; };
-		1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */; };
 		1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE94CFC29C2210B00589D55 /* PopUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +177,11 @@
 		1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAccount.swift; sourceTree = "<group>"; };
 		1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingKeys.swift; sourceTree = "<group>"; };
 		1A4CEDC729DB75C30086DA80 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		1A514A7F29E42759002EF2BA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD.xcdatamodel; sourceTree = "<group>"; };
+		1A514A8529E43C94002EF2BA /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		1A514A8729E4410C002EF2BA /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
+		1A514A8929E4479B002EF2BA /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
 		1A6B321829C747D600551E8F /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		1A7E650C29DC6D470023067A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
@@ -201,7 +210,6 @@
 		1ADFF45129BCF6BA0071F54C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataResult.swift; sourceTree = "<group>"; };
-		1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		1AE94CFC29C2210B00589D55 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +435,15 @@
 			path = Ancient;
 			sourceTree = "<group>";
 		};
+		1A514A8129E43BF4002EF2BA /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				1A514A7F29E42759002EF2BA /* Question.swift */,
+				1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */,
+			);
+			path = Questions;
+			sourceTree = "<group>";
+		};
 		1A77351829BFC0FC00A69DD8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +457,8 @@
 			children = (
 				1AC519C229E2ED2B00665361 /* UI */,
 				1AC519BB29E2DDCA00665361 /* CreateFormView.swift */,
+				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
+				1A514A8929E4479B002EF2BA /* EditQuestionView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -482,7 +501,6 @@
 			isa = PBXGroup;
 			children = (
 				1A9D202529B4B20100127A91 /* UserViewModel.swift */,
-				1AE94CF929C1F1FA00589D55 /* FormViewModel.swift */,
 				1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */,
 				1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */,
 				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
@@ -490,6 +508,7 @@
 				1AC519BD29E2E18700665361 /* FormListViewModel.swift */,
 				1AC519C329E2F12800665361 /* CreateFormViewModel.swift */,
 				1AC519C529E2F7DD00665361 /* FormManager.swift */,
+				1A514A8529E43C94002EF2BA /* CoreDataController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -552,6 +571,7 @@
 		1AE94CF629C1E00300589D55 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A514A8129E43BF4002EF2BA /* Questions */,
 				1A4CEDBF29DB68C40086DA80 /* AccountHandling */,
 				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
 				1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */,
@@ -798,12 +818,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AC519C429E2F12800665361 /* CreateFormViewModel.swift in Sources */,
+				1A514A8029E42759002EF2BA /* Question.swift in Sources */,
 				1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */,
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
-				1AE94CFA29C1F1FA00589D55 /* FormViewModel.swift in Sources */,
 				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
+				1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
+				1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */,
 				1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */,
 				1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
@@ -816,6 +838,7 @@
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
 				1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */,
 				1AC519C629E2F7DD00665361 /* FormManager.swift in Sources */,
+				1A514A8A29E4479B002EF2BA /* EditQuestionView.swift in Sources */,
 				1AE4016B29C8E9CF004FAA89 /* AuthenticationManager.swift in Sources */,
 				1A7E651029DCA0D30023067A /* FormItemView.swift in Sources */,
 				1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */,
@@ -823,6 +846,7 @@
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
 				1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */,
 				1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */,
+				1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
@@ -1644,6 +1668,19 @@
 			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */,
+			);
+			currentVersion = 1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */;
+			path = QuestionCD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1A282ED829AE79BF00DAFD9B /* Project object */;
 }

@@ -1,10 +1,3 @@
-//
-//  FormItemView.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 04. 04..
-//
-
 import SwiftUI
 
 struct FormItemView: View {
@@ -20,7 +13,7 @@ struct FormItemView: View {
                         .clipped()
                         .overlay(alignment: .bottom) {
                             RoundedRectangle(cornerRadius: 5)
-                                .frame(width: .infinity, height: 40)
+                                .frame(width: ScreenDimensions.width, height: 40)
                                 .foregroundColor(.gray.opacity(0.7))
                                 .padding(.top)
                                 .overlay(alignment: .leading) {
@@ -46,7 +39,7 @@ struct FormItemView: View {
 struct FormItemView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            FormItemView(form: FormData(id: 1, title: "title", type: "", companyID: "", description: "", answers: "", questions: ""))
+            FormItemView(form: FormData(id: UUID(), title: "title", type: "", companyID: "", description: "", answers: "", questions: ""))
                 .frame(width: 250)
         }
     }
