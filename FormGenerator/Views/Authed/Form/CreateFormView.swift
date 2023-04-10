@@ -1,12 +1,15 @@
 import SwiftUI
+import CoreData
 
 struct CreateFormView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
-    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @State private var newQuestionText: String = ""
     
     fileprivate var submitButton: some View {
-        Button("Submit"){
+        Button("Submit Form"){
             dismiss.callAsFunction()
             Task{
                 try await viewModel.createForm()
@@ -14,24 +17,33 @@ struct CreateFormView: View {
             }
         }
     }
+    private func deleteQuestion(index: IndexSet){
+        withAnimation {
+            // delete the question
+            index.map{questionCoreData[$0]}.forEach(managedObjectContext.delete)
+            // save the current state
+            CoreDataController().save(context: managedObjectContext)
+        }
+    }
     
     var body: some View {
-        ScrollView{
             NavigationView {
-                LazyVStack(spacing: 50) {
-                    HStack{
-                        TextField("Enter your question", text: $viewModel.formText)
-                        Menu("Type: \(viewModel.formType.rawValue)"){
-                            ForEach(CreateFormViewModel.SelectedType.allCases, id: \.self){
-                                type in
-                                Button(type.rawValue){
-                                    Task{
-                                        try? await viewModel.typeSelected(type:type)
+                VStack(spacing: 40) {
+                    List{
+                        ForEach(questionCoreData){question in
+                            NavigationLink(destination: EditQuestionView(question: question)) {
+                                HStack{
+                                    VStack(alignment: .leading, spacing: 5.0){
+                                        Text(question.question!).bold()
+                                        Text(question.type!)
+                                            .foregroundColor(.red)
                                     }
                                 }
                             }
                         }
+                        .onDelete(perform: deleteQuestion)
                     }
+                    .listStyle(.plain)
                     submitButton
                         .buttonStyle(.borderedProminent)
                         .buttonBorderShape(.capsule)
@@ -39,16 +51,20 @@ struct CreateFormView: View {
                 .padding()
                 .navigationTitle("Create form!")
                 .toolbar {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName:"doc.badge.plus")
-                            .bold()
+                    ToolbarItem(placement:.navigationBarTrailing){
+                        NavigationLink {
+                            AddQuestionView()
+                        } label: {
+                            Image(systemName: "doc.badge.plus")
+                                .bold()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarLeading){
+                        EditButton()
                     }
 
                 }
             }
-        }
     }
 }
 

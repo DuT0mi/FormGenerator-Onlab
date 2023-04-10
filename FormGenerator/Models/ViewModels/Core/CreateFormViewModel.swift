@@ -10,10 +10,9 @@ final class CreateFormViewModel: ObservableObject {
     private var account: Account?
     private let authManager: AuthenticationManager = AuthenticationManager()
     
-    enum SelectedType: String, CaseIterable{
-        case A
-        case B
-        case none
+    private func loadCurrentAccount() async throws {
+        let authDataResult = try authManager.getAuthenticatedUser()
+        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
     }
     
     init(){
@@ -21,15 +20,6 @@ final class CreateFormViewModel: ObservableObject {
             try? await loadCurrentAccount()
         }
 
-    }
-    
-    private func loadCurrentAccount() async throws {
-        let authDataResult = try authManager.getAuthenticatedUser()
-        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
-    }
-    
-    func addQuestion(){
-        
     }
     
     func createForm() async throws {
@@ -50,5 +40,10 @@ final class CreateFormViewModel: ObservableObject {
     func typeSelected(type: SelectedType) async throws {
         self.formType = type
     }
-    
+}
+
+enum SelectedType: String, CaseIterable{
+    case A
+    case B
+    case none
 }
