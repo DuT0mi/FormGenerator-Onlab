@@ -9,9 +9,6 @@ struct CreateFormView: View {
     @State private var showAddQuestionView: Bool = false
     
     fileprivate var submitButton: some View {
-        /// 1. Dismiss the current screen
-        /// 2. Create and upload the data
-        /// 3. Adjust the Core Database to default
         Button("Submit Form"){
             dismiss.callAsFunction()
             Task{
@@ -38,9 +35,7 @@ struct CreateFormView: View {
     
     private func deleteQuestion(index: IndexSet){
         withAnimation {
-            // delete the question
             index.map{questionCoreData[$0]}.forEach(managedObjectContext.delete)
-            // save the current state
             CoreDataController().save(context: managedObjectContext)
         }
     }
