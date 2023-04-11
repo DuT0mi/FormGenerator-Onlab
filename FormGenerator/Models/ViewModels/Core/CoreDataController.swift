@@ -5,20 +5,13 @@ class CoreDataController: ObservableObject {
     let container = NSPersistentContainer(name: "QuestionCD")
     
     init(){
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                print("Failed to load the data: \(error.localizedDescription)")
-            }
-        }
+        container.loadPersistentStores { _, _ in }
     }
     
     func save(context: NSManagedObjectContext){
         do {
             try context.save()
-            print("Saved")
-        } catch {
-            print(error.localizedDescription)
-        }
+        } catch { }
     }
     func addQuestion(context: NSManagedObjectContext, question paramQ: String, type: String){
        let question = QuestionCoreData(context: context)
@@ -45,10 +38,7 @@ class CoreDataController: ObservableObject {
             
             // Save the changes to the persistent store
             try context.save()
-            print("Core Data model reset successful")
-        } catch {
-            print("Failed to reset Core Data model: \(error.localizedDescription)")
-        }
+        } catch { }
     }
 
 }

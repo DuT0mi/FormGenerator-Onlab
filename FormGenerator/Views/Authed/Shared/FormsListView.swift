@@ -24,7 +24,8 @@ struct FormsListView: View {
                     try? await viewModel.loadCurrentAccount()
                 }
                 .toolbar{
-                    if viewModel.account?.type.rawValue != AccountType.Standard.rawValue ,  viewModel.isAccountLoaded {
+                    if viewModel.account?.type.rawValue != AccountType.Standard.rawValue ,
+                       viewModel.isAccountLoaded {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             NavigationLink(destination: CreateFormView()) {
                                 Image(systemName: "plus")

@@ -6,15 +6,16 @@ struct CreateFormView: View {
     @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var questionCoreData: FetchedResults<QuestionCoreData>
-    @State private var newQuestionText: String = ""
     @State private var showAddQuestionView: Bool = false
     
     fileprivate var submitButton: some View {
+        /// 1. Dismiss the current screen
+        /// 2. Create and upload the data
+        /// 3. Adjust the Core Database to default
         Button("Submit Form"){
             dismiss.callAsFunction()
             Task{
-                try await viewModel.createForm()
-                try await viewModel.uploadForm()
+                try await viewModel.createAndUploadForm(allData: questionCoreData, context: managedObjectContext)
             }
             CoreDataController().resetCoreData(context: managedObjectContext)
         }
@@ -34,6 +35,7 @@ struct CreateFormView: View {
             showAddQuestionView = true
         }
     }
+    
     private func deleteQuestion(index: IndexSet){
         withAnimation {
             // delete the question
@@ -44,7 +46,6 @@ struct CreateFormView: View {
     }
     
     var body: some View {
-            NavigationView {
                 VStack(spacing: 40) {
                     List{
                         ForEach(questionCoreData){question in
@@ -56,7 +57,7 @@ struct CreateFormView: View {
                                             .foregroundColor(.red)
                                     }
                                 }
-                            }
+                            }                            
                         }
                         .onDelete(perform: deleteQuestion)
                     }
@@ -65,22 +66,12 @@ struct CreateFormView: View {
                         .buttonStyle(.borderedProminent)
                         .buttonBorderShape(.capsule)
                 }
-                .padding()
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Create Form")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         formCreatorControllButton
                     }
-                    // Custom navigation title
-                    ToolbarItem(placement: .principal){
-                        Text("Create form!")
-                            .font(.title)
-                            .bold()
-                            
-                    }
-
                 }
-            }
             .sheet(isPresented: $showAddQuestionView) {
                 AddQuestionView()
             }
