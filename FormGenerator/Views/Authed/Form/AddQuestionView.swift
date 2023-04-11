@@ -22,19 +22,23 @@ struct AddQuestionView: View {
             }
         }
     }
+    fileprivate var buttonComponent: some View {
+        Button("Submit question"){
+            CoreDataController().addQuestion(context: managedObjectContext, question: questionTitle, type: questionType.rawValue)
+            
+            dismiss.callAsFunction()
+        }
+    }
+    
     var body: some View {
-        NavigationView{
             VStack(spacing: 50){
                 questionComponent
-                Button("Submit question"){
-                    CoreDataController().addQuestion(context: managedObjectContext, question: questionTitle, type: questionTitle)
-                    
-                    dismiss.callAsFunction()
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
+                buttonComponent
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                Spacer()
+                Spacer()
             }
-        }
         .padding()
     }
 }

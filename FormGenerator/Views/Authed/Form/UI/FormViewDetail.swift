@@ -59,7 +59,6 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                  type: "type",
                                  companyID: "companyID",
                                  description: "description",
-                                 answers: "answers",
-                                 questions: "questions"))
+                                 answers: "answers"))
     }
 }
