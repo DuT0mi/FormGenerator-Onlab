@@ -26,6 +26,7 @@ class CoreDataController: ObservableObject {
     func editQuestion(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String, type: String){
         question.question = paramQ
         question.type = type
+        save(context: context)
     }
     
     func resetCoreData(context: NSManagedObjectContext) {

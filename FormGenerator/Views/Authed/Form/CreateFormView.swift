@@ -32,7 +32,7 @@ struct CreateFormView: View {
             showAddQuestionView = true
         }
     }
-    
+   
     private func deleteQuestion(index: IndexSet){
         withAnimation {
             index.map{questionCoreData[$0]}.forEach(managedObjectContext.delete)
@@ -41,32 +41,33 @@ struct CreateFormView: View {
     }
     
     var body: some View {
-                VStack(spacing: 40) {
-                    List{
-                        ForEach(questionCoreData){question in
-                            NavigationLink(destination: EditQuestionView(question: question)) {
-                                HStack{
-                                    VStack(alignment: .leading, spacing: 5.0){
-                                        Text(question.question!).bold()
-                                        Text(question.type!)
-                                            .foregroundColor(.red)
-                                    }
+            VStack(spacing: 40) {
+                List{
+                    ForEach(questionCoreData){question in
+                        NavigationLink(destination: EditQuestionView(question: question)) {
+                            HStack{
+                                VStack(alignment: .leading, spacing: 5.0){
+                                    Text(question.question!).bold()
+                                    Text(question.type!)
+                                        .foregroundColor(.red)
                                 }
-                            }                            
+                            }
                         }
-                        .onDelete(perform: deleteQuestion)
                     }
-                    .listStyle(.plain)
-                    submitButton
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
+                    .onDelete(perform: deleteQuestion)
                 }
-                .navigationTitle("Create Form")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        formCreatorControllButton
-                    }
+                .listStyle(.plain)
+                submitButton
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                    .padding()
+            }
+            .navigationTitle("Create Form")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    formCreatorControllButton
                 }
+            }
             .sheet(isPresented: $showAddQuestionView) {
                 AddQuestionView()
             }

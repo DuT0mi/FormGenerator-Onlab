@@ -31,17 +31,17 @@ struct EditQuestionView: View {
         }
     }
     var body: some View {
-        NavigationView{
-            VStack(spacing: 50){
-                questionComponent
-                Button("Submit question"){
-                    CoreDataController().editQuestion(context: managedObjectContext, question: question, question: questionTitle, type: questionType.rawValue)
-                    dismiss.callAsFunction()
+            NavigationView{
+                VStack(spacing: 50){
+                    questionComponent
+                    Button("Submit question"){
+                        CoreDataController().editQuestion(context: managedObjectContext,question: question, question: questionTitle, type: questionType.rawValue)
+                        dismiss.callAsFunction()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
                 }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
             }
-        }
-        .padding()
+            .padding()
     }
 }

@@ -3,7 +3,6 @@ import SwiftUI
 struct FormsListView: View {
     @ObservedObject var networkManager: NetworkManagerViewModel
     @StateObject private var viewModel: FormListViewModel = FormListViewModel()
-    
     let columns = [GridItem(.flexible())]
     
     var body: some View {
@@ -13,7 +12,7 @@ struct FormsListView: View {
                 LazyVGrid(columns: columns){
                     ForEach(viewModel.forms){form in
                         NavigationLink{
-                            FormViewDetail(form: form)
+                            FormViewDetail(networkManager: networkManager, form: form)
                         }label: {
                             FormItemView(form: form)
                         }

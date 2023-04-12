@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct FormViewDetail: View {
-    
+    @ObservedObject var networkManager: NetworkManagerViewModel
     var form: FormData
     
     var body: some View {
@@ -48,12 +48,12 @@ struct FormViewDetail: View {
                 .buttonBorderShape(.capsule)
             }
             .ignoresSafeArea()
-        }
+    }
 }
 
 struct FormViewDetailt_Previews: PreviewProvider {
     static var previews: some View {
-        FormViewDetail(form:
+        FormViewDetail( networkManager: NetworkManagerViewModel(), form:
                         FormData(id: UUID(),
                                  title: "title",
                                  type: "type",
