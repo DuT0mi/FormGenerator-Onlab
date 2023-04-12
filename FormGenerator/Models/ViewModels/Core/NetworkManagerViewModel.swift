@@ -32,7 +32,6 @@ final class NetworkManagerViewModel: ObservableObject{
             return connection
         }
     }
-    
     init() { /* Listening always */
         networkReachabilityManager?.startListening(onUpdatePerforming: { [weak self] status in
             guard let self = self else { return }

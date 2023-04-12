@@ -39,7 +39,7 @@ struct AddQuestionView: View {
                 Spacer()
                 Spacer()
             }
-        .padding()
+            .padding()
     }
 }
 

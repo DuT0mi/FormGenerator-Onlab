@@ -9,9 +9,6 @@ struct CreateFormView: View {
     @State private var showAddQuestionView: Bool = false
     
     fileprivate var submitButton: some View {
-        /// 1. Dismiss the current screen
-        /// 2. Create and upload the data
-        /// 3. Adjust the Core Database to default
         Button("Submit Form"){
             dismiss.callAsFunction()
             Task{
@@ -35,43 +32,42 @@ struct CreateFormView: View {
             showAddQuestionView = true
         }
     }
-    
+   
     private func deleteQuestion(index: IndexSet){
         withAnimation {
-            // delete the question
             index.map{questionCoreData[$0]}.forEach(managedObjectContext.delete)
-            // save the current state
             CoreDataController().save(context: managedObjectContext)
         }
     }
     
     var body: some View {
-                VStack(spacing: 40) {
-                    List{
-                        ForEach(questionCoreData){question in
-                            NavigationLink(destination: EditQuestionView(question: question)) {
-                                HStack{
-                                    VStack(alignment: .leading, spacing: 5.0){
-                                        Text(question.question!).bold()
-                                        Text(question.type!)
-                                            .foregroundColor(.red)
-                                    }
+            VStack(spacing: 40) {
+                List{
+                    ForEach(questionCoreData){question in
+                        NavigationLink(destination: EditQuestionView(question: question)) {
+                            HStack{
+                                VStack(alignment: .leading, spacing: 5.0){
+                                    Text(question.question!).bold()
+                                    Text(question.type!)
+                                        .foregroundColor(.red)
                                 }
-                            }                            
+                            }
                         }
-                        .onDelete(perform: deleteQuestion)
                     }
-                    .listStyle(.plain)
-                    submitButton
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
+                    .onDelete(perform: deleteQuestion)
                 }
-                .navigationTitle("Create Form")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        formCreatorControllButton
-                    }
+                .listStyle(.plain)
+                submitButton
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                    .padding()
+            }
+            .navigationTitle("Create Form")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    formCreatorControllButton
                 }
+            }
             .sheet(isPresented: $showAddQuestionView) {
                 AddQuestionView()
             }
