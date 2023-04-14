@@ -45,7 +45,7 @@ struct CreateFormView: View {
         if networkManager.isNetworkReachable{
                 VStack(spacing: 40) {
                     List{
-                        ForEach(questionCoreData){question in
+                        ForEach(questionCoreData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)})){question in
                             NavigationLink(destination: EditQuestionView(question: question)) {
                                 HStack{
                                     VStack(alignment: .leading, spacing: 5.0){

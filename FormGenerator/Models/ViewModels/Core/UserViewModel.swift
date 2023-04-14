@@ -20,7 +20,8 @@ final class UserViewModel: ObservableObject {
         if autoLogin {
             let user = Auth.auth().currentUser
             if let _ = user {
-                self.isSignedIn = true
+                // TODO: Check if existing the current user
+                    self.isSignedIn = true
             } else {}
         }
     }

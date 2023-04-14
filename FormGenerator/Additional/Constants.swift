@@ -1,6 +1,12 @@
 import Foundation
 import SwiftUI
 
+
+// User constants
+enum UserConstants: String {
+    case currentUserID = "currentUserID"
+}
+
 // Separating the different pages (login/signup)
 enum Pages: String, CaseIterable, Equatable {
     case login = "login"

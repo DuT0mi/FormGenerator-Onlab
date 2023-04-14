@@ -7,16 +7,23 @@ final class AuthenticationManager{
         try Auth.auth().signOut()
     }
     
+    private func setIDToUserDefaults(ID: String){
+        UserDefaults.standard.set(ID, forKey: UserConstants.currentUserID.rawValue)
+    }
+    
     @discardableResult
     func signInUser(email: String, password: String) async throws -> AuthenticationDataResult{
         let (authDataResult) = try await Auth.auth().signIn(withEmail: email, password: password)
+        // When signing in we store userID in UserDefaults
+        setIDToUserDefaults(ID: authDataResult.user.uid)
         return AuthenticationDataResult(user: authDataResult.user)
-    
     }
     
     @discardableResult
     func createUser(email:String, password: String) async throws -> AuthenticationDataResult {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+        // Also creating the user (aka signing up) in we store userID in UserDefaults
+        setIDToUserDefaults(ID: authDataResult.user.uid)
         return AuthenticationDataResult(user: authDataResult.user)
         
     }

@@ -18,6 +18,7 @@ class CoreDataController: ObservableObject {
     func addQuestion(context: NSManagedObjectContext, question paramQ: String, type: String){
         context.performAndWait {
             let question = QuestionCoreData(context: context)
+            question.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
             question.id = UUID()
             question.question = paramQ
             question.type = type

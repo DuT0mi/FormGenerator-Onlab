@@ -42,6 +42,7 @@ struct EditQuestionView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
+                    Spacer()
                 }
             }
             .padding()
