@@ -14,7 +14,8 @@ final class FormListViewModel: ObservableObject {
     
     func loadCurrentAccount() async throws {
         let authDataResult = try authManager.getAuthenticatedUser()
-        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
+        let (account,_) = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
+        self.account = account
         // Must to adjust it true, and not toggle because of the User can tap back from creating the View and then will disappear the oppurtinity to create
         self.isAccountLoaded = true
     }

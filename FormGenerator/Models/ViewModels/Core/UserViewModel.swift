@@ -15,13 +15,21 @@ final class UserViewModel: ObservableObject {
         @Published var isSignedIn = false
         @Published var loading: Bool = false
         @Published var selectedAccountType: AccountType = .Standard
+        @Published var isAutoLoginLoading: Bool = false
     
     init(autoLogin:Bool = true){ /* Autologin method */
         if autoLogin {
+            self.isAutoLoginLoading = true
             let user = Auth.auth().currentUser
-            if let _ = user {
-                // TODO: Check if existing the current user
-                    self.isSignedIn = true
+            if let user = user {
+                Task{
+                    let (_,exist) = try await AccountManager.shared.getUserByJustID(userID: user.uid)
+                    if exist{
+                        self.isAutoLoginLoading = false
+                        self.isSignedIn = true
+                    }
+                    self.isAutoLoginLoading = false
+                }
             } else {}
         }
     }

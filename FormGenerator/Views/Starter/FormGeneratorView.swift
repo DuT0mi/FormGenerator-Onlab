@@ -31,7 +31,10 @@ struct FormGeneratorView: View {
     var body: some View {
         ZStack{
             if networkManager.isNetworkReachable{
-                if !user.isSignedIn{
+                if user.isAutoLoginLoading{
+                 ProgressView()
+                }
+                else if !user.isSignedIn{
                     tabView
                 } else {
                     homeView
