@@ -12,11 +12,15 @@ struct FormGeneratorView: View {
     }
     fileprivate var tabView: some View {
         TabView {
-            IntroView()
+            NavigationStack{
+                IntroView()
+            }
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
-            LoginView(user: user)
+            NavigationStack{
+                LoginView(user: user)
+            }
                 .tabItem {
                     Label("Start", systemImage: "person.fill")
                 }
@@ -34,7 +38,7 @@ struct FormGeneratorView: View {
                         .environment(\.managedObjectContext, dataController.container.viewContext)
                 }
             } else {
-                SpaceView(networkManager: networkManager)
+                SpaceView()
             }
         }
     }

@@ -50,7 +50,7 @@ struct SettingsView: View {
                 }
             
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

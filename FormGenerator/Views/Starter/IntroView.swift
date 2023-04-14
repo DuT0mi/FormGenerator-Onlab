@@ -9,7 +9,7 @@ struct IntroView: View {
                 Label("Home",systemImage: "house.fill")
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

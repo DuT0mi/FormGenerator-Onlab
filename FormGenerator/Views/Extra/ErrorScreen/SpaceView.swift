@@ -2,7 +2,7 @@ import SwiftUI
 import Dispatch
 
 struct SpaceView: View {
-    @ObservedObject var networkManager: NetworkManagerViewModel
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     
     @State var stars: [Star] = []
     @State private var starColors: [Color] = [.white, .gray, .yellow, .orange]
@@ -111,7 +111,8 @@ struct SpaceView: View {
 
 struct SpaceView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceView(networkManager: NetworkManagerViewModel())
+        SpaceView()
         // .previewInterfaceOrientation(.landscapeLeft)
+            .environmentObject(NetworkManagerViewModel())
     }
 }

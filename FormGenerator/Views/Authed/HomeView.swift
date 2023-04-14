@@ -31,17 +31,21 @@ struct HomeView: View {
     var body: some View {
         if networkManager.isNetworkReachable{
             TabView(selection: $selection){
-                FormsListView()
+                    FormsListView()
                     .tabItem {
                         Label("All", systemImage: "tray")
                     }
                     .tag(Tab.all)
-                RecentsFormsView()
+                NavigationStack{
+                    RecentsFormsView()
+                }
                     .tabItem {
                         Label("Recents", systemImage: "clock")
                     }
                     .tag(Tab.recent)
-                SettingsView(user: user)
+                NavigationStack{
+                    SettingsView(user: user)
+                }
                     .tabItem {
                         Label("Profile",systemImage:"person.crop.circle.fill")
                     }
@@ -53,7 +57,7 @@ struct HomeView: View {
                 }
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

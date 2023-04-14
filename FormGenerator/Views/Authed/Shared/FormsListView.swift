@@ -38,7 +38,7 @@ struct FormsListView: View {
                 viewModel.downloadAllForm()
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

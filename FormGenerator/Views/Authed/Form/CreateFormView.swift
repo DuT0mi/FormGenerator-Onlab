@@ -74,7 +74,7 @@ struct CreateFormView: View {
                     AddQuestionView()
                 }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

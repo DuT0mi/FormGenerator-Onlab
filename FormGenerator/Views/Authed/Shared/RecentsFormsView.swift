@@ -9,7 +9,7 @@ struct RecentsFormsView: View {
                 Text("All of the recents forms come here: started and not finished and finished")
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
         
         

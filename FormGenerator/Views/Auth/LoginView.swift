@@ -63,7 +63,7 @@ struct LoginView: View {
                 }
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

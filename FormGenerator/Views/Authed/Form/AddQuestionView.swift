@@ -43,7 +43,7 @@ struct AddQuestionView: View {
             }
             .padding()
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }

@@ -69,7 +69,7 @@ struct SignupView: View {
                 signUpContent
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }
