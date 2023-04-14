@@ -14,7 +14,8 @@ final class CreateFormViewModel: ObservableObject {
     
     private func loadCurrentAccount() async throws {
         let authDataResult = try authManager.getAuthenticatedUser()
-        self.account = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
+        let (account,_) = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
+        self.account = account
     }
     
     init(){
