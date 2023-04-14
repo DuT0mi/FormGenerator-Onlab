@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @ObservedObject var user: UserViewModel
-    @ObservedObject var networkManager: NetworkManagerViewModel
     @StateObject private var viewModel: SettingsViewModel = SettingsViewModel()
     
     var body: some View {
@@ -50,14 +50,15 @@ struct SettingsView: View {
                 }
             
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(user: UserViewModel(), networkManager: NetworkManagerViewModel())
+        SettingsView(user: UserViewModel())
+            .environmentObject(NetworkManagerViewModel())
     }
 }
 

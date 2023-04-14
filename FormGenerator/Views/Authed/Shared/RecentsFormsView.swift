@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RecentsFormsView: View {
-    @ObservedObject var networkManager: NetworkManagerViewModel
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     
     var body: some View {
         if networkManager.isNetworkReachable{
@@ -9,7 +9,7 @@ struct RecentsFormsView: View {
                 Text("All of the recents forms come here: started and not finished and finished")
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
         
         
@@ -18,6 +18,7 @@ struct RecentsFormsView: View {
 
 struct RecentsFormsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecentsFormsView(networkManager: NetworkManagerViewModel())
+        RecentsFormsView()
+            .environmentObject(NetworkManagerViewModel())
     }
 }

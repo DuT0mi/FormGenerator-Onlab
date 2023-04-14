@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IntroView: View {
-    @ObservedObject var networkManager: NetworkManagerViewModel
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     
     var body: some View {
         if networkManager.isNetworkReachable{
@@ -9,13 +9,14 @@ struct IntroView: View {
                 Label("Home",systemImage: "house.fill")
             }
         } else {
-            SpaceView(networkManager: networkManager)
+            SpaceView()
         }
     }
 }
 
 struct IntroView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView(networkManager: NetworkManagerViewModel())
+        IntroView()
+            .environmentObject(NetworkManagerViewModel())
     }
 }

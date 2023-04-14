@@ -1,22 +1,26 @@
 import SwiftUI
 
 struct FormGeneratorView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @StateObject private var dataController: CoreDataController = CoreDataController()
     @StateObject var user: UserViewModel = UserViewModel()
-    @StateObject var networkManager: NetworkManagerViewModel = NetworkManagerViewModel()
     @State private var isConnected:Bool = false
     @State private var spaceViewIsPresented: Bool = false
     
     fileprivate var homeView: some View {
-        HomeView(user: user, networkManager: networkManager)
+        HomeView(user: user)
     }
     fileprivate var tabView: some View {
         TabView {
-            IntroView(networkManager: networkManager)
+            NavigationStack{
+                IntroView()
+            }
                 .tabItem {
                     Label("Home",systemImage: "house.fill")
                 }
-            LoginView(user: user, networkManager: networkManager)
+            NavigationStack{
+                LoginView(user: user)
+            }
                 .tabItem {
                     Label("Start", systemImage: "person.fill")
                 }
@@ -34,7 +38,7 @@ struct FormGeneratorView: View {
                         .environment(\.managedObjectContext, dataController.container.viewContext)
                 }
             } else {
-                SpaceView(networkManager: networkManager)
+                SpaceView()
             }
         }
     }
@@ -43,6 +47,7 @@ struct FormGeneratorView: View {
 struct FormGeneratorView_Previews: PreviewProvider {
     static var previews: some View {
         FormGeneratorView()
+            .environmentObject(NetworkManagerViewModel())
     }
 }
     

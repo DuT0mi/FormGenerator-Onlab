@@ -444,6 +444,30 @@
 			path = Questions;
 			sourceTree = "<group>";
 		};
+		1A5944F629E9950D00F7BCF4 /*  UI */ = {
+			isa = PBXGroup;
+			children = (
+				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
+			);
+			path = " UI";
+			sourceTree = "<group>";
+		};
+		1A5944F729E9952700F7BCF4 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1A5944F829E9953300F7BCF4 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				1AC519C029E2EB6300665361 /* FormData.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		1A77351829BFC0FC00A69DD8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,11 +595,11 @@
 		1AE94CF629C1E00300589D55 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A5944F829E9953300F7BCF4 /* Form */,
+				1A5944F729E9952700F7BCF4 /* Authentication */,
+				1A5944F629E9950D00F7BCF4 /*  UI */,
 				1A514A8129E43BF4002EF2BA /* Questions */,
 				1A4CEDBF29DB68C40086DA80 /* AccountHandling */,
-				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
-				1AE4016C29C8EA96004FAA89 /* AuthenticationDataResult.swift */,
-				1AC519C029E2EB6300665361 /* FormData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

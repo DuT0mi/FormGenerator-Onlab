@@ -3,6 +3,8 @@ import FirebaseCore
 
 @main
 struct FormGeneratorApp: App {
+    @StateObject var networkManager: NetworkManagerViewModel = NetworkManagerViewModel()
+    
     init(){
         FirebaseApp.configure()
     }
@@ -10,6 +12,7 @@ struct FormGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
             FormGeneratorView(user:UserViewModel())
+                .environmentObject(networkManager)
         }
     }
 }
