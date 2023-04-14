@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AddQuestionView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
@@ -31,6 +32,7 @@ struct AddQuestionView: View {
     }
     
     var body: some View {
+        if networkManager.isNetworkReachable{
             VStack(spacing: 50){
                 questionComponent
                 buttonComponent
@@ -40,11 +42,15 @@ struct AddQuestionView: View {
                 Spacer()
             }
             .padding()
+        } else {
+            SpaceView(networkManager: networkManager)
+        }
     }
 }
 
 struct AddQuestionView_Previews: PreviewProvider {
     static var previews: some View {
         AddQuestionView()
+            .environmentObject(NetworkManagerViewModel())
     }
 }

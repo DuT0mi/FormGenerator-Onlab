@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EditQuestionView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
@@ -31,6 +32,7 @@ struct EditQuestionView: View {
         }
     }
     var body: some View {
+        if networkManager.isNetworkReachable{
             NavigationView{
                 VStack(spacing: 50){
                     questionComponent
@@ -43,5 +45,8 @@ struct EditQuestionView: View {
                 }
             }
             .padding()
+        } else {
+            SpaceView(networkManager: networkManager)
+        }
     }
 }

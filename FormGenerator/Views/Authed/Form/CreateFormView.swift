@@ -2,6 +2,7 @@ import SwiftUI
 import CoreData
 
 struct CreateFormView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
@@ -41,41 +42,48 @@ struct CreateFormView: View {
     }
     
     var body: some View {
-            VStack(spacing: 40) {
-                List{
-                    ForEach(questionCoreData){question in
-                        NavigationLink(destination: EditQuestionView(question: question)) {
-                            HStack{
-                                VStack(alignment: .leading, spacing: 5.0){
-                                    Text(question.question!).bold()
-                                    Text(question.type!)
-                                        .foregroundColor(.red)
+        if networkManager.isNetworkReachable{
+                VStack(spacing: 40) {
+                    List{
+                        ForEach(questionCoreData){question in
+                            NavigationLink(destination: EditQuestionView(question: question)) {
+                                HStack{
+                                    VStack(alignment: .leading, spacing: 5.0){
+                                        Text(question.question!).bold()
+                                        Text(question.type!)
+                                            .foregroundColor(.red)
+                                    }
                                 }
                             }
                         }
+                        .onDelete(perform: deleteQuestion)
                     }
-                    .onDelete(perform: deleteQuestion)
+                    .listStyle(.plain)
+                    submitButton
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
+                        .padding()
                 }
-                .listStyle(.plain)
-                submitButton
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
-                    .padding()
-            }
-            .navigationTitle("Create Form")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    formCreatorControllButton
+                .navigationTitle("Create Form")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        formCreatorControllButton
+                    }
                 }
-            }
-            .sheet(isPresented: $showAddQuestionView) {
-                AddQuestionView()
-            }
+                .sheet(isPresented: $showAddQuestionView) {
+                    AddQuestionView()
+                }
+        } else {
+            SpaceView(networkManager: networkManager)
+        }
     }
 }
 
 struct CreateFormView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateFormView()
+        NavigationStack{
+            CreateFormView()
+                .environmentObject(NetworkManagerViewModel())
+        }
     }
 }

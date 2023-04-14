@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct FormViewDetail: View {
-    @ObservedObject var networkManager: NetworkManagerViewModel
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     var form: FormData
     
     var body: some View {
@@ -53,12 +53,13 @@ struct FormViewDetail: View {
 
 struct FormViewDetailt_Previews: PreviewProvider {
     static var previews: some View {
-        FormViewDetail( networkManager: NetworkManagerViewModel(), form:
+        FormViewDetail(form:
                         FormData(id: UUID(),
                                  title: "title",
                                  type: "type",
                                  companyID: "companyID",
                                  description: "description",
                                  answers: "answers"))
+        .environmentObject(NetworkManagerViewModel())
     }
 }

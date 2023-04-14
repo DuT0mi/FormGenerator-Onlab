@@ -2,8 +2,8 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @ObservedObject var user: UserViewModel
-    @ObservedObject var networkManager: NetworkManagerViewModel
     @State private(set) var type: Pages = .login
     @State private var signUpViewIsPresented: Bool = false
     
@@ -20,7 +20,7 @@ struct LoginView: View {
                         .bold()
                 }
                 .sheet(isPresented: $signUpViewIsPresented, content: {
-                    SignupView(user: user, networkManager: networkManager, isPresented: $signUpViewIsPresented)
+                    SignupView(user: user, isPresented: $signUpViewIsPresented)
                 })
                 .buttonStyle(BorderlessButtonStyle())
                 
@@ -70,6 +70,7 @@ struct LoginView: View {
 
 struct LoginView_Preview: PreviewProvider {
     static var previews: some View {
-        LoginView(user: UserViewModel(), networkManager: NetworkManagerViewModel())
+        LoginView(user: UserViewModel())
+            .environmentObject(NetworkManagerViewModel())
     }
 }

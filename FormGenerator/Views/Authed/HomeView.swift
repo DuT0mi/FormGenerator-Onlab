@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var networkManager: NetworkManagerViewModel
     @ObservedObject var user: UserViewModel
-    @ObservedObject var networkManager: NetworkManagerViewModel
     @State private var selection: Tab = .all
     @State private var shouldShowSuccessView: Bool = true
     
@@ -29,18 +29,19 @@ struct HomeView: View {
     }
     
     var body: some View {
+        if networkManager.isNetworkReachable{
             TabView(selection: $selection){
-                FormsListView(networkManager: networkManager)
+                FormsListView()
                     .tabItem {
                         Label("All", systemImage: "tray")
                     }
                     .tag(Tab.all)
-                RecentsFormsView(networkManager: networkManager)
+                RecentsFormsView()
                     .tabItem {
                         Label("Recents", systemImage: "clock")
                     }
                     .tag(Tab.recent)
-                SettingsView(user: user, networkManager: networkManager)
+                SettingsView(user: user)
                     .tabItem {
                         Label("Profile",systemImage:"person.crop.circle.fill")
                     }
@@ -51,10 +52,14 @@ struct HomeView: View {
                     getPopUpContent(content: popUpContent, extratime: PopUpMessageTimer.onScreenTime)
                 }
             }
+        } else {
+            SpaceView(networkManager: networkManager)
         }
     }
+}
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: UserViewModel(), networkManager: NetworkManagerViewModel())
+        HomeView(user: UserViewModel())
+            .environmentObject(NetworkManagerViewModel())
     }
 }
