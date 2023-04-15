@@ -6,7 +6,7 @@ struct CreateFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var questionCoreData: FetchedResults<QuestionCoreData>
     @State private var showAddQuestionView: Bool = false
     @State private var showEditFormView: Bool = false
     @State private var showFormPreview: Bool = false
@@ -80,6 +80,9 @@ struct CreateFormView: View {
                                             .foregroundColor(.red)
                                     }
                                     .gesture(editMode == .active ? tap : nil)
+                                    Spacer()
+                                    Text(timeSinceCreated(date: question.date!))
+                                        .italic()
                                 }
                             }
                         }

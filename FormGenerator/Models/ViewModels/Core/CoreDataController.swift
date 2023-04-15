@@ -18,6 +18,7 @@ class CoreDataController: ObservableObject {
     func addQuestion(context: NSManagedObjectContext, question paramQ: String, type: String){
         context.performAndWait {
             let question = QuestionCoreData(context: context)
+            question.date = Date()
             question.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
             question.id = UUID()
             question.question = paramQ
@@ -29,6 +30,7 @@ class CoreDataController: ObservableObject {
     
     func editQuestion(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String, type: String){
         context.performAndWait {
+            question.date = Date()
             question.question = paramQ
             question.type = type
             save(context: context)
