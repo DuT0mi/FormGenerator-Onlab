@@ -8,7 +8,13 @@ struct CreateFormView: View {
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var questionCoreData: FetchedResults<QuestionCoreData>
     @State private var showAddQuestionView: Bool = false
+    @State private var showEditFormView: Bool = false
+    @State private var showFormPreview: Bool = false
+    @State private var editMode: EditMode = .inactive
     
+    fileprivate var tap: some Gesture {
+        TapGesture().onEnded {  }
+    }
     fileprivate var submitButton: some View {
         Button("Submit Form"){
             dismiss.callAsFunction()
@@ -26,12 +32,32 @@ struct CreateFormView: View {
             .foregroundColor(.accentColor)
 
     }
+    fileprivate var formMenu: some View {
+        Menu {
+            AnimatedActionButton(title: "Edit", systemImage: "pencil"){
+                showEditFormView = true
+            }
+            AnimatedActionButton(title: "Preview", systemImage: "eye"){
+                showFormPreview = true
+            }
+        }label: {
+            Label("Form", systemImage: "doc.badge.gearshape")
+        }
+    }
+    fileprivate var questionMenu: some View {
+        Menu{
+            AnimatedActionButton(title: "Add", systemImage: "plus"){
+                showAddQuestionView = true
+            }
+        }label: {
+            Label("Question", systemImage: "questionmark.folder")
+        }
+    }
     
     @ViewBuilder
     fileprivate var contextMenu: some View {
-        AnimatedActionButton(title: "Add question", systemImage: "doc.badge.plus"){
-            showAddQuestionView = true
-        }
+        questionMenu
+        formMenu
     }
    
     private func deleteQuestion(index: IndexSet){
@@ -53,6 +79,7 @@ struct CreateFormView: View {
                                         Text(question.type!)
                                             .foregroundColor(.red)
                                     }
+                                    .gesture(editMode == .active ? tap : nil)
                                 }
                             }
                         }
@@ -66,6 +93,9 @@ struct CreateFormView: View {
                 }
                 .navigationTitle("Create Form")
                 .toolbar {
+                    ToolbarItem(placement:.navigationBarTrailing){
+                        EditButton()
+                    }
                     ToolbarItem(placement: .navigationBarTrailing){
                         formCreatorControllButton
                     }
@@ -73,6 +103,13 @@ struct CreateFormView: View {
                 .sheet(isPresented: $showAddQuestionView) {
                     AddQuestionView()
                 }
+                .sheet(isPresented: $showEditFormView) {
+                    EditFormView()
+                }
+                .sheet(isPresented: $showFormPreview) {
+                    FormPreview()
+                }
+                .environment(\.editMode, $editMode)
         } else {
             SpaceView()
         }

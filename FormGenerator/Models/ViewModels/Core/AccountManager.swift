@@ -3,7 +3,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 
-final class AccountManager{
+actor AccountManager{
     
     // MARK: Singleton pattern
     static let shared = AccountManager()

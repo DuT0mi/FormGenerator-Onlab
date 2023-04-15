@@ -2,7 +2,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class FormManager{
+actor FormManager{
     // MARK: Singleton
     static let shared: FormManager = FormManager()
     private init() { }

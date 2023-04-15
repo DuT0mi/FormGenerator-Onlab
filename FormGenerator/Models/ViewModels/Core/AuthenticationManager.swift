@@ -1,7 +1,7 @@
 import Foundation
 import FirebaseAuth
 
-final class AuthenticationManager{
+actor AuthenticationManager{
     
     func signOut() throws {
         try Auth.auth().signOut()
