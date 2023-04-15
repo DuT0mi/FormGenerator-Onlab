@@ -13,7 +13,7 @@ final class CreateFormViewModel: ObservableObject {
     private let authManager: AuthenticationManager = AuthenticationManager()
     
     private func loadCurrentAccount() async throws {
-        let authDataResult = try authManager.getAuthenticatedUser()
+        let authDataResult = try await authManager.getAuthenticatedUser()
         let (account,_) = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
         self.account = account
     }

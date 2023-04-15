@@ -25,12 +25,13 @@ final class UserViewModel: ObservableObject {
                 Task{
                     let (_,exist) = try await AccountManager.shared.getUserByJustID(userID: user.uid)
                     if exist{
-                        self.isAutoLoginLoading = false
+                        self.isAutoLoginLoading.toggle()
                         self.isSignedIn = true
+                    } else {
+                        self.isAutoLoginLoading.toggle()
                     }
-                    self.isAutoLoginLoading = false
                 }
-            } else {}
+            } else {self.isAutoLoginLoading.toggle()}
         }
     }
     private func showAlertMessage(_ message: String){
@@ -84,14 +85,16 @@ final class UserViewModel: ObservableObject {
     }
     func logout() throws{
         self.loading.toggle()
-        do {
-            try authenticationManager.signOut()
+        Task{
+            do {
+                try await authenticationManager.signOut()
                 isSignedIn = false
                 email = ""
                 password = ""
                 self.loading.toggle()
-        } catch {
-            print("Error signing out, error: \(error)")
+            } catch {
+                print("Error signing out, error: \(error)")
+            }
         }
     }
 }
