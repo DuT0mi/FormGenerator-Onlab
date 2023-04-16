@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A24119F29EAD3E800AFF138 /* EditFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24119E29EAD3E800AFF138 /* EditFormView.swift */; };
+		1A24119F29EAD3E800AFF138 /* AddFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24119E29EAD3E800AFF138 /* AddFormView.swift */; };
 		1A2411A229EAD83A00AFF138 /* FormPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2411A129EAD83A00AFF138 /* FormPreview.swift */; };
 		1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A282EE329AE79BF00DAFD9B /* FormGeneratorApp.swift */; };
 		1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A282EE529AE79BF00DAFD9B /* FormGeneratorView.swift */; };
@@ -162,7 +162,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A24119E29EAD3E800AFF138 /* EditFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFormView.swift; sourceTree = "<group>"; };
+		1A24119E29EAD3E800AFF138 /* AddFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormView.swift; sourceTree = "<group>"; };
 		1A2411A129EAD83A00AFF138 /* FormPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPreview.swift; sourceTree = "<group>"; };
 		1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID_wDate.xcdatamodel; sourceTree = "<group>"; };
 		1A282EE029AE79BF00DAFD9B /* FormGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +192,7 @@
 		1A7E650C29DC6D470023067A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
 		1A7E651129DCA74F0023067A /* FormViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewDetail.swift; sourceTree = "<group>"; };
+		1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form.xcdatamodel; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1AA43E6E29D33CD400235CAD /* FormGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				1A514A8929E4479B002EF2BA /* EditQuestionView.swift */,
-				1A24119E29EAD3E800AFF138 /* EditFormView.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -344,6 +344,7 @@
 			children = (
 				1AC519BB29E2DDCA00665361 /* CreateFormView.swift */,
 				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
+				1A24119E29EAD3E800AFF138 /* AddFormView.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -899,7 +900,7 @@
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
 				1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */,
-				1A24119F29EAD3E800AFF138 /* EditFormView.swift in Sources */,
+				1A24119F29EAD3E800AFF138 /* AddFormView.swift in Sources */,
 				1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,
 				1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */,
@@ -1723,11 +1724,12 @@
 		1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */,
 				1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */,
 				1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */,
 				1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */,
 			);
-			currentVersion = 1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */;
+			currentVersion = 1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */;
 			path = QuestionCD.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

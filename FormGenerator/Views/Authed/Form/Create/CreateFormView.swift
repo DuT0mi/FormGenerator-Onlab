@@ -6,9 +6,10 @@ struct CreateFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.qDate, order: .reverse)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var formMetaData: FetchedResults<FormCoreData>
     @State private var showAddQuestionView: Bool = false
-    @State private var showEditFormView: Bool = false
+    @State private var showAddFormView: Bool = false
     @State private var showFormPreview: Bool = false
     @State private var editMode: EditMode = .inactive
     
@@ -18,8 +19,8 @@ struct CreateFormView: View {
     fileprivate var submitButton: some View {
         Button("Submit Form"){
             dismiss.callAsFunction()
-            Task{
-                try await viewModel.createAndUploadForm(allData: questionCoreData, context: managedObjectContext)
+            Task{ 
+                try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
             }
             CoreDataController().resetCoreData(context: managedObjectContext)
         }
@@ -34,8 +35,8 @@ struct CreateFormView: View {
     }
     fileprivate var formMenu: some View {
         Menu {
-            AnimatedActionButton(title: "Edit", systemImage: "pencil"){
-                showEditFormView = true
+            AnimatedActionButton(title: "Add", systemImage: "plus"){
+                showAddFormView = true
             }
             AnimatedActionButton(title: "Preview", systemImage: "eye"){
                 showFormPreview = true
@@ -72,18 +73,18 @@ struct CreateFormView: View {
                 VStack(spacing: 40) {
                     List{
                         ForEach(questionCoreData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)})){question in
-                            NavigationLink(destination: EditQuestionView(question: question)) {
-                                HStack{
-                                    VStack(alignment: .leading, spacing: 5.0){
-                                        Text(question.question!).bold()
-                                        Text(question.type!)
-                                            .foregroundColor(.red)
+                                NavigationLink(destination: EditQuestionView(question: question)) {
+                                    HStack{
+                                        VStack(alignment: .leading, spacing: 5.0){
+                                            Text(question.question ?? "").bold()
+                                            Text(question.type ?? "")
+                                                .foregroundColor(.red)
+                                        }
+                                        .gesture(editMode == .active ? tap : nil)
+                                        Spacer()
+                                        Text(timeSinceCreated(date: question.qDate ?? Date()))
+                                            .italic()
                                     }
-                                    .gesture(editMode == .active ? tap : nil)
-                                    Spacer()
-                                    Text(timeSinceCreated(date: question.date!))
-                                        .italic()
-                                }
                             }
                         }
                         .onDelete(perform: deleteQuestion)
@@ -106,8 +107,8 @@ struct CreateFormView: View {
                 .sheet(isPresented: $showAddQuestionView) {
                     AddQuestionView()
                 }
-                .sheet(isPresented: $showEditFormView) {
-                    EditFormView()
+                .sheet(isPresented: $showAddFormView) {
+                    AddFormView()
                 }
                 .sheet(isPresented: $showFormPreview) {
                     FormPreview()

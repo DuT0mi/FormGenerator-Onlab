@@ -24,7 +24,7 @@ struct AddQuestionView: View {
         }
     }
     fileprivate var buttonComponent: some View {
-        Button("Submit question"){
+        Button("Add"){
             CoreDataController().addQuestion(context: managedObjectContext, question: questionTitle, type: questionType.rawValue)
             
             dismiss.callAsFunction()
