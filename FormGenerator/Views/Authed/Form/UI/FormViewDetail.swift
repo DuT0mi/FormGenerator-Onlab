@@ -3,51 +3,56 @@ import SwiftUI
 struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     var form: FormData
+    var backgroundImage: String = "form_demo"
+    var circleImage: String = "checkmark"
     
     var body: some View {
             ScrollView{
-                Image("form_demo")
-                    .resizable()
-                    .frame(height: 300)
-                
-                CompanyCircleView(image: "checkmark")
-                    .offset(y: -100)
-                    .padding(.bottom, -100)
-                
-                LazyVStack(alignment: .leading){
-                    HStack{
-                        Text(form.title)
-                            .font(.title)
-                        Text("Favourite btn here")
-                    }
+                LazyVStack{
+                    Image(backgroundImage)
+                        .resizable()
+                        .frame(height: 300)
                     
-                    HStack{
-                        Text(form.type)
+                    CompanyCircleView(image: circleImage)
+                        .offset(y: -100)
+                        .padding(.bottom, -100)
+                    
+                    LazyVStack(alignment: .leading){
+                        HStack{
+                            Text(form.title)
+                                .font(.title)
+                            Text("Favourite btn here")
+                        }
+                        
+                        HStack{
+                            Text(form.type)
+                            Spacer()
+                            Text(form.companyID)
+                        }
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        
+                        Divider()
+                        
+                        Text("Description")
+                            .font(.title2)
+                        Text(form.description)
+                            .lineLimit(nil)
+                        
                         Spacer()
-                        Text(form.companyID)
+                        
                     }
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .padding()
                     
-                    Divider()
-                    
-                    Text("Form's description")
-                        .font(.title2)
-                    Text(form.description)
-                    
-                    Spacer()
-                    
+                    Button("Start form"){
+                        // TODO: Add content here
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
                 }
-                .padding()
-                
-                Button("Start form"){
-                    // TODO:
-                }
-                .padding()
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
             }
-            .ignoresSafeArea()
+            .edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -58,6 +63,7 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                  title: "title",
                                  type: "type",
                                  companyID: "companyID",
+                                 companyName: "",
                                  description: "description",
                                  answers: "answers"))
         .environmentObject(NetworkManagerViewModel())

@@ -1,10 +1,3 @@
-//
-//  CompanyCircleView.swift
-//  FormGenerator
-//
-//  Created by Dudas Tamas Alex on 2023. 04. 06..
-//
-
 import SwiftUI
 
 struct CompanyCircleView: View {

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct FormsListView: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
@@ -32,11 +33,22 @@ struct FormsListView: View {
                                 }
                             }
                         }
+                    }
+                    .refreshableCompat(showsIndicators: false,
+                                       onRefresh: { done in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            viewModel.downloadAllForm()
+                          done()
+                        }
+                    }, progress: { state in
+                        RefreshActivityIndicator(isAnimating: state == .loading) {
+                            $0.hidesWhenStopped = true
+                        }
+                    })
                 }
-        }
-          .onAppear{
-                viewModel.downloadAllForm()
-            }
+                .onAppear{
+                    viewModel.downloadAllForm()
+                }
         } else {
             SpaceView()
         }

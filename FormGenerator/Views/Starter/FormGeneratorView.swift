@@ -38,7 +38,8 @@ struct FormGeneratorView: View {
                     tabView
                 } else {
                     homeView
-                        .environment(\.managedObjectContext, dataController.container.viewContext)
+                        .environment(\.managedObjectContext, dataController.containerQ.viewContext)
+                        .environment(\.managedObjectContext, dataController.containerF.viewContext)
                 }
             } else {
                 SpaceView()

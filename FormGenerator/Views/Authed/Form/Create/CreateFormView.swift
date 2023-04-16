@@ -6,22 +6,38 @@ struct CreateFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment (\.managedObjectContext) private var managedObjectContext
     @StateObject private var viewModel: CreateFormViewModel = CreateFormViewModel()
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.qDate, order: .reverse)]) var questionCoreData: FetchedResults<QuestionCoreData>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id, order: .reverse)]) var formMetaData: FetchedResults<FormCoreData>
     @State private var showAddQuestionView: Bool = false
-    @State private var showEditFormView: Bool = false
+    @State private var showAddFormView: Bool = false
     @State private var showFormPreview: Bool = false
     @State private var editMode: EditMode = .inactive
+    @State private var showPreviewMenuButton: Bool = false
+    @State private var isQuestionsCountZero: Bool = false
     
     fileprivate var tap: some Gesture {
         TapGesture().onEnded {  }
     }
     fileprivate var submitButton: some View {
         Button("Submit Form"){
-            dismiss.callAsFunction()
-            Task{
-                try await viewModel.createAndUploadForm(allData: questionCoreData, context: managedObjectContext)
+            if isThereAtLeastOneQuestion(),
+               AddFormViewModel.shared.isFormHasBeenAdded
+            {
+                dismiss.callAsFunction()
+                Task{
+                    try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+                }
+                CoreDataController().resetCoreData(context: managedObjectContext)
+            } else {
+                isQuestionsCountZero = true
             }
-            CoreDataController().resetCoreData(context: managedObjectContext)
+        }
+        .alert(isPresented: $isQuestionsCountZero){
+            Alert(
+                title: Text("Invalid parameter(s)!"),
+                message: Text("You should have at least one question/Form!"),
+                dismissButton: .destructive(Text("Got it!"))
+            )
         }
     }
     fileprivate var formCreatorControllButton: some View {
@@ -30,15 +46,16 @@ struct CreateFormView: View {
                 contextMenu
             }
             .foregroundColor(.accentColor)
-
     }
     fileprivate var formMenu: some View {
         Menu {
-            AnimatedActionButton(title: "Edit", systemImage: "pencil"){
-                showEditFormView = true
+            AnimatedActionButton(title: "Add", systemImage: "plus"){
+                showAddFormView = true
             }
-            AnimatedActionButton(title: "Preview", systemImage: "eye"){
-                showFormPreview = true
+            if AddFormViewModel.shared.isFormHasBeenAdded { // If the user has any form the show preview
+                AnimatedActionButton(title: "Preview", systemImage: "eye"){
+                    showFormPreview = true
+                }
             }
         }label: {
             Label("Form", systemImage: "doc.badge.gearshape")
@@ -66,21 +83,27 @@ struct CreateFormView: View {
             CoreDataController().save(context: managedObjectContext)
         }
     }
+    private func isThereAtLeastOneQuestion() -> Bool{
+        questionCoreData.count > 0
+    }
     
     var body: some View {
         if networkManager.isNetworkReachable{
                 VStack(spacing: 40) {
                     List{
                         ForEach(questionCoreData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)})){question in
-                            NavigationLink(destination: EditQuestionView(question: question)) {
-                                HStack{
-                                    VStack(alignment: .leading, spacing: 5.0){
-                                        Text(question.question!).bold()
-                                        Text(question.type!)
-                                            .foregroundColor(.red)
+                                NavigationLink(destination: EditQuestionView(question: question)) {
+                                    HStack{
+                                        VStack(alignment: .leading, spacing: 5.0){
+                                            Text(question.question ?? "").bold()
+                                            Text(question.type ?? "")
+                                                .foregroundColor(.red)
+                                        }
+                                        .gesture(editMode == .active ? tap : nil)
+                                        Spacer()
+                                        Text(timeSinceCreated(date: question.qDate ?? Date()))
+                                            .italic()
                                     }
-                                    .gesture(editMode == .active ? tap : nil)
-                                }
                             }
                         }
                         .onDelete(perform: deleteQuestion)
@@ -103,11 +126,13 @@ struct CreateFormView: View {
                 .sheet(isPresented: $showAddQuestionView) {
                     AddQuestionView()
                 }
-                .sheet(isPresented: $showEditFormView) {
-                    EditFormView()
+                .sheet(isPresented: $showAddFormView) {
+                    AddFormView()
                 }
                 .sheet(isPresented: $showFormPreview) {
-                    FormPreview()
+                    if let form = formMetaData.first(where: {$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}){
+                        FormPreview(form: form)
+                    }
                 }
                 .environment(\.editMode, $editMode)
         } else {

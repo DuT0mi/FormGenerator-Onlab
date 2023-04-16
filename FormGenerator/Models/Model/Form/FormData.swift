@@ -1,10 +1,12 @@
 import Foundation
+import SwiftUI
 
 struct FormData: Identifiable, Codable, Hashable{
     let id: UUID
     let title: String
     let type: String
     let companyID: String
+    let companyName: String
     let description: String
     var answers: String
     // TODO: filler's ID, type,background,..
@@ -16,5 +18,6 @@ struct FormData: Identifiable, Codable, Hashable{
         case companyID
         case description
         case answers
+        case companyName
     }
 }

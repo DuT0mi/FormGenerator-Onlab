@@ -6,12 +6,17 @@ struct EditQuestionView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
     @State private var questionType: SelectedType = .none
+    @State private var isQuestionEmpty: Bool = false
     
     var question: FetchedResults<QuestionCoreData>.Element
 
     private func typeSelected(type: SelectedType){
         self.questionType = type
     }
+    private func checkIfUserHasAddedQuestion() -> Bool {
+        questionTitle.isEmpty
+    }
+    
     fileprivate var questionComponent: some View {
         HStack{
             TextField("\(question.question!)", text: $questionTitle)
@@ -31,15 +36,32 @@ struct EditQuestionView: View {
             }
         }
     }
+    fileprivate var buttonComponent: some View {
+        Button("Edit"){
+            if checkIfUserHasAddedQuestion(){
+                isQuestionEmpty = true
+            } else {
+                CoreDataController().editQuestion(context: managedObjectContext,question: question, question: questionTitle, type: questionType.rawValue)
+                dismiss.callAsFunction()
+            }
+        }
+        .alert(isPresented: $isQuestionEmpty){
+            Alert(
+                title: Text("Invalid parameter"),
+                message: Text("You should write something to the question dialog."),
+                dismissButton: .destructive(Text("Got it"))
+                
+            )
+        }
+    }
+    
     var body: some View {
         if networkManager.isNetworkReachable{
             NavigationView{
                 VStack(spacing: 50){
                     questionComponent
-                    Button("Submit question"){
-                        CoreDataController().editQuestion(context: managedObjectContext,question: question, question: questionTitle, type: questionType.rawValue)
-                        dismiss.callAsFunction()
-                    }
+                    
+                    buttonComponent
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
                     Spacer()
