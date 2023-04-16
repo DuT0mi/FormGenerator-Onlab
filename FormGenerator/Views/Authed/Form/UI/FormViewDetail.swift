@@ -37,6 +37,7 @@ struct FormViewDetail: View {
                         Text("Description")
                             .font(.title2)
                         Text(form.description)
+                            .lineLimit(nil)
                         
                         Spacer()
                         

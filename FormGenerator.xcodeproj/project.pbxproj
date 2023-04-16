@@ -61,6 +61,7 @@
 		1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650C29DC6D470023067A /* SettingsViewModel.swift */; };
 		1A7E651029DCA0D30023067A /* FormItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650F29DCA0D30023067A /* FormItemView.swift */; };
 		1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E651129DCA74F0023067A /* FormViewDetail.swift */; };
+		1A849BFB29EC44A1006F94C6 /* AddFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */; };
 		1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
 		1AA43E7129D33CD400235CAD /* EmailValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43E7029D33CD400235CAD /* EmailValidationTests.swift */; };
@@ -193,6 +194,7 @@
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
 		1A7E651129DCA74F0023067A /* FormViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewDetail.swift; sourceTree = "<group>"; };
 		1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form.xcdatamodel; sourceTree = "<group>"; };
+		1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormViewModel.swift; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1AA43E6E29D33CD400235CAD /* FormGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -557,6 +559,7 @@
 				1AC519C329E2F12800665361 /* CreateFormViewModel.swift */,
 				1AC519C529E2F7DD00665361 /* FormManager.swift */,
 				1A514A8529E43C94002EF2BA /* CoreDataController.swift */,
+				1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
 				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
+				1A849BFB29EC44A1006F94C6 /* AddFormViewModel.swift in Sources */,
 				1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
 				1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */,

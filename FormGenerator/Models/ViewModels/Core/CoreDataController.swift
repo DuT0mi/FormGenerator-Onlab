@@ -17,9 +17,20 @@ class CoreDataController: ObservableObject {
             } catch { }
         }
     }
+    private func resetFormData(context: NSManagedObjectContext){
+        context.perform{
+            let fetchRequestF: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FormCoreData")
+            let batchDeleteRequestF = NSBatchDeleteRequest(fetchRequest: fetchRequestF)
+            do {
+                try context.execute(batchDeleteRequestF)
+                
+                try context.save()
+            }catch{ }
+        }
+    }
     func addFormMetaData(context: NSManagedObjectContext, formData: FormData){
         context.performAndWait {
-            resetFormData(context: context)
+            resetFormData(context: context) // For getting the latest always
            let form = FormCoreData(context: context)
             form.type = formData.type
             form.answers = formData.answers
@@ -50,17 +61,6 @@ class CoreDataController: ObservableObject {
             question.question = paramQ
             question.type = type
             save(context: context)
-        }
-    }
-    private func resetFormData(context: NSManagedObjectContext){
-        context.perform{
-            let fetchRequestF: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FormCoreData")
-            let batchDeleteRequestF = NSBatchDeleteRequest(fetchRequest: fetchRequestF)
-            do {
-                try context.execute(batchDeleteRequestF)
-                
-                try context.save()
-            }catch{ }
         }
     }
     func resetCoreData(context: NSManagedObjectContext) {

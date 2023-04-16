@@ -6,7 +6,11 @@ struct AddQuestionView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
     @State private var questionType: SelectedType = .none
+    @State private var isQuestionEmpty: Bool = false
     
+    private func checkIfUserHasAddedQuestion() -> Bool {
+        questionTitle.isEmpty
+    }
     private func typeSelected(type: SelectedType){
         self.questionType = type
     }
@@ -25,9 +29,21 @@ struct AddQuestionView: View {
     }
     fileprivate var buttonComponent: some View {
         Button("Add"){
-            CoreDataController().addQuestion(context: managedObjectContext, question: questionTitle, type: questionType.rawValue)
-            
-            dismiss.callAsFunction()
+            if checkIfUserHasAddedQuestion(){
+                isQuestionEmpty = true
+            } else{
+                CoreDataController().addQuestion(context: managedObjectContext, question: questionTitle, type: questionType.rawValue)
+                
+                dismiss.callAsFunction()
+            }
+        }
+        .alert(isPresented: $isQuestionEmpty){
+            Alert(
+                title: Text("Invalid parameter"),
+                message: Text("You should write something to the question dialog."),
+                dismissButton: .destructive(Text("Got it"))
+                
+            )
         }
     }
     

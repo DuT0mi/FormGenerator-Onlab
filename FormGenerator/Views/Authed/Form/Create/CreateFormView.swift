@@ -12,17 +12,32 @@ struct CreateFormView: View {
     @State private var showAddFormView: Bool = false
     @State private var showFormPreview: Bool = false
     @State private var editMode: EditMode = .inactive
+    @State private var showPreviewMenuButton: Bool = false
+    @State private var isQuestionsCountZero: Bool = false
     
     fileprivate var tap: some Gesture {
         TapGesture().onEnded {  }
     }
     fileprivate var submitButton: some View {
         Button("Submit Form"){
-            dismiss.callAsFunction()
-            Task{ 
-                try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+            if isThereAtLeastOneQuestion(),
+               AddFormViewModel.shared.isFormHasBeenAdded
+            {
+                dismiss.callAsFunction()
+                Task{
+                    try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+                }
+                CoreDataController().resetCoreData(context: managedObjectContext)
+            } else {
+                isQuestionsCountZero = true
             }
-            CoreDataController().resetCoreData(context: managedObjectContext)
+        }
+        .alert(isPresented: $isQuestionsCountZero){
+            Alert(
+                title: Text("Invalid parameter(s)!"),
+                message: Text("You should have at least one question/Form!"),
+                dismissButton: .destructive(Text("Got it!"))
+            )
         }
     }
     fileprivate var formCreatorControllButton: some View {
@@ -31,15 +46,16 @@ struct CreateFormView: View {
                 contextMenu
             }
             .foregroundColor(.accentColor)
-
     }
     fileprivate var formMenu: some View {
         Menu {
             AnimatedActionButton(title: "Add", systemImage: "plus"){
                 showAddFormView = true
             }
-            AnimatedActionButton(title: "Preview", systemImage: "eye"){
-                showFormPreview = true
+            if AddFormViewModel.shared.isFormHasBeenAdded { // If the user has any form the show preview
+                AnimatedActionButton(title: "Preview", systemImage: "eye"){
+                    showFormPreview = true
+                }
             }
         }label: {
             Label("Form", systemImage: "doc.badge.gearshape")
@@ -66,6 +82,9 @@ struct CreateFormView: View {
             index.map{questionCoreData[$0]}.forEach(managedObjectContext.delete)
             CoreDataController().save(context: managedObjectContext)
         }
+    }
+    private func isThereAtLeastOneQuestion() -> Bool{
+        questionCoreData.count > 0
     }
     
     var body: some View {
@@ -111,7 +130,9 @@ struct CreateFormView: View {
                     AddFormView()
                 }
                 .sheet(isPresented: $showFormPreview) {
-                    FormPreview()
+                    if let form = formMetaData.first(where: {$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}){
+                        FormPreview(form: form)
+                    }
                 }
                 .environment(\.editMode, $editMode)
         } else {
