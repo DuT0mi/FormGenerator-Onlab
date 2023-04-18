@@ -83,6 +83,12 @@ struct AuthenticationViewsConstants {
     struct SpacerParameters{
         static let frameIdealHeightFactor: CGFloat = 0.05
     }
+    
+    struct SSOParameters{
+        static let appleFrameHeight: CGFloat = 45
+        static let googleFrameHeight: CGFloat = 50
+        static let commonWidth: CGFloat = 200
+    }
 }
 
 // Constant for the View that is popping up when succed a login or signup

@@ -87,13 +87,41 @@ final class UserViewModel: ObservableObject {
         self.loading.toggle()
         Task{
             do {
-                try await authenticationManager.signOut()
+                try authenticationManager.signOut()
                 isSignedIn = false
                 email = ""
                 password = ""
                 self.loading.toggle()
             } catch {
                 print("Error signing out, error: \(error)")
+            }
+        }
+    }
+    func signInWithGoogle(){
+        self.loading.toggle()
+        Task{
+            do{
+                try await authenticationManager.signInGoogle()
+                self.loading.toggle()
+                self.isSignedIn = true
+            } catch {
+                self.alertMessage = error.localizedDescription
+                self.alert.toggle()
+                self.loading.toggle()
+            }
+        }
+    }
+    func signInWithApple(){
+        self.loading.toggle()
+        Task{
+            do{
+                try await authenticationManager.signInGoogle()
+                self.loading.toggle()
+                self.isSignedIn = true
+            } catch {
+                self.alertMessage = error.localizedDescription
+                self.alert.toggle()
+                self.loading.toggle()
             }
         }
     }
