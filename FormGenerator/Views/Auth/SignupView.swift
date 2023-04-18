@@ -30,24 +30,29 @@ struct SignupView: View {
                
         }
     }
+    var spacerComponent: some View {
+        Spacer()
+            .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+            .fixedSize()
+    }
     var signUpContent: some View {
         VStack{
             let templateView = TemplateAuthView(user: user, type: type)
                     templateView.getTitle()
                     templateView.getEmailTextInput()
                     templateView.getPasswordTextInput()
-            Spacer()
-                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                .fixedSize()
+            
+            spacerComponent
+            
             picker
-            Spacer()
-                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                .fixedSize()
+                .padding(.horizontal)
+            
+            spacerComponent
+            
             templateView.getUserHandlerButton()
             
-            Spacer()
-                .frame(idealHeight: AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                .fixedSize()
+            spacerComponent
+            
             logInAction
             .alert(isPresented: $user.alert, content: {
                 Alert(

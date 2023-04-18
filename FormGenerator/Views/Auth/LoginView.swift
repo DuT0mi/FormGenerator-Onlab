@@ -10,6 +10,7 @@ struct LoginView: View {
     @State private var signUpViewIsPresented: Bool = false
     
     typealias AVC = AuthenticationViewsConstants
+    typealias AVC_SSO = AuthenticationViewsConstants.SSOParameters
     
     var appleSignInButton: some View {
         Button(action: {
@@ -23,70 +24,69 @@ struct LoginView: View {
                 .allowsHitTesting(false)// disallow clicking on it, but the wrapper button does it
         })
         .disabled(true) // MARK: I don't have an account for that
-        .frame(width: 200, height: 45)
+        .frame(width: AVC_SSO.commonWidth, height: AVC_SSO.appleFrameHeight)
     }
-     var googleSignInButton: some View {
-         HStack{
-             GoogleSignInButton(scheme: .dark ,style:.wide , state:.normal ){
-                 Task {
-                     do{
-                         user.signInWithGoogle()
-                     }
-                 }
-             }
-             .frame(width: 200, height: 50)
-         }
-    }
-         var signUpAction: some View {
-            HStack{
-                Text("Don't have an account?")
-                Button(action: {
-                    signUpViewIsPresented = true
-                }) {
-                    Text("sign up".uppercased())
-                        .bold()
+    var googleSignInButton: some View {
+        HStack{
+            GoogleSignInButton(scheme: .dark ,style:.wide , state:.normal ){
+                Task {
+                    do{
+                        user.signInWithGoogle()
+                    }
                 }
-                .sheet(isPresented: $signUpViewIsPresented, content: {
-                    SignupView(user: user, isPresented: $signUpViewIsPresented)
-                })
-                .buttonStyle(BorderlessButtonStyle())
-                
             }
+            .frame(width: AVC_SSO.commonWidth, height: AVC_SSO.googleFrameHeight)
         }
-        fileprivate var loginContent: some View {
+}
+    var signUpAction: some View {
+        HStack{
+            Text("Don't have an account?")
+            Button(action: {
+                signUpViewIsPresented = true
+            }) {
+                Text("sign up".uppercased())
+                    .bold()
+            }
+            .sheet(isPresented: $signUpViewIsPresented, content: {
+                SignupView(user: user, isPresented: $signUpViewIsPresented)
+            })
+            .buttonStyle(BorderlessButtonStyle())
+            
+        }
+    }
+    var spacerComponent: some View {
+        Spacer()
+            .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+            .fixedSize()
+    }
+    fileprivate var loginContent: some View {
                 VStack{
                     let templateView = TemplateAuthView(user: user, type: type)
                             templateView.getTitle()
                             templateView.getEmailTextInput()
                             templateView.getPasswordTextInput()
 
-                    Spacer()
-                        .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                        .fixedSize()
+                    spacerComponent
                     
-                        templateView.getUserHandlerButton()
+                    templateView.getUserHandlerButton()
                     
-                    Spacer()
-                        .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                        .fixedSize()
+                    spacerComponent
                     
+                    Group{
                         googleSignInButton
-                            .clipped()
                         
                         appleSignInButton
-                            .clipped()
+                    }
+                    .clipped()
                     
-                    
-                    Spacer()
-                        .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
-                        .fixedSize()
+                    spacerComponent
                     
                     signUpAction
                         .alert(isPresented: $user.alert, content: {
                             Alert(
                                 title: Text("Message"),
                                 message: Text(user.alertMessage),
-                                dismissButton: .destructive(Text("OK"))
+                                dismissButton: .destructive(Text("Got it!"))
                             )
                         })
                 }
