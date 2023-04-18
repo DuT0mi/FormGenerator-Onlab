@@ -97,4 +97,18 @@ final class UserViewModel: ObservableObject {
             }
         }
     }
+    func signInWithGoogle(){
+        self.loading.toggle()
+        Task{
+            do{
+                try await authenticationManager.signInGoogle()
+                self.loading.toggle()
+                self.isSignedIn = true
+            } catch {
+                self.alertMessage = error.localizedDescription
+                self.alert.toggle()
+                self.loading.toggle()
+            }
+        }
+    }
 }

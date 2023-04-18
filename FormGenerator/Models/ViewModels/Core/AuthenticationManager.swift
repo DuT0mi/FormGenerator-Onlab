@@ -1,14 +1,25 @@
 import Foundation
 import FirebaseAuth
+import GoogleSignIn
+import GoogleSignInSwift
+
 
 actor AuthenticationManager{
-    
-    func signOut() throws {
-        try Auth.auth().signOut()
-    }
-    
     private func setIDToUserDefaults(ID: String){
         UserDefaults.standard.set(ID, forKey: UserConstants.currentUserID.rawValue)
+    }
+    
+    func signInGoogle() async throws {
+        let googleVM = GoogleSignViewModel()
+        let tokens = try await googleVM.signIn()
+        let authDataResult = try await signInWithGoogle(tokens: tokens)
+        // with sso they get Company account
+        let user = CompanyAccount(auth: authDataResult)
+        try await AccountManager.shared.createNewCompanyAccount(user: user)
+        setIDToUserDefaults(ID: authDataResult.uid)
+    }
+    func signOut() throws {
+        try Auth.auth().signOut()
     }
     
     @discardableResult
@@ -50,5 +61,18 @@ actor AuthenticationManager{
             throw URLError(.cannotFindHost)
         }
         return AuthenticationDataResult(user: user)
+    }
+}
+//MARK: - SSO
+extension AuthenticationManager{
+    
+    @discardableResult
+    private func signInWithGoogle(tokens: GoogleSigninResult) async throws -> AuthenticationDataResult {
+        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken , accessToken: tokens.accessToken)
+            return try await signIn(credential: credential)
+    }
+    private func signIn(credential: AuthCredential) async throws -> AuthenticationDataResult {
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+            return AuthenticationDataResult(user: authDataResult.user)
     }
 }
