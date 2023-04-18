@@ -97,6 +97,16 @@ final class AuthenticationManager{
         }
         return AuthenticationDataResult(user: user)
     }
+    func deleteUser() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badURL)
+        }
+        // Just from the authentication
+        try await user.delete()
+        // From the DB
+        try await AccountManager.shared.deleteAccountByID(userID: user.uid)
+    }
+
 }
 //MARK: - SSO
 extension AuthenticationManager{

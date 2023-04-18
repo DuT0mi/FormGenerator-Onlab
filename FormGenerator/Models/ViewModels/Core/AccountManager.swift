@@ -41,4 +41,11 @@ actor AccountManager{
         }
         return (nil,false)
     }
+    func deleteAccountByID(userID: String) async throws {
+        if let _ = try? await getStandardAccount(userID: userID){
+            try? await standardDocument(userID: userID).delete()
+        } else if let _ = try? await getCompanyAccount(userID: userID){
+            try? await companyDocument(userID: userID).delete()
+        }
+    }
 }

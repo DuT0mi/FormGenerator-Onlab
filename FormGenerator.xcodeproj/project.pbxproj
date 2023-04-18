@@ -360,7 +360,7 @@
 		1A27A60D29C60F7D0026C32D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1ADFF45129BCF6BA0071F54C /* SettingsView.swift */,
+				1A41A3D129EF106400CBF408 /* Settings */,
 				1ADFF44F29BCF69F0071F54C /* RecentsFormsView.swift */,
 				1ADFF44929BCF6230071F54C /* FormsListView.swift */,
 			);
@@ -447,6 +447,14 @@
 				1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */,
 			);
 			path = Additional;
+			sourceTree = "<group>";
+		};
+		1A41A3D129EF106400CBF408 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFF45129BCF6BA0071F54C /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1A4CEDBF29DB68C40086DA80 /* AccountHandling */ = {
