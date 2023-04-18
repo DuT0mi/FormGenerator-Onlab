@@ -34,8 +34,7 @@ struct FormsListView: View {
                             }
                         }
                     }
-                    .refreshableCompat(showsIndicators: false,
-                                       onRefresh: { done in
+                    .refreshableCompat(onRefresh: { done in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             viewModel.downloadAllForm()
                           done()

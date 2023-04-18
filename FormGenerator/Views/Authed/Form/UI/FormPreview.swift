@@ -45,7 +45,7 @@ struct FormPreview: View {
                         
                     }
                     .padding()
-                    Button("OK"){
+                    Button("Cool!"){
                         dismiss.callAsFunction()
                     }
                     .padding()

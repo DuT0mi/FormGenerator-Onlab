@@ -12,7 +12,6 @@ struct CreateFormView: View {
     @State private var showAddFormView: Bool = false
     @State private var showFormPreview: Bool = false
     @State private var editMode: EditMode = .inactive
-    @State private var showPreviewMenuButton: Bool = false
     @State private var isQuestionsCountZero: Bool = false
     
     fileprivate var tap: some Gesture {
@@ -28,6 +27,8 @@ struct CreateFormView: View {
                     try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
                 }
                 CoreDataController().resetCoreData(context: managedObjectContext)
+                // Adjust it back, to avoid invalid access to the preview
+                AddFormViewModel.shared.isFormHasBeenAdded = false
             } else {
                 isQuestionsCountZero = true
             }
