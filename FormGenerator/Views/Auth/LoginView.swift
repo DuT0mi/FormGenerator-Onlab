@@ -11,16 +11,31 @@ struct LoginView: View {
     
     typealias AVC = AuthenticationViewsConstants
     
-     var googleSignInButton: some View {
-        GoogleSignInButton(scheme: .light ,style:.wide , state:.normal ){
+    var appleSignInButton: some View {
+        Button(action: {
             Task {
-                do{
-                    try await user.signInWithGoogle()
-                }catch{
-                    print(error)
+                do {
+                    user.signInWithApple()
                 }
             }
-        }
+        }, label: { // UIKit things
+            SignInWithAppleButtonViewRepresentable(type: .default, style: .black)
+                .allowsHitTesting(false)// disallow clicking on it, but the wrapper button does it
+        })
+        .disabled(true) // MARK: I don't have an account for that
+        .frame(width: 200, height: 45)
+    }
+     var googleSignInButton: some View {
+         HStack{
+             GoogleSignInButton(scheme: .dark ,style:.wide , state:.normal ){
+                 Task {
+                     do{
+                         user.signInWithGoogle()
+                     }
+                 }
+             }
+             .frame(width: 200, height: 50)
+         }
     }
          var signUpAction: some View {
             HStack{
@@ -51,9 +66,16 @@ struct LoginView: View {
                     
                         templateView.getUserHandlerButton()
                     
+                    Spacer()
+                        .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
+                        .fixedSize()
+                    
                         googleSignInButton
-                        .clipped()
-                        .padding()
+                            .clipped()
+                        
+                        appleSignInButton
+                            .clipped()
+                    
                     
                     Spacer()
                         .frame(idealHeight:AVC.SpacerParameters.frameIdealHeightFactor * ScreenDimensions.height)
