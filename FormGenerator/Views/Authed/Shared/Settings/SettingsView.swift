@@ -6,6 +6,7 @@ struct SettingsView: View {
     @ObservedObject var user: UserViewModel
     @StateObject private var viewModel: SettingsViewModel = SettingsViewModel()
     @State private var isShowingPopup:Bool = false
+    @State var  showError: Bool = false
     
     fileprivate var profileSection: some View {
         Section {
@@ -61,15 +62,26 @@ struct SettingsView: View {
                 if isShowingPopup{
                     Color.black.opacity(0.5)
                                     .edgesIgnoringSafeArea(.all)
-                    PopupOverlay(viewModel: viewModel, user: user, isShowingPopup: $isShowingPopup)
+                    PopupOverlay(viewModel: viewModel, user: user, showError: $showError, isShowingPopup: $isShowingPopup)
                 }
-            }
+                if showError {
+                    // TODO: something error handling, animated, ...
+                        Text("aaaaaaaaaaaa")
+                }
+            } // MARK: Just for testing it
+            .onChange(of: showError, perform: { newValue in
+                if newValue {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+                                showError = false
+                        }
+                }
+            })
             .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             isShowingPopup = true
                         } label: {
-                            Image(systemName: "gearshape.fill")
+                            Image(systemName: "gearshape")
                         }
 
 

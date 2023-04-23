@@ -44,7 +44,7 @@ struct LoginView: View {
             Button(action: {
                 signUpViewIsPresented = true
             }) {
-                Text("sign up".uppercased())
+                Text("create".uppercased())
                     .bold()
             }
             .sheet(isPresented: $signUpViewIsPresented, content: {
@@ -63,7 +63,7 @@ struct LoginView: View {
                 VStack{
                     let templateView = TemplateAuthView(user: user, type: type)
                             templateView.getTitle()
-                            templateView.getEmailTextInput()
+                            templateView.getEmailTextInput()                        
                             templateView.getPasswordTextInput()
 
                     spacerComponent

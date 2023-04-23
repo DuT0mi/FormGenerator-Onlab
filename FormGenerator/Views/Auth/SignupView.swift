@@ -68,11 +68,13 @@ struct SignupView: View {
     var body: some View {
         if networkManager.isNetworkReachable{
             ZStack{
+                AppConstants.backgroundColor
                 if user.loading {
                     ProgressView()
                 }
                 signUpContent
             }
+            .ignoresSafeArea()
         } else {
             SpaceView()
         }
