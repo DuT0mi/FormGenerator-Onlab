@@ -396,10 +396,10 @@
 				1A319D2429B3AC3C00183B94 /* Additional */,
 				1A282EF429AE85C700DAFD9B /* Models */,
 				1A282EF329AE85BA00DAFD9B /* Views */,
-				1A282EE329AE79BF00DAFD9B /* FormGeneratorApp.swift */,
 				1A282EE729AE79BF00DAFD9B /* Assets.xcassets */,
 				1A282EE929AE79BF00DAFD9B /* FormGenerator.entitlements */,
 				1A319CE929B39CE100183B94 /* GoogleService-Info.plist */,
+				1A282EE329AE79BF00DAFD9B /* FormGeneratorApp.swift */,
 				1A282EEA29AE79BF00DAFD9B /* Preview Content */,
 			);
 			path = FormGenerator;

@@ -90,21 +90,22 @@ struct CreateFormView: View {
     
     var body: some View {
         if networkManager.isNetworkReachable{
+            ZStack{
                 VStack(spacing: 40) {
                     List{
                         ForEach(questionCoreData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)})){question in
-                                NavigationLink(destination: EditQuestionView(question: question)) {
-                                    HStack{
-                                        VStack(alignment: .leading, spacing: 5.0){
-                                            Text(question.question ?? "").bold()
-                                            Text(question.type ?? "")
-                                                .foregroundColor(.red)
-                                        }
-                                        .gesture(editMode == .active ? tap : nil)
-                                        Spacer()
-                                        Text(timeSinceCreated(date: question.qDate ?? Date()))
-                                            .italic()
+                            NavigationLink(destination: EditQuestionView(question: question)) {
+                                HStack{
+                                    VStack(alignment: .leading, spacing: 5.0){
+                                        Text(question.question ?? "").bold()
+                                        Text(question.type ?? "")
+                                            .foregroundColor(.red)
                                     }
+                                    .gesture(editMode == .active ? tap : nil)
+                                    Spacer()
+                                    Text(timeSinceCreated(date: question.qDate ?? Date()))
+                                        .italic()
+                                }
                             }
                         }
                         .onDelete(perform: deleteQuestion)
@@ -136,6 +137,7 @@ struct CreateFormView: View {
                     }
                 }
                 .environment(\.editMode, $editMode)
+            }
         } else {
             SpaceView()
         }

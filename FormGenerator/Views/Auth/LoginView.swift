@@ -95,11 +95,13 @@ struct LoginView: View {
     var body: some View {
         if networkManager.isNetworkReachable{
             ZStack{
+                AppConstants.backgroundColor
                 loginContent
                 if user.loading {
                     ProgressView()
                 }
             }
+            .ignoresSafeArea()
         } else {
             SpaceView()
         }

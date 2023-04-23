@@ -38,7 +38,7 @@ struct PopupOverlay: View {
                     }
                     Spacer()
                     Spacer()
-                    Image(systemName: "info.circle.fill")
+                    Image(systemName: "info.circle")
                         .foregroundColor(.accentColor)
                     // TODO: the info
                         
@@ -96,14 +96,8 @@ extension PopupOverlay {
                     try user.logout()
                 }
             }
-            buttonTemplate(text: "Reset pw") {
-                Task{
-                    try await viewModel.resetPassword(email: user.email)
-                    // TODO: check if it works
-                    try user.logout()
-                }
-            }
         }
+        .padding()
     }
 }
 struct PopupOverlay_Previews: PreviewProvider {
