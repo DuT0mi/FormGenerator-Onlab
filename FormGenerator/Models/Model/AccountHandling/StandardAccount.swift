@@ -40,6 +40,11 @@ struct StandardAccount: Account, Codable {
         try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)
         try container.encode(self.type.rawValue, forKey: .type)
     }
-    
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email = "email"
+        case dateCreated = "date_created"
+        case type = "type"
+    }
 }
 

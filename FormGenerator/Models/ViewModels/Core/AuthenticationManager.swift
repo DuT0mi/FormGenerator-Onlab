@@ -89,6 +89,8 @@ final class AuthenticationManager{
             throw URLError(.cannotFindHost)
         }
         try await user.updateEmail(to: email)
+        // Also update the database
+        try await AccountManager.shared.updateEmailAddress(userID: user.uid, email: email)
     }
     
     func getAuthenticatedUser() throws -> AuthenticationDataResult {
@@ -97,6 +99,16 @@ final class AuthenticationManager{
         }
         return AuthenticationDataResult(user: user)
     }
+    func deleteUser() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badURL)
+        }
+        // Just from the authentication
+        try await user.delete()
+        // From the DB
+        try await AccountManager.shared.deleteAccountByID(userID: user.uid)
+    }
+
 }
 //MARK: - SSO
 extension AuthenticationManager{

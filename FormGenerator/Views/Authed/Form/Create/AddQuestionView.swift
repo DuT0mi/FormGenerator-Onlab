@@ -49,13 +49,15 @@ struct AddQuestionView: View {
     
     var body: some View {
         if networkManager.isNetworkReachable{
-            VStack(spacing: 50){
-                questionComponent
-                buttonComponent
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
-                Spacer()
-                Spacer()
+            ZStack{
+                VStack(spacing: 50){
+                    questionComponent
+                    buttonComponent
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
+                    Spacer()
+                    Spacer()
+                }
             }
             .padding()
         } else {

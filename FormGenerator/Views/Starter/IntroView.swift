@@ -5,9 +5,13 @@ struct IntroView: View {
     
     var body: some View {
         if networkManager.isNetworkReachable{
-            VStack{
-                Label("Home",systemImage: "house.fill")
+            ZStack{
+                AppConstants.backgroundColor
+                VStack{
+                    Label("Home",systemImage: "house.fill")
+                }
             }
+            .ignoresSafeArea()
         } else {
             SpaceView()
         }
