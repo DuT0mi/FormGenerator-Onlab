@@ -53,6 +53,7 @@
 		1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */; };
 		1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */; };
 		1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CEDC729DB75C30086DA80 /* AccountManager.swift */; };
+		1A4D2B4F29F56D9C007DF17A /* PopoverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D2B4E29F56D9C007DF17A /* PopoverlayView.swift */; };
 		1A514A8029E42759002EF2BA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A7F29E42759002EF2BA /* Question.swift */; };
 		1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */; };
 		1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8529E43C94002EF2BA /* CoreDataController.swift */; };
@@ -188,6 +189,7 @@
 		1A4CEDC229DB6A790086DA80 /* CompanyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAccount.swift; sourceTree = "<group>"; };
 		1A4CEDC529DB70E30086DA80 /* CodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingKeys.swift; sourceTree = "<group>"; };
 		1A4CEDC729DB75C30086DA80 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		1A4D2B4E29F56D9C007DF17A /* PopoverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverlayView.swift; sourceTree = "<group>"; };
 		1A514A7F29E42759002EF2BA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD.xcdatamodel; sourceTree = "<group>"; };
 		1A514A8529E43C94002EF2BA /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				1ADFF45129BCF6BA0071F54C /* SettingsView.swift */,
+				1A4D2B4E29F56D9C007DF17A /* PopoverlayView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
+				1A4D2B4F29F56D9C007DF17A /* PopoverlayView.swift in Sources */,
 				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,

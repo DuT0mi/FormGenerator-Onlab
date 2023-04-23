@@ -48,4 +48,11 @@ actor AccountManager{
             try? await companyDocument(userID: userID).delete()
         }
     }
+    // Only standard account types can modify the email address
+    func updateEmailAddress(userID: String, email: String) async throws{
+        let data: [String : Any] = [
+            CodingKeys.email.rawValue : email
+        ]
+        try await standardDocument(userID: userID).updateData(data)
+    }
 }

@@ -89,6 +89,8 @@ final class AuthenticationManager{
             throw URLError(.cannotFindHost)
         }
         try await user.updateEmail(to: email)
+        // Also update the database
+        try await AccountManager.shared.updateEmailAddress(userID: user.uid, email: email)
     }
     
     func getAuthenticatedUser() throws -> AuthenticationDataResult {
