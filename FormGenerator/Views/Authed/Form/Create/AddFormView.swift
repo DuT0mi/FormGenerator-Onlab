@@ -11,6 +11,7 @@ struct AddFormView: View {
     @State private var formType: String = ""
     @State private var isThereAnyEmptyField: Bool = false
     @State private var selectedItem: PhotosPickerItem?
+    @State private var photoSelectorLabel: String?
     @State private var url: URL?
     
     var backgroundImage = "form_demo"
@@ -24,9 +25,16 @@ struct AddFormView: View {
          (selectedItem == nil)
         
     }
+    private func getPhotoSelectorLabelBasedOnItsState() -> some View{
+        if let _ = selectedItem{
+            return Label("Change the current photo", systemImage: "photo")
+        } else {
+            return Label("Select a photo in jpeg format!", systemImage: "photo")
+        }
+    }
     fileprivate var photoSelector: some View {
         PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
-            Label("Select a photo in jpeg format!", systemImage: "photo")
+            getPhotoSelectorLabelBasedOnItsState()
                 .bold()
                 .font(.system(size: 20))
         }
@@ -61,6 +69,7 @@ struct AddFormView: View {
                                         answers: "answers",
                                         backgroundImagePath: nil,
                                         backgroundImageURL: nil)
+                // Never will be "nil" because of the input checker, but I do not have to force unwrap it
                 if let selectedItem{
                     AddFormViewModel.shared.formDatas = formData
                     AddFormViewModel.shared.selectedItem = selectedItem

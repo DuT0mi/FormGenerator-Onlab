@@ -9,9 +9,16 @@ struct FormViewDetail: View {
     var body: some View {
             ScrollView{
                 LazyVStack{
-                    Image(backgroundImage)
-                        .resizable()
-                        .frame(height: 300)
+                    if let urlString = form.backgroundImageURL, let url = URL(string: urlString) {
+                        AsyncImage(url: url){ image in
+                            image
+                                .resizable()
+                                .frame(height: 300)
+                        }placeholder: {
+                            ProgressView()
+                                .frame(height: 300)
+                        }
+                    }
                     
                     CompanyCircleView(image: circleImage)
                         .offset(y: -100)
@@ -67,7 +74,7 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                  description: "description",
                                  answers: "answers",
                                  backgroundImagePath: "",
-                                 backgroundImageURL: "nil"))
+                                 backgroundImageURL: "https://firebasestorage.googleapis.com:443/v0/b/formgenerator-b9012.appspot.com/o/forms%2F87A324F5-FFF9-4F86-AC62-D7A7E1E6DEEF%2Fimages%2F07101978-D32C-427D-BC2B-EFE4EDDCEC95.jpeg?alt=media&token=97091564-e3cb-42ec-b7f6-b7056bf87e9e"))
         .environmentObject(NetworkManagerViewModel())
     }
 }
