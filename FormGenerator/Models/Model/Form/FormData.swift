@@ -11,8 +11,8 @@ struct FormData: Identifiable, Codable, Hashable{
     var answers: String
     var backgroundImagePath: String?
     var backgroundImageURL: String?
-   // var circleImagePath: String?
-   // var circleImageURL: String?
+    //var circleImagePath: String?
+    //var circleImageURL: String?
     // TODO: filler's ID, type,background,..
     
     enum CodingKeys: String, CodingKey { // String for rawValue
@@ -25,7 +25,7 @@ struct FormData: Identifiable, Codable, Hashable{
         case companyName = "company_name"
         case backgroundImagePath = "background_image_path"
         case backgroundImageURL = "background_image_url"
-      //  case circleImagePath = "circle_image_path"
-      //  case circleImageURL = "circle_image_url"
+       // case circleImagePath = "circle_image_path"
+       // case circleImageURL = "circle_image_url"
     }
 }

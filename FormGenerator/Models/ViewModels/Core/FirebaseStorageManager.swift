@@ -12,6 +12,8 @@ final class FirebaseStorageManager {
     private func formImageReference(formID id: String) -> StorageReference {
         storage.child("forms").child(id).child("images").child("background_images")
     }
+    
+    
     func saveImage(data: Data, formID: String) async throws  -> (path: String, name: String){
         let meta = StorageMetadata()
         meta.contentType = "image/jpeg"

@@ -18,11 +18,15 @@ struct PopupOverlay: View {
         }
     }
     private func checkUserInputForEmeail(userInputEmail email : String){
-        EmailValidation().validateEmail(email: email) { result in
-            switch result {
+        if user.email != userInput{
+            EmailValidation().validateEmail(email: email) { result in
+                switch result {
                 case .failure( _ ): showError = true; break
                 case .success(): break
+                }
             }
+        } else { /* Same as the previous one */
+            showError = true
         }
     }
     private func buttonTemplate(text: String, action: @escaping () -> Void ) -> some View {
@@ -42,6 +46,14 @@ struct PopupOverlay: View {
                 )
         }
     }
+        
+    fileprivate var infoComponent: some View {
+        Image(systemName: self.showInfo ? "info.circle.fill" : "info.circle")
+            .foregroundColor(.accentColor)
+            .onTapGesture {
+                self.showInfo.toggle()
+            }
+    }
     
     var body: some View {
             VStack {
@@ -51,13 +63,9 @@ struct PopupOverlay: View {
                     }
                     Spacer()
                     Spacer()
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.accentColor)
-                    // TODO: the info
-                        
+                    infoComponent
                 }
-                
-                TextField("Change what you like'd to!", text: $userInput)
+                TextField(self.showInfo ? "Examples:" : "Change!", text: $userInput)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
@@ -67,8 +75,6 @@ struct PopupOverlay: View {
                 } else {
                     getemailSection()
                 }
-                
-                
             }
             .padding()
             .background(Color.white)
@@ -83,7 +89,7 @@ struct PopupOverlay: View {
 extension PopupOverlay {
     
     var ssoSection: some View {
-        buttonTemplate(text: "Delete acc") {
+        buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
             Task {
                 try await viewModel.deleteUser()
                 try user.logout()
@@ -92,24 +98,23 @@ extension PopupOverlay {
     }
     func getemailSection() -> some View {
         Group{
-            buttonTemplate(text: "Update password") {
+            buttonTemplate(text: self.showInfo ? "at least 6 digit" : "Update password") {
                 Task{
                     checkUserInputForPassword(userInputPassword: userInput)
                     try await viewModel.updatePassword(password: userInput)
                     try user.logout()
                 }
             }
-            buttonTemplate(text: "Update email") {
+            buttonTemplate(text: self.showInfo ? "test@gmail.com" : "Update email") {
                 Task{
                     checkUserInputForEmeail(userInputEmail: userInput)
                     try await viewModel.updateEmail(email: userInput)
                     try user.logout()
                 }
             }
-            buttonTemplate(text: "Delete account") {
+            buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
                 Task {
-                    try await viewModel.deleteUser()
-                    // TODO: check if it works
+                    try await viewModel.deleteUser()                    
                     try user.logout()
                 }
             }
