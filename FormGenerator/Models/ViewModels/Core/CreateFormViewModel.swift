@@ -56,9 +56,3 @@ final class CreateFormViewModel: ObservableObject {
         try await uploadForm()
     }
 }
-
-enum SelectedType: String, CaseIterable{
-    case A
-    case B
-    case none
-}

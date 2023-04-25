@@ -24,7 +24,6 @@ struct SecureTextField: View {
                 }
         }
     }
-    
 }
 
 // Reaching the db easily
@@ -66,7 +65,6 @@ struct AnimatedActionButton: View {
         }
     }
 }
-// UIApplication.shared.windows.last { $0.isKeyWindow }
 @MainActor
  func topViewController(controller: UIViewController? = nil) -> UIViewController? {
      let controller = controller ?? UIApplication

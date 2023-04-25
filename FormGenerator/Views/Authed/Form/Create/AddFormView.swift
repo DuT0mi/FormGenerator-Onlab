@@ -11,12 +11,23 @@ struct AddFormView: View {
     @State private var formType: String = ""
     @State private var isThereAnyEmptyField: Bool = false
     @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: Image?
     @State private var photoSelectorLabel: String?
-    @State private var url: URL?
+    @State private var invalidSelectedPhotoErrorShouldShow: Bool = false
     
-    var backgroundImage = "form_demo"
-    var circleImage = "checkmark"
+    var backgroundImage = ImageConstants.templateBackgroundImage
+    var circleImage = ImageConstants.templateCircleImage
     
+    private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
+        content
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(truncating: (extratime) as! NSNumber)){
+                    withAnimation(.easeInOut(duration: PopUpMessageTimer.defaultTime)){
+                        invalidSelectedPhotoErrorShouldShow.toggle()
+                    }
+                }
+            }
+    }
     private func isEmptySomething() -> Bool{
          formTitle.isEmpty       ||
          formCompanyName.isEmpty ||
@@ -25,27 +36,45 @@ struct AddFormView: View {
          (selectedItem == nil)
         
     }
-    private func getPhotoSelectorLabelBasedOnItsState() -> some View{
-        if let _ = selectedItem{
-            return Label("Change the current photo", systemImage: "photo")
-        } else {
-            return Label("Select a photo in jpeg format!", systemImage: "photo")
-        }
-    }
     fileprivate var photoSelector: some View {
         PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
-            getPhotoSelectorLabelBasedOnItsState()
+            Image(systemName: "photo")
                 .bold()
                 .font(.system(size: 20))
         }
     }
+    fileprivate var selectedImageThumbnail: some View {
+        selectedImage!
+            .resizable()
+            .scaledToFit()
+            .frame(width: ImageConstants.selectedThumbnailWidth, height: ImageConstants.selectedThumbnailHeight)
+            
+    }
+    fileprivate var deleteSelectedImageButton: some View {
+        Button {
+            self.selectedImage = nil
+        } label: {
+            Text("❌")
+        }
+
+    }
     fileprivate var backgroundImageComponent: some View {
         Image(backgroundImage)
             .resizable()
-            .frame(height: 300)
-            .opacity(0.4)
+            .frame(height: ImageConstants.backgroundImageFrameHeight)
+            .opacity(ImageConstants.backgroundImageOpacityFactor)
             .overlay{
-                photoSelector
+                HStack{
+                    Spacer()
+                    photoSelector
+                    Spacer()
+                    if selectedImage != nil {
+                        selectedImageThumbnail
+                        Spacer()
+                        deleteSelectedImageButton
+                        Spacer()
+                    }
+                }
             }
     }
     // TODO: after bg image
@@ -127,6 +156,23 @@ struct AddFormView: View {
                     buttonComponent
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
+                }
+                .onChange(of: selectedItem){_ in
+                    Task{
+                        if let data = try? await selectedItem?.loadTransferable(type: Data.self){
+                            if let image = UIImage(data: data){
+                                selectedImage = Image(uiImage: image)
+                                ImageViewModel.shared.selectedImage = selectedImage
+                            }
+                        } else {
+                            invalidSelectedPhotoErrorShouldShow = true
+                        }
+                    }
+                }
+                .overlay{
+                    if invalidSelectedPhotoErrorShouldShow {
+                        getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)

@@ -1,18 +1,19 @@
 import SwiftUI
 
 struct CompanyCircleView: View {
+    typealias IC = ImageConstants.CircleImage
     
     let image: String
     
     var body: some View {
         Image(image)
             .resizable()
-            .frame(width: 150, height: 150)
+            .frame(width: IC.defaultWidth, height: IC.defaultHeight)
             .clipShape(Circle())
             .overlay {
-                Circle().stroke(.white, lineWidth: 4)
+                Circle().stroke(.white, lineWidth: IC.lineWidth)
             }
-            .shadow(radius: 7)
+            .shadow(radius: IC.shadowRadius)
     }
 }
 

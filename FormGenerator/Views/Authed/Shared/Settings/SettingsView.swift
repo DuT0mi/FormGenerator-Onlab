@@ -5,9 +5,19 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var user: UserViewModel
     @StateObject private var viewModel: SettingsViewModel = SettingsViewModel()
-    @State private var isShowingPopup:Bool = false
+    @State private var isShowingPopup: Bool = false
     @State var  showError: Bool = false
     
+    private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
+        content
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(truncating: (extratime) as! NSNumber)){
+                    withAnimation(.easeInOut(duration: 1.5)){
+                        showError.toggle()
+                    }
+                }
+            }
+    }
     fileprivate var profileSection: some View {
         Section {
             Text("Text")
@@ -59,23 +69,8 @@ struct SettingsView: View {
                     aboutSection
                     logOutSection
                 }
-                if isShowingPopup{
-                    Color.black.opacity(0.5)
-                                    .edgesIgnoringSafeArea(.all)
-                    PopupOverlay(viewModel: viewModel, user: user, showError: $showError, isShowingPopup: $isShowingPopup)
-                }
-                if showError {
-                    // TODO: something error handling, animated, ...
-                        Text("aaaaaaaaaaaa")
-                }
-            } // MARK: Just for testing it
-            .onChange(of: showError, perform: { newValue in
-                if newValue {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
-                                showError = false
-                        }
-                }
-            })
+   
+            }
             .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -93,6 +88,16 @@ struct SettingsView: View {
             }
             .onAppear{
                 viewModel.loadAuthenticationProviders()
+            }
+            .overlay{
+                if showError {
+                    getPopUpContent(content: InvalidView(text: "TODO homemade error: email/pw bad format"), extratime: 1.5)
+                }
+                if isShowingPopup{
+                    Color.black.opacity(0.5)
+                                    .edgesIgnoringSafeArea(.all)
+                    PopupOverlay(viewModel: viewModel, user: user, showError: $showError, isShowingPopup: $isShowingPopup)
+                }
             }
         } else {
             SpaceView()
