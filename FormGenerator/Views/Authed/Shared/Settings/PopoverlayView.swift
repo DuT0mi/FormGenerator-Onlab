@@ -25,7 +25,7 @@ struct PopupOverlay: View {
             }
         }
     }
-    private func buttonTemplate(text: String, action: @escaping () -> Void ) -> some View{
+    private func buttonTemplate(text: String, action: @escaping () -> Void ) -> some View {
         Button {
                 action()
                 isShowingPopup.toggle()
@@ -35,10 +35,10 @@ struct PopupOverlay: View {
                 .fontWeight(.bold)
                 .padding()
                 .foregroundColor(.black)
-                .cornerRadius(20)
+                .cornerRadius(PopoverlayConstants.cornerRadius)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(.black, lineWidth: 2)
+                    RoundedRectangle(cornerRadius: PopoverlayConstants.cornerRadius)
+                        .stroke(.black, lineWidth: PopoverlayConstants.lineWidth)
                 )
         }
     }
@@ -72,8 +72,12 @@ struct PopupOverlay: View {
             }
             .padding()
             .background(Color.white)
-            .cornerRadius(20)
-            .padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40))
+            .cornerRadius(PopoverlayConstants.cornerRadius)
+            .padding(EdgeInsets(top: PopoverlayConstants.Padding.top,
+                                leading: PopoverlayConstants.Padding.leading,
+                                bottom: PopoverlayConstants.Padding.bottom,
+                                trailing: PopoverlayConstants.Padding.trailing)
+            )
         }
 }
 extension PopupOverlay {
@@ -88,23 +92,21 @@ extension PopupOverlay {
     }
     func getemailSection() -> some View {
         Group{
-            buttonTemplate(text: "Update pw") {
+            buttonTemplate(text: "Update password") {
                 Task{
                     checkUserInputForPassword(userInputPassword: userInput)
                     try await viewModel.updatePassword(password: userInput)
-                    // TODO: checking if the password passes the regex
                     try user.logout()
                 }
             }
-            buttonTemplate(text: "Email upd") {
+            buttonTemplate(text: "Update email") {
                 Task{
                     checkUserInputForEmeail(userInputEmail: userInput)
                     try await viewModel.updateEmail(email: userInput)
-                    // TODO: email regex check
                     try user.logout()
                 }
             }
-            buttonTemplate(text: "Delete acc") {
+            buttonTemplate(text: "Delete account") {
                 Task {
                     try await viewModel.deleteUser()
                     // TODO: check if it works

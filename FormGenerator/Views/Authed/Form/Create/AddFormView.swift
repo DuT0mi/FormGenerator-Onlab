@@ -15,14 +15,14 @@ struct AddFormView: View {
     @State private var photoSelectorLabel: String?
     @State private var invalidSelectedPhotoErrorShouldShow: Bool = false
     
-    var backgroundImage = "form_demo"
-    var circleImage = "checkmark"
+    var backgroundImage = ImageConstants.templateBackgroundImage
+    var circleImage = ImageConstants.templateCircleImage
     
     private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
         content
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(truncating: (extratime) as! NSNumber)){
-                    withAnimation(.easeInOut(duration: 1.5)){
+                    withAnimation(.easeInOut(duration: PopUpMessageTimer.defaultTime)){
                         invalidSelectedPhotoErrorShouldShow.toggle()
                     }
                 }
@@ -47,7 +47,7 @@ struct AddFormView: View {
         selectedImage!
             .resizable()
             .scaledToFit()
-            .frame(width: 100, height: 100)
+            .frame(width: ImageConstants.selectedThumbnailWidth, height: ImageConstants.selectedThumbnailHeight)
             
     }
     fileprivate var deleteSelectedImageButton: some View {
@@ -61,8 +61,8 @@ struct AddFormView: View {
     fileprivate var backgroundImageComponent: some View {
         Image(backgroundImage)
             .resizable()
-            .frame(height: 300)
-            .opacity(0.4)
+            .frame(height: ImageConstants.backgroundImageFrameHeight)
+            .opacity(ImageConstants.backgroundImageOpacityFactor)
             .overlay{
                 HStack{
                     Spacer()
@@ -171,7 +171,7 @@ struct AddFormView: View {
                 }
                 .overlay{
                     if invalidSelectedPhotoErrorShouldShow {
-                        getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: 1.5)
+                        getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
                     }
                 }
             }

@@ -3,18 +3,16 @@ import SwiftUI
 struct FormPreview: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     @Environment(\.dismiss) private var dismiss
-    
-    
     var form: FetchedResults<FormCoreData>.Element
-    var backgroundImage: String = "form_demo"
-    var circleImage: String = "checkmark"
+    var backgroundImage: String = ImageConstants.templateBackgroundImage
+    var circleImage: String = ImageConstants.templateCircleImage
     
     var body: some View {
             ScrollView{
                 LazyVStack{
                     ImageViewModel.shared.selectedImage!
                         .resizable()
-                        .frame(height: 300)
+                        .frame(height: ImageConstants.backgroundImageFrameHeight)
                     
                     CompanyCircleView(image: circleImage)
                         .offset(y: -100)

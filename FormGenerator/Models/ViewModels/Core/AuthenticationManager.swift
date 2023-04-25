@@ -21,12 +21,11 @@ final class AuthenticationManager{
     //MARK: We got google.com if sign in with google and if with random email, password
     func getProviders() throws -> [AuthProviderOtpion]{
         guard let providerData = Auth.auth().currentUser?.providerData else {
-            throw URLError(.cannotFindHost) // TODO: MAke homemade error
+            throw AppErrors.AuthenticationError.invalidProvider
         }
         var providers: [AuthProviderOtpion] = []
         for provider in providerData {
-           // print(provider.providerID)
-            if let option = AuthProviderOtpion(rawValue: provider.providerID) { // not guard coz that break if not guard
+            if let option = AuthProviderOtpion(rawValue: provider.providerID) {
                 providers.append(option)
             } else {
                 assertionFailure("Provider option not found: \(provider.providerID)") // there are not any other option
@@ -79,14 +78,14 @@ final class AuthenticationManager{
     }
     func updatePassword(password: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.cannotFindHost)
+            throw AppErrors.AuthenticationError.userIsNotAuthenticated
         }
         try await user.updatePassword(to: password)
     }
     
     func updateEmail(email: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.cannotFindHost)
+            throw AppErrors.AuthenticationError.userIsNotAuthenticated
         }
         try await user.updateEmail(to: email)
         // Also update the database
@@ -95,13 +94,13 @@ final class AuthenticationManager{
     
     func getAuthenticatedUser() throws -> AuthenticationDataResult {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.cannotFindHost)
+            throw AppErrors.AuthenticationError.userIsNotAuthenticated
         }
         return AuthenticationDataResult(user: user)
     }
     func deleteUser() async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.badURL)
+            throw AppErrors.AuthenticationError.userIsNotAuthenticated
         }
         // Just from the authentication
         try await user.delete()

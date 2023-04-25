@@ -3,8 +3,9 @@ import SwiftUI
 struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     var form: FormData
-    var backgroundImage: String = "form_demo"
-    var circleImage: String = "checkmark"
+    
+    var backgroundImage: String = ImageConstants.templateBackgroundImage
+    var circleImage: String = ImageConstants.templateCircleImage
     
     var body: some View {
             ScrollView{
@@ -13,10 +14,10 @@ struct FormViewDetail: View {
                         AsyncImage(url: url){ image in
                             image
                                 .resizable()
-                                .frame(height: 300)
+                                .frame(height: ImageConstants.Downloaded.frameHeight)
                         }placeholder: {
                             ProgressView()
-                                .frame(height: 300)
+                                .frame(height: ImageConstants.Downloaded.frameHeight)
                         }
                     }
                     

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct InvalidView: View {
+    typealias PC = PopUpViewsConstants
     
     var text: String
     
@@ -11,7 +12,7 @@ struct InvalidView: View {
                     .foregroundColor(.red)
                     .bold()
                     .lineLimit(nil)
-                    .frame(width: 300, height: 150)
+                    .frame(width: PC.invalidViewFrameWidth, height: PC.invalidViewFrameHeight)
                 
             }
             Spacer()

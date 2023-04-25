@@ -3,7 +3,7 @@ import SwiftUI
 struct FormItemView: View {
     
     var form: FormData
-    var image: String = "form_demo"
+    var image: String = ImageConstants.templateBackgroundImage
     
     
     var body: some View {
@@ -13,7 +13,7 @@ struct FormItemView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(height: 150)
+                        .frame(height: ImageConstants.DownloadedItem.frameHeight)
                         .clipped()
                         .overlay(alignment: .bottom) {
                             RoundedRectangle(cornerRadius: 5)
@@ -36,12 +36,12 @@ struct FormItemView: View {
                         }
                 }placeholder: {
                     ProgressView()
-                        .frame(height: 150)
+                        .frame(height: ImageConstants.DownloadedItem.frameHeight)
                 }
             }
                     
                 }
-          .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+        .clipShape(RoundedRectangle(cornerRadius: ImageConstants.DownloadedItem.roundedRectangleRadius, style: .circular))
     }
 }
 

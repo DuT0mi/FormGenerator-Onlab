@@ -58,7 +58,7 @@ struct EditQuestionView: View {
     var body: some View {
         if networkManager.isNetworkReachable{
             NavigationView{
-                VStack(spacing: 50){
+                VStack(spacing: QuestionConstants.editQuestionStackSpacingParameter){
                     questionComponent
                     
                     buttonComponent

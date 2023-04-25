@@ -95,4 +95,51 @@ struct AuthenticationViewsConstants {
 // Constant for the View that is popping up when succed a login or signup
 struct PopUpMessageTimer{
     static let onScreenTime: Double = 1.0
+    static let defaultTime: Double = 1.5
+    static let onScreenTimeExtended: Double = 1.5
+}
+
+struct PopUpViewsConstants{
+    static let invalidViewFrameWidth: CGFloat = 300
+    static let invalidViewFrameHeight: CGFloat = 150
+}
+
+struct ImageConstants{
+    static let selectedThumbnailWidth: CGFloat = 100
+    static let selectedThumbnailHeight: CGFloat = 100
+    static let templateBackgroundImage: String = "form_demo"
+    static let templateCircleImage: String = "checkmark"
+    static let backgroundImageFrameHeight: CGFloat = 300
+    static let backgroundImageOpacityFactor: CGFloat = 0.4
+    
+    struct CircleImage{
+        static let defaultWidth: CGFloat = 150
+        static let defaultHeight: CGFloat = 150
+        static let lineWidth: CGFloat = 4.0
+        static let shadowRadius: CGFloat = 7.0
+    }
+    struct Downloaded{
+        static let frameHeight: CGFloat = 300
+    }
+    struct DownloadedItem{
+        static let frameHeight: CGFloat = 150
+        static let roundedRectangleRadius: CGFloat = 10
+    }
+    
+}
+
+struct QuestionConstants{
+    static let editQuestionStackSpacingParameter: CGFloat = 50
+}
+
+struct PopoverlayConstants{
+    static let cornerRadius: CGFloat = 20
+    static let lineWidth: CGFloat = 2
+    
+    struct Padding{
+        static let leading: CGFloat = 40
+        static let trailing: CGFloat = 40
+        static let bottom: CGFloat = 0
+        static let top: CGFloat = 0
+    }
 }
