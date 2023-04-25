@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 
 struct AddFormView: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
@@ -9,6 +10,8 @@ struct AddFormView: View {
     @State private var formDescription: String = ""
     @State private var formType: String = ""
     @State private var isThereAnyEmptyField: Bool = false
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var url: URL?
     
     var backgroundImage = "form_demo"
     var circleImage = "checkmark"
@@ -17,10 +20,33 @@ struct AddFormView: View {
          formTitle.isEmpty       ||
          formCompanyName.isEmpty ||
          formDescription.isEmpty ||
-         formType.isEmpty
+         formType.isEmpty        ||
+         (selectedItem == nil)
         
     }
-    
+    fileprivate var photoSelector: some View {
+        PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
+            Label("Select a photo in jpeg format!", systemImage: "photo")
+                .bold()
+                .font(.system(size: 20))
+        }
+    }
+    fileprivate var backgroundImageComponent: some View {
+        Image(backgroundImage)
+            .resizable()
+            .frame(height: 300)
+            .opacity(0.4)
+            .overlay{
+                photoSelector
+            }
+    }
+    // TODO: after bg image
+    fileprivate var circleImageComponent: some View {
+        CompanyCircleView(image: circleImage)
+            .offset(y: -100)
+            .padding(.bottom, -100)
+            .opacity(0.6)
+    }
     fileprivate var buttonComponent: some View {
         Button("Add"){
             if isEmptySomething(){
@@ -32,8 +58,13 @@ struct AddFormView: View {
                                         companyID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!,
                                         companyName: formCompanyName,
                                         description: formDescription,
-                                        answers: "answers")
-                
+                                        answers: "answers",
+                                        backgroundImagePath: nil,
+                                        backgroundImageURL: nil)
+                if let selectedItem{
+                    AddFormViewModel.shared.formDatas = formData
+                    AddFormViewModel.shared.selectedItem = selectedItem
+                }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)
                 AddFormViewModel.shared.isFormHasBeenAdded = true
                 dismiss.callAsFunction()
@@ -52,13 +83,9 @@ struct AddFormView: View {
     var body: some View {
             ScrollView{
                 LazyVStack{
-                    Image(backgroundImage)
-                        .resizable()
-                        .frame(height: 300)
+                    backgroundImageComponent
                     
-                    CompanyCircleView(image: circleImage)
-                        .offset(y: -100)
-                        .padding(.bottom, -100)
+                    circleImageComponent
                     
                     LazyVStack(alignment: .leading){
                         TextField("Title", text: $formTitle)
@@ -94,5 +121,13 @@ struct AddFormView: View {
                 }
             }
             .edgesIgnoringSafeArea(.top)
+    }
+}
+struct AddFormView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            AddFormView()
+                .environmentObject(NetworkManagerViewModel())
+        }
     }
 }

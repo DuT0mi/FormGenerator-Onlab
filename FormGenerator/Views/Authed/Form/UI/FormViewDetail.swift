@@ -65,7 +65,9 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                  companyID: "companyID",
                                  companyName: "",
                                  description: "description",
-                                 answers: "answers"))
+                                 answers: "answers",
+                                 backgroundImagePath: "",
+                                 backgroundImageURL: "nil"))
         .environmentObject(NetworkManagerViewModel())
     }
 }

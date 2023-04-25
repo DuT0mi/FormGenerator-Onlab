@@ -43,4 +43,11 @@ actor FormManager{
     func downloadAllForm() async throws -> [FormData]{
         try await formCollection.getDocuments(as: FormData.self)
     }
+    func updateFormProfileImagePath(formID: String, path: String?, url: String?) async throws {
+        let data: [String: Any] = [
+            FormData.CodingKeys.backgroundImagePath.rawValue : path as Any,
+            FormData.CodingKeys.backgroundImageURL.rawValue : url as Any
+        ]
+        try await formDocument(formID: formID).updateData(data)
+    }
 }
