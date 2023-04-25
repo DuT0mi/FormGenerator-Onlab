@@ -33,7 +33,8 @@ struct AddFormView: View {
          formCompanyName.isEmpty ||
          formDescription.isEmpty ||
          formType.isEmpty        ||
-         (selectedItem == nil)
+         (selectedItem == nil)   ||
+         (selectedImage == nil)
         
     }
     fileprivate var photoSelector: some View {
@@ -53,6 +54,7 @@ struct AddFormView: View {
     fileprivate var deleteSelectedImageButton: some View {
         Button {
             self.selectedImage = nil
+            
         } label: {
             Text("❌")
         }
