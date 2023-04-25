@@ -9,15 +9,19 @@ struct FormData: Identifiable, Codable, Hashable{
     let companyName: String
     let description: String
     var answers: String
+    var backgroundImagePath: String?
+    var backgroundImageURL: String?
     // TODO: filler's ID, type,background,..
     
     enum CodingKeys: String, CodingKey { // String for rawValue
-        case id
-        case title
-        case type
-        case companyID
-        case description
-        case answers
-        case companyName
+        case id = "id"
+        case title = "title"
+        case type = "type"
+        case companyID = "company_id"
+        case description = "description"
+        case answers = "answers"
+        case companyName = "company_name"
+        case backgroundImagePath = "background_image_path"
+        case backgroundImageURL = "background_image_url"
     }
 }
