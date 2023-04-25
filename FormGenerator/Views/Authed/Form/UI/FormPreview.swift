@@ -4,6 +4,7 @@ struct FormPreview: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     @Environment(\.dismiss) private var dismiss
     
+    
     var form: FetchedResults<FormCoreData>.Element
     var backgroundImage: String = "form_demo"
     var circleImage: String = "checkmark"
@@ -11,7 +12,7 @@ struct FormPreview: View {
     var body: some View {
             ScrollView{
                 LazyVStack{
-                    Image(backgroundImage)
+                    ImageViewModel.shared.selectedImage!
                         .resizable()
                         .frame(height: 300)
                     
