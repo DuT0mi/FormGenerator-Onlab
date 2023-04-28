@@ -1,13 +1,17 @@
 import SwiftUI
+import PhotosUI
 
 struct CompanyCircleView: View {
     typealias IC = ImageConstants.CircleImage
     
     let image: String
+    let optionalImage: Image?
     
+    fileprivate var content: Image? {
+        (optionalImage != nil) ? optionalImage?.resizable() : Image(image).resizable()
+    }
     var body: some View {
-        Image(image)
-            .resizable()
+       content
             .frame(width: IC.defaultWidth, height: IC.defaultHeight)
             .clipShape(Circle())
             .overlay {
@@ -19,6 +23,6 @@ struct CompanyCircleView: View {
 
 struct CompanyCircleView_Previews: PreviewProvider {
     static var previews: some View {
-        CompanyCircleView(image: "checkmark")
+        CompanyCircleView(image: "checkmark", optionalImage: nil)
     }
 }

@@ -59,6 +59,13 @@ actor FormManager{
         ]
         try await formDocument(formID: formID).updateData(data)
     }
+    func updateFormProfileImagePathPremium(formID: String, path: String?, url: String?) async throws {
+        let data: [String: Any] = [
+            FormData.CodingKeys.circleImagePath.rawValue : path as Any,
+            FormData.CodingKeys.circleImageURL.rawValue : url as Any
+        ]
+        try await formDocument(formID: formID).updateData(data)
+    }
     func getAllFormCount() async throws -> Int {
         try await formCollection.aggregationCount()
     }

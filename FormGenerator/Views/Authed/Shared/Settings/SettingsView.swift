@@ -78,6 +78,9 @@ struct SettingsView: View {
                     profileSection
                     if viewModel.account?.type == .Company {
                         premiumSection
+                            .onAppear{
+                                self.premiumStatus = (((viewModel.account as? CompanyAccount)?.isPremium) ?? false)
+                            }
                     }
                     aboutSection
                     logOutSection
