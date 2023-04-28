@@ -12,6 +12,7 @@ struct FormViewDetail: View {
     
     var body: some View {
             ScrollView{
+                
                 LazyVStack{
                     if let urlString = form.backgroundImageURL, let url = URL(string: urlString) {
                         AsyncImage(url: url){ image in

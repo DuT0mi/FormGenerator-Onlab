@@ -26,8 +26,7 @@ final class FormListViewModel: ObservableObject {
         self.isAccountLoaded = true
     }
     func downloadAllForm(withoutLimit: Bool = false){
-        Task{
-            
+        Task{            
             let (newForm, lastDocument) = try await FormManager.shared.downloadAllForm(limit: withoutLimit ? getAllFormCount() : FormConstants.defaultDownloadingLimit, lastDocument: lastDocument)
             self.forms.append(contentsOf: newForm)
             if let lastDocument{
@@ -37,8 +36,12 @@ final class FormListViewModel: ObservableObject {
         }
     }
     func pullRefreshDownloadAllForm() {
-        self.forms = []
-        self.lastDocument = nil
-        downloadAllForm(withoutLimit: true)
+        Task{
+            if try await FormManager.shared.getAllFormCount() > 0 {
+                self.forms = []
+                self.lastDocument = nil
+                downloadAllForm(withoutLimit: true)
+            }
+        }
     }
 }

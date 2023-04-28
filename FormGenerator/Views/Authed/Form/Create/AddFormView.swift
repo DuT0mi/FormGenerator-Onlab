@@ -54,35 +54,24 @@ struct AddFormView: View {
             )
         }
     }
-    
-    
-    fileprivate func photoSelector(systemName: String, selection: Binding<PhotosPickerItem?>) -> some View{
+    private func photoSelector(systemName: String, selection: Binding<PhotosPickerItem?>) -> some View{
         PhotosPicker(selection: selection, matching: .images, photoLibrary: .shared()) {
             Image(systemName: systemName)
                 .bold()
                 .font(.system(size: 20))
         }
     }
-//    fileprivate var backgroundPhotoSelector: some View {
-//        PhotosPicker(selection: $selectedBackgroundItem,matching: .images, photoLibrary: .shared()) {
-//            Image(systemName: "photo")
-//                .bold()
-//                .font(.system(size: 20))
-//        }
-//    }
-    fileprivate func selectedImageThumbnail(image: Image? , frameFactor ff : CGFloat = 1) -> some View{
+    private func selectedImageThumbnail(image: Image? , frameFactor ff : CGFloat = 1) -> some View{
         image!
             .resizable()
             .scaledToFit()
             .frame(width: ImageConstants.selectedThumbnailWidth / ff , height: ImageConstants.selectedThumbnailHeight / ff)
     }
-//    fileprivate var selectedImageThumbnail: some View {
-//        selectedBackgroundImage!
-//            .resizable()
-//            .scaledToFit()
-//            .frame(width: ImageConstants.selectedThumbnailWidth, height: ImageConstants.selectedThumbnailHeight)
-//
-//    }
+    private func commonDataSave(formData: FormData, selectedItem: PhotosPickerItem){
+        AddFormViewModel.shared.formDatas = formData
+        AddFormViewModel.shared.selectedItem = selectedItem
+    }
+    
     fileprivate var deleteSelectedImageButton: some View {
         Button {
             self.selectedBackgroundImage = nil
@@ -113,7 +102,7 @@ struct AddFormView: View {
     }
     fileprivate var cameraComponent: some View {
         Button {
-            
+            //TODO: ?
         } label: {
             Image(systemName: "camera.fill")
         }
@@ -157,14 +146,12 @@ struct AddFormView: View {
                                         companyName: formCompanyName,
                                         description: formDescription,
                                         answers: "answers")
-                // Never will be "nil" because of the input checker, but I do not have to force unwrap it
+                
                 if let selectedBackgroundItem{
-                    AddFormViewModel.shared.formDatas = formData
-                    AddFormViewModel.shared.selectedItem = selectedBackgroundItem
-                } // Premium
-                if AddFormViewModel.shared.isPremium == true, let selectedCircleItem{
-                    AddFormViewModel.shared.formDatas = formData
-                    AddFormViewModel.shared.selectedItem = selectedBackgroundItem
+                    commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
+                } // Premium user
+                if AddFormViewModel.shared.isPremium == true, let selectedCircleItem, let selectedBackgroundItem{
+                    commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
                     AddFormViewModel.shared.selectedPremiumItem = selectedCircleItem
                 }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)

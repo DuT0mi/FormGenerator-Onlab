@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import FirebaseStorage
 
+@MainActor
 final class FirebaseStorageManager {
     
     private init() {  }
@@ -45,24 +46,28 @@ final class FirebaseStorageManager {
         }
         return try await saveImage(data: data, formID: formID)
     }
+    
     func getData(formID: String, path: String) async throws -> Data {
         try await formImageReference(formID: formID).child(path).data(maxSize: Int64.max)        
     }
     func getPremiumData(formID: String, path: String) async throws -> Data {
         try await formPremiumImageReference(formID: formID).child(path).data(maxSize: Int64.max)
     }
+    
+    func getPathForImage(path: String ) -> StorageReference{
+        Storage.storage().reference(withPath: path)
+    }
+    func getUrlForImage(path: String) async throws  -> URL{
+        try await getPathForImage(path: path).downloadURL()
+    }
+    
+    // MARK: - Not used but can be handy for someone/or later
     func getImage(formID: String, path: String) async throws -> UIImage {
         let data = try await getData(formID: formID, path: path)
         guard let image = UIImage(data: data) else {
             throw AppErrors.Storage.imageDoesNotExist
         }
         return image
-    }
-    func getPathForImage(path: String ) -> StorageReference{
-        Storage.storage().reference(withPath: path)
-    }
-    func getUrlForImage(path: String) async throws  -> URL{
-        try await getPathForImage(path: path).downloadURL()
     }
     func deleteImage(path: String) async throws {
         try await getPathForImage(path: path).delete()

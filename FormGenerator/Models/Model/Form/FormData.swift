@@ -13,7 +13,6 @@ struct FormData: Identifiable, Codable, Hashable{
     var backgroundImageURL: String?
     var circleImagePath: String?
     var circleImageURL: String?
-    // TODO: filler's ID, type,background,..
     
     enum CodingKeys: String, CodingKey { // String for rawValue
         case id = "id"

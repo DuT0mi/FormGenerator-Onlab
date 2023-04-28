@@ -24,7 +24,6 @@ final class CreateFormViewModel: ObservableObject {
         Task{
             try? await loadCurrentAccount()
         }
-
     }
     
     private func createForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
@@ -56,14 +55,17 @@ final class CreateFormViewModel: ObservableObject {
     private func uploadToFireBaseStoragePremiumItem(selectedItemPremium: PhotosPickerItem, formData: FormData) async throws {
         AddFormViewModel.shared.savePremiumProfileImage(item: selectedItemPremium, formID: formData.id.uuidString)
     }
-    func createAndUploadForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
+    private func commonUploadToFirebaseStorage(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
         try await createForm(allQData: allQData, allFData: allFData, context: context)
         try await uploadToFireBaseStorage(selectedItem: AddFormViewModel.shared.selectedItem!, formData: AddFormViewModel.shared.formDatas!)
+    }
+    
+    func createAndUploadForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
+        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context)
         try await uploadForm()
     }
     func createAndUploadFormPremium(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
-        try await createForm(allQData: allQData, allFData: allFData, context: context)
-        try await uploadToFireBaseStorage(selectedItem: AddFormViewModel.shared.selectedItem!, formData: AddFormViewModel.shared.formDatas!)
+        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context)
         try await uploadToFireBaseStoragePremiumItem(selectedItemPremium: AddFormViewModel.shared.selectedPremiumItem!, formData: AddFormViewModel.shared.formDatas!)
         try await uploadForm()
     }
