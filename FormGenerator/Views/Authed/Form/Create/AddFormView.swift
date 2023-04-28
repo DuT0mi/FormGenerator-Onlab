@@ -10,10 +10,11 @@ struct AddFormView: View {
     @State private var formDescription: String = ""
     @State private var formType: String = ""
     @State private var isThereAnyEmptyField: Bool = false
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedImage: Image?
+    @State private var selectedBackgroundItem: PhotosPickerItem?
+    @State private var selectedBackgroundImage: Image?
     @State private var photoSelectorLabel: String?
     @State private var invalidSelectedPhotoErrorShouldShow: Bool = false
+    @State private var isAccountPremium: Bool = false
     
     var backgroundImage = ImageConstants.templateBackgroundImage
     var circleImage = ImageConstants.templateCircleImage
@@ -29,23 +30,23 @@ struct AddFormView: View {
             }
     }
     private func isEmptySomething() -> Bool{
-         formTitle.isEmpty       ||
-         formCompanyName.isEmpty ||
-         formDescription.isEmpty ||
-         formType.isEmpty        ||
-         (selectedItem == nil)   ||
-         (selectedImage == nil)
+         formTitle.isEmpty                  ||
+         formCompanyName.isEmpty            ||
+         formDescription.isEmpty            ||
+         formType.isEmpty                   ||
+         (selectedBackgroundItem == nil)    ||
+         (selectedBackgroundImage == nil)
         
     }
     fileprivate var photoSelector: some View {
-        PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
+        PhotosPicker(selection: $selectedBackgroundItem,matching: .images, photoLibrary: .shared()) {
             Image(systemName: "photo")
                 .bold()
                 .font(.system(size: 20))
         }
     }
     fileprivate var selectedImageThumbnail: some View {
-        selectedImage!
+        selectedBackgroundImage!
             .resizable()
             .scaledToFit()
             .frame(width: ImageConstants.selectedThumbnailWidth, height: ImageConstants.selectedThumbnailHeight)
@@ -53,7 +54,7 @@ struct AddFormView: View {
     }
     fileprivate var deleteSelectedImageButton: some View {
         Button {
-            self.selectedImage = nil
+            self.selectedBackgroundImage = nil
             
         } label: {
             Text("❌")
@@ -70,7 +71,7 @@ struct AddFormView: View {
                     Spacer()
                     photoSelector
                     Spacer()
-                    if selectedImage != nil {
+                    if selectedBackgroundImage != nil {
                         selectedImageThumbnail
                         Spacer()
                         deleteSelectedImageButton
@@ -101,9 +102,9 @@ struct AddFormView: View {
                                         backgroundImagePath: nil,
                                         backgroundImageURL: nil)
                 // Never will be "nil" because of the input checker, but I do not have to force unwrap it
-                if let selectedItem{
+                if let selectedBackgroundItem{
                     AddFormViewModel.shared.formDatas = formData
-                    AddFormViewModel.shared.selectedItem = selectedItem
+                    AddFormViewModel.shared.selectedItem = selectedBackgroundItem
                 }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)
                 AddFormViewModel.shared.isFormHasBeenAdded = true
@@ -159,12 +160,12 @@ struct AddFormView: View {
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
                 }
-                .onChange(of: selectedItem){_ in
+                .onChange(of: selectedBackgroundItem){_ in
                     Task{
-                        if let data = try? await selectedItem?.loadTransferable(type: Data.self){
+                        if let data = try? await selectedBackgroundItem?.loadTransferable(type: Data.self){
                             if let image = UIImage(data: data){
-                                selectedImage = Image(uiImage: image)
-                                ImageViewModel.shared.selectedImage = selectedImage
+                                selectedBackgroundImage = Image(uiImage: image)
+                                ImageViewModel.shared.selectedImage = selectedBackgroundImage
                             }
                         } else {
                             invalidSelectedPhotoErrorShouldShow = true
@@ -175,6 +176,9 @@ struct AddFormView: View {
                     if invalidSelectedPhotoErrorShouldShow {
                         getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
                     }
+                }
+                .onAppear{
+                    AddFormViewModel.shared.isAccountPremium()
                 }
             }
             .edgesIgnoringSafeArea(.top)

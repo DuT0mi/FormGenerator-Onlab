@@ -11,15 +11,18 @@ struct CompanyAccount: Account,Codable {
         get { AccountType.Company }
         set {}
     }
+    var isPremium: Bool?
     
     init(userID: String,
          email: String,
          dateCreated: Date? = nil,
-         type: AccountType) {
+         type: AccountType,
+         isPremium: Bool = false) {
         self.userID = userID
         self.email = email
         self.dateCreated = dateCreated
         self.type = type
+        self.isPremium = isPremium
     }
     init(auth: AuthenticationDataResult){
         self.userID = auth.uid
@@ -31,6 +34,7 @@ struct CompanyAccount: Account,Codable {
         self.userID = try container.decode(String.self, forKey: .userID)
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
         self.dateCreated = try container.decodeIfPresent(Date.self, forKey: .dateCreated)
+        self.isPremium = try container.decodeIfPresent(Bool.self, forKey: .isPremium)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -39,5 +43,6 @@ struct CompanyAccount: Account,Codable {
         try container.encodeIfPresent(self.email, forKey: .email)
         try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)
         try container.encode(self.type.rawValue, forKey: .type)
+        try container.encode(self.isPremium, forKey: .isPremium)
     }
 }

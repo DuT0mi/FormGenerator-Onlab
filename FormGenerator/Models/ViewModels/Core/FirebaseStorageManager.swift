@@ -26,7 +26,6 @@ final class FirebaseStorageManager {
         return (returnedPath, returnedName)
     }
     func saveImage(image: UIImage, formID: String) async throws  -> (path: String, name: String){
-        // MARK: compress the image because it can be very huge
         guard let data = image.jpegData(compressionQuality: 1) else {
             throw AppErrors.Storage.jpegCompressionFailed
         }

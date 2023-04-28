@@ -7,6 +7,7 @@ struct SettingsView: View {
     @StateObject private var viewModel: SettingsViewModel = SettingsViewModel()
     @State private var isShowingPopup: Bool = false
     @State var  showError: Bool = false
+    @State private var premiumStatus: Bool = false
     
     private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
         content
@@ -60,12 +61,24 @@ struct SettingsView: View {
             Text("log out".uppercased())
         }
     }
-    
+    fileprivate var premiumSection: some View {
+        Section{
+            Toggle(premiumStatus ? "Turn off" : "Turn on", isOn: $premiumStatus)
+                .onChange(of: premiumStatus) { newValue in
+                    viewModel.togglePremiumStatus(newValue: newValue)
+                }
+        } header: {
+            Text("Premium".uppercased())
+        }
+    }
     var body: some View {
         if networkManager.isNetworkReachable{
             ZStack{
                 Form {
                     profileSection
+                    if viewModel.account?.type == .Company {
+                        premiumSection
+                    }
                     aboutSection
                     logOutSection
                 }
