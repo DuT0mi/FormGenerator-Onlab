@@ -10,11 +10,10 @@ struct FormPreview: View {
     var body: some View {
             ScrollView{
                 LazyVStack{
-                    ImageViewModel.shared.selectedImage!
+                    ImageViewModel.shared.selectedBackgroundImage!
                         .resizable()
                         .frame(height: ImageConstants.backgroundImageFrameHeight)
-                    
-                    CompanyCircleView(image: circleImage)
+                    CompanyCircleView(image: circleImage, optionalImage: ImageViewModel.shared.selectedCircleImage)
                         .offset(y: -100)
                         .padding(.bottom, -100)
                     

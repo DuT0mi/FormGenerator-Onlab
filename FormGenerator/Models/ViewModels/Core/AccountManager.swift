@@ -55,4 +55,10 @@ actor AccountManager{
         ]
         try await standardDocument(userID: userID).updateData(data)
     }
+    func updateAccountPremiumStatus(userID: String, isPremium: Bool) async throws {
+        let data: [String : Any] = [
+            CodingKeys.isPremium.rawValue : isPremium
+        ]
+        try await companyDocument(userID: userID).updateData(data)
+    }
 }

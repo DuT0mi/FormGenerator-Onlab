@@ -24,7 +24,11 @@ struct CreateFormView: View {
             {
                 dismiss.callAsFunction()
                 Task{
-                    try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+                    if AddFormViewModel.shared.isPremium == false{
+                        try await viewModel.createAndUploadForm(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+                    } else {
+                        try await viewModel.createAndUploadFormPremium(allQData: questionCoreData, allFData: formMetaData, context: managedObjectContext)
+                    }
                 }
                 CoreDataController().resetCoreData(context: managedObjectContext)
                 // Adjust it back, to avoid invalid access to the preview

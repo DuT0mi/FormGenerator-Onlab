@@ -10,10 +10,13 @@ struct AddFormView: View {
     @State private var formDescription: String = ""
     @State private var formType: String = ""
     @State private var isThereAnyEmptyField: Bool = false
-    @State private var selectedItem: PhotosPickerItem?
-    @State private var selectedImage: Image?
+    @State private var selectedBackgroundItem: PhotosPickerItem?
+    @State private var selectedBackgroundImage: Image?
+    @State private var selectedCircleItem: PhotosPickerItem?
+    @State private var selectedCircleImage: Image?
     @State private var photoSelectorLabel: String?
     @State private var invalidSelectedPhotoErrorShouldShow: Bool = false
+    @State private var isAccountPremium: Bool = false
     
     var backgroundImage = ImageConstants.templateBackgroundImage
     var circleImage = ImageConstants.templateCircleImage
@@ -28,31 +31,51 @@ struct AddFormView: View {
                 }
             }
     }
-    private func isEmptySomething() -> Bool{
-         formTitle.isEmpty       ||
-         formCompanyName.isEmpty ||
-         formDescription.isEmpty ||
-         formType.isEmpty        ||
-         (selectedItem == nil)
-        
+    private func isEmptySomething(isPremium: Bool) -> Bool{
+        if isPremium{
+            return(
+                formTitle.isEmpty                  ||
+                formCompanyName.isEmpty            ||
+                formDescription.isEmpty            ||
+                formType.isEmpty                   ||
+                (selectedBackgroundItem == nil)    ||
+                (selectedBackgroundImage == nil)   ||
+                (selectedCircleItem == nil)        ||
+                (selectedCircleImage == nil)
+            )
+        } else {
+            return(
+                formTitle.isEmpty                  ||
+                formCompanyName.isEmpty            ||
+                formDescription.isEmpty            ||
+                formType.isEmpty                   ||
+                (selectedBackgroundItem == nil)    ||
+                (selectedBackgroundImage == nil)
+            )
+        }
     }
-    fileprivate var photoSelector: some View {
-        PhotosPicker(selection: $selectedItem,matching: .images, photoLibrary: .shared()) {
-            Image(systemName: "photo")
+    private func photoSelector(systemName: String, selection: Binding<PhotosPickerItem?>) -> some View{
+        PhotosPicker(selection: selection, matching: .images, photoLibrary: .shared()) {
+            Image(systemName: systemName)
                 .bold()
                 .font(.system(size: 20))
         }
     }
-    fileprivate var selectedImageThumbnail: some View {
-        selectedImage!
+    private func selectedImageThumbnail(image: Image? , frameFactor ff : CGFloat = 1) -> some View{
+        image!
             .resizable()
             .scaledToFit()
-            .frame(width: ImageConstants.selectedThumbnailWidth, height: ImageConstants.selectedThumbnailHeight)
-            
+            .frame(width: ImageConstants.selectedThumbnailWidth / ff , height: ImageConstants.selectedThumbnailHeight / ff)
     }
+    private func commonDataSave(formData: FormData, selectedItem: PhotosPickerItem){
+        AddFormViewModel.shared.formDatas = formData
+        AddFormViewModel.shared.selectedItem = selectedItem
+    }
+    
     fileprivate var deleteSelectedImageButton: some View {
         Button {
-            self.selectedImage = nil
+            self.selectedBackgroundImage = nil
+            
         } label: {
             Text("❌")
         }
@@ -66,10 +89,10 @@ struct AddFormView: View {
             .overlay{
                 HStack{
                     Spacer()
-                    photoSelector
+                    photoSelector(systemName: "photo", selection: $selectedBackgroundItem)
                     Spacer()
-                    if selectedImage != nil {
-                        selectedImageThumbnail
+                    if selectedBackgroundImage != nil {
+                        selectedImageThumbnail(image: selectedBackgroundImage)
                         Spacer()
                         deleteSelectedImageButton
                         Spacer()
@@ -77,16 +100,43 @@ struct AddFormView: View {
                 }
             }
     }
-    // TODO: after bg image
-    fileprivate var circleImageComponent: some View {
-        CompanyCircleView(image: circleImage)
+    fileprivate var cameraComponent: some View {
+        Button {
+            //TODO: ?
+        } label: {
+            Image(systemName: "camera.fill")
+        }
+
+    }
+    fileprivate var circleImageComponentPremium: some View {
+        CompanyCircleView(image: circleImage, optionalImage: selectedCircleImage)
             .offset(y: -100)
             .padding(.bottom, -100)
-            .opacity(0.6)
+            .opacity(0.2)
+            .overlay{
+                LazyHStack{
+                    photoSelector(systemName: "photo", selection: $selectedCircleItem)
+                    Spacer()
+                    if selectedCircleImage != nil {
+                        selectedImageThumbnail(image: selectedCircleImage)
+                    }
+                    Spacer()
+                    cameraComponent
+                }
+            }
+            .onTapGesture {
+                self.selectedCircleImage = nil
+            }
+    }
+    fileprivate var circleImageComponent: some View {
+        CompanyCircleView(image: circleImage, optionalImage: selectedCircleImage)
+            .offset(y: -100)
+            .padding(.bottom, -100)
+            .opacity(0.2)
     }
     fileprivate var buttonComponent: some View {
-        Button("Add"){
-            if isEmptySomething(){
+        Button("Add"){ /* I have to use the < == true> because I don't want to force unwrapping. */
+            if isEmptySomething(isPremium: (AddFormViewModel.shared.isPremium == true) ? true : false){
                 isThereAnyEmptyField = true
             } else {
                 let formData = FormData(id: UUID(),
@@ -95,13 +145,14 @@ struct AddFormView: View {
                                         companyID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!,
                                         companyName: formCompanyName,
                                         description: formDescription,
-                                        answers: "answers",
-                                        backgroundImagePath: nil,
-                                        backgroundImageURL: nil)
-                // Never will be "nil" because of the input checker, but I do not have to force unwrap it
-                if let selectedItem{
-                    AddFormViewModel.shared.formDatas = formData
-                    AddFormViewModel.shared.selectedItem = selectedItem
+                                        answers: "answers")
+                
+                if let selectedBackgroundItem{
+                    commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
+                } // Premium user
+                if AddFormViewModel.shared.isPremium == true, let selectedCircleItem, let selectedBackgroundItem{
+                    commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
+                    AddFormViewModel.shared.selectedPremiumItem = selectedCircleItem
                 }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)
                 AddFormViewModel.shared.isFormHasBeenAdded = true
@@ -122,8 +173,11 @@ struct AddFormView: View {
             ScrollView{
                 LazyVStack{
                     backgroundImageComponent
-                    
-                    circleImageComponent
+                    if AddFormViewModel.shared.isPremium == true { /* Easier than unwrapping */
+                        circleImageComponentPremium
+                    } else {
+                        circleImageComponent
+                    }
                     
                     LazyVStack(alignment: .leading){
                         TextField("Title", text: $formTitle)
@@ -157,12 +211,24 @@ struct AddFormView: View {
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
                 }
-                .onChange(of: selectedItem){_ in
+                .onChange(of: selectedBackgroundItem){_ in
                     Task{
-                        if let data = try? await selectedItem?.loadTransferable(type: Data.self){
+                        if let data = try? await selectedBackgroundItem?.loadTransferable(type: Data.self){
                             if let image = UIImage(data: data){
-                                selectedImage = Image(uiImage: image)
-                                ImageViewModel.shared.selectedImage = selectedImage
+                                selectedBackgroundImage = Image(uiImage: image)
+                                ImageViewModel.shared.selectedBackgroundImage = selectedBackgroundImage
+                            }
+                        } else {
+                            invalidSelectedPhotoErrorShouldShow = true
+                        }
+                    }
+                }
+                .onChange(of: selectedCircleItem){_ in
+                    Task{
+                        if let data = try? await selectedCircleItem?.loadTransferable(type: Data.self){
+                            if let image = UIImage(data: data){
+                                selectedCircleImage = Image(uiImage: image)
+                                ImageViewModel.shared.selectedCircleImage = selectedCircleImage
                             }
                         } else {
                             invalidSelectedPhotoErrorShouldShow = true
@@ -173,6 +239,9 @@ struct AddFormView: View {
                     if invalidSelectedPhotoErrorShouldShow {
                         getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
                     }
+                }
+                .onAppear{
+                    AddFormViewModel.shared.isAccountPremium()
                 }
             }
             .edgesIgnoringSafeArea(.top)
