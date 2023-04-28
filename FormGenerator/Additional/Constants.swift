@@ -143,3 +143,6 @@ struct PopoverlayConstants{
         static let top: CGFloat = 0
     }
 }
+struct FormConstants {
+    static let defaultDownloadingLimit: Int = 5
+}

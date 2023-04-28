@@ -17,6 +17,9 @@ actor FormManager{
     }()
     
     private let formCollection = Firestore.firestore().collection("forms")
+    private func getAllFormQuery() -> Query {
+        formCollection
+    }
     private func formSubCollectionOfQuestionDocument(formID: String, questionID: String) -> DocumentReference{
         formDocument(formID: formID).collection("form_questions").document(questionID)
     }
@@ -40,8 +43,14 @@ actor FormManager{
                 try await formSubCollectionOfQuestionDocument(formID: form.id.uuidString, questionID: question.id.uuidString).setData(dict)
             }
     }
-    func downloadAllForm() async throws -> [FormData]{
-        try await formCollection.getDocuments(as: FormData.self)
+    func downloadAllForm(limit: Int, lastDocument: DocumentSnapshot?) async throws -> (forms: [FormData], lastDocument: DocumentSnapshot?){
+        let formsQuery: Query = self.getAllFormQuery()
+        
+        return try await formsQuery
+            .limit(to: limit)
+            .startIfExists(afterDocument: lastDocument)
+            .getDocumentsWithSnapshot(as: FormData.self)
+            
     }
     func updateFormProfileImagePath(formID: String, path: String?, url: String?) async throws {
         let data: [String: Any] = [
@@ -50,4 +59,8 @@ actor FormManager{
         ]
         try await formDocument(formID: formID).updateData(data)
     }
+    func getAllFormCount() async throws -> Int {
+        try await formCollection.aggregationCount()
+    }
+
 }

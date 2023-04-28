@@ -17,6 +17,14 @@ struct FormsListView: View {
                                 }label: {
                                     FormItemView(form: form)
                                 }
+                                if form == viewModel.forms.last{
+                                    if let formsOnServerCount = viewModel.allFormCountOnServer, formsOnServerCount != viewModel.forms.count{
+                                        ProgressView()
+                                            .onAppear{
+                                                viewModel.downloadAllForm()
+                                            }
+                                    }
+                                }
                             }
                         }
                         .padding()
@@ -36,7 +44,7 @@ struct FormsListView: View {
                     }
                     .refreshableCompat(onRefresh: { done in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            viewModel.downloadAllForm()
+                            viewModel.pullRefreshDownloadAllForm()
                           done()
                         }
                     }, progress: { state in

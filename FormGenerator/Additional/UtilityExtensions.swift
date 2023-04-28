@@ -42,6 +42,32 @@ extension Query {
             try documentSnapshot.data(as: T.self)
         })
     }
+    func startIfExists(afterDocument lastDocument: DocumentSnapshot?) -> Query {
+        /// Instead of using that
+        ///  <
+        ///     guard let lastDocument else {return self}
+        ///     ...
+        ///  >
+        if let lastDocument {
+            return self
+                .start(afterDocument: lastDocument)
+        } else {
+            return self
+        }
+    }
+    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (forms: [T], lastDocument: DocumentSnapshot?) where T : Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        
+        let products =  try snapshot.documents.map({document in
+            try document.data(as: T.self)
+        })
+        return (products, snapshot.documents.last)
+    }
+    func aggregationCount() async throws -> Int {
+        let snapshot = try await self.count.getAggregation(source: .server)
+        return Int(truncating: snapshot.count)
+    }
 }
 
 struct AnimatedActionButton: View {
