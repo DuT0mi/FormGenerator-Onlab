@@ -79,7 +79,9 @@ struct SettingsView: View {
                     if viewModel.account?.type == .Company {
                         premiumSection
                             .onAppear{
-                                self.premiumStatus = (((viewModel.account as? CompanyAccount)?.isPremium) ?? false)
+                                Task{
+                                    self.premiumStatus = try await AccountManager.shared.getCompanyAccount(userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!).isPremium ?? false
+                                }
                             }
                     }
                     aboutSection
@@ -94,9 +96,6 @@ struct SettingsView: View {
                         } label: {
                             Image(systemName: "gearshape")
                         }
-
-
-
                     }
                 }
             .task {

@@ -88,8 +88,10 @@ struct FormViewDetail: View {
                     .buttonBorderShape(.capsule)
                 }
             }
-            .task{
-                isAccountPremium = ((try? await AddFormViewModel.shared.isAccountPremium()) != nil)
+            .onAppear{
+                Task{
+                    isAccountPremium = try await AccountManager.shared.getCompanyAccount(userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!).isPremium ?? false                    
+                }
             }
             .edgesIgnoringSafeArea(.top)
     }

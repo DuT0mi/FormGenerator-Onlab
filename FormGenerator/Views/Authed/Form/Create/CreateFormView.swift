@@ -13,6 +13,7 @@ struct CreateFormView: View {
     @State private var showFormPreview: Bool = false
     @State private var editMode: EditMode = .inactive
     @State private var isQuestionsCountZero: Bool = false
+    @State private var isAccountPremium: Bool = false
     
     fileprivate var tap: some Gesture {
         TapGesture().onEnded {  }
@@ -20,7 +21,7 @@ struct CreateFormView: View {
     fileprivate var submitButton: some View {
         Button("Submit Form"){
             if isThereAtLeastOneQuestion(),
-               AddFormViewModel.shared.isFormHasBeenAdded
+               AddFormViewModel.shared.isFormHasBeenAdded.1 == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
             {
                 dismiss.callAsFunction()
                 Task{
@@ -32,7 +33,7 @@ struct CreateFormView: View {
                 }
                 CoreDataController().resetCoreData(context: managedObjectContext)
                 // Adjust it back, to avoid invalid access to the preview
-                AddFormViewModel.shared.isFormHasBeenAdded = false
+                AddFormViewModel.shared.isFormHasBeenAdded = (false,nil)
             } else {
                 isQuestionsCountZero = true
             }
@@ -57,7 +58,9 @@ struct CreateFormView: View {
             AnimatedActionButton(title: "Add", systemImage: "plus"){
                 showAddFormView = true
             }
-            if AddFormViewModel.shared.isFormHasBeenAdded { // If the user has any form the show preview
+            if AddFormViewModel.shared.isFormHasBeenAdded.0,
+               AddFormViewModel.shared.isFormHasBeenAdded.1 == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+            { // If the user has any form the show preview
                 AnimatedActionButton(title: "Preview", systemImage: "eye"){
                     showFormPreview = true
                 }
@@ -89,7 +92,7 @@ struct CreateFormView: View {
         }
     }
     private func isThereAtLeastOneQuestion() -> Bool{
-        questionCoreData.count > 0
+        questionCoreData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).count > 0        
     }
     
     var body: some View {

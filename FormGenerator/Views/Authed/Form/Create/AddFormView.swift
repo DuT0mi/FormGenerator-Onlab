@@ -174,7 +174,7 @@ struct AddFormView: View {
                     commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
                 }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)
-                AddFormViewModel.shared.isFormHasBeenAdded = true
+                AddFormViewModel.shared.isFormHasBeenAdded = (true,UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue))
                 dismiss.callAsFunction()
             }
         }
@@ -262,11 +262,6 @@ struct AddFormView: View {
                         }
                     }
                 })
-                .onChange(of: AddFormViewModel.shared.isPremium, perform: { newValue in
-                    if let newValue{
-                        isAccountPremium = newValue
-                    }
-                })
                 .overlay{
                     if invalidSelectedPhotoErrorShouldShow {
                         getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
@@ -274,7 +269,7 @@ struct AddFormView: View {
                 }
                 .onAppear{
                     Task {
-                        isAccountPremium = ((try? await AddFormViewModel.shared.isAccountPremium()) != nil)
+                        isAccountPremium = try await AccountManager.shared.getCompanyAccount(userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!).isPremium ?? false
                     }
                 }
             }

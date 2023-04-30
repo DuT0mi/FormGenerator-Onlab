@@ -20,6 +20,8 @@ class CoreDataController: ObservableObject {
     private func resetFormData(context: NSManagedObjectContext){
         context.perform{
             let fetchRequestF: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FormCoreData")
+            let predicate = NSPredicate(format: "cID == %@", argumentArray: [UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue) as Any])
+            fetchRequestF.predicate = predicate
             let batchDeleteRequestF = NSBatchDeleteRequest(fetchRequest: fetchRequestF)
             do {
                 try context.execute(batchDeleteRequestF)
@@ -67,9 +69,13 @@ class CoreDataController: ObservableObject {
         context.perform{
             // Fetch all entities from Core Data and delete them
             let fetchRequestQ: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "QuestionCoreData")
+            let predicateQ = NSPredicate(format: "uid == %@", argumentArray: [UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue) as Any])
+                fetchRequestQ.predicate = predicateQ
             let batchDeleteRequestQ = NSBatchDeleteRequest(fetchRequest: fetchRequestQ)
             
             let fetchRequestF: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FormCoreData")
+            let predicateF = NSPredicate(format: "cID == %@", argumentArray: [UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue) as Any])
+            fetchRequestF.predicate = predicateF
             let batchDeleteRequestF = NSBatchDeleteRequest(fetchRequest: fetchRequestF)
             
             do {

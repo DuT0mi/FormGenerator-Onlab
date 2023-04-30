@@ -41,6 +41,8 @@ final class FormListViewModel: ObservableObject {
                 self.forms = []
                 self.lastDocument = nil
                 downloadAllForm(withoutLimit: true)
+            } else {
+                self.forms = []
             }
         }
     }
