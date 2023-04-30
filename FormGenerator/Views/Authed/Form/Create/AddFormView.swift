@@ -151,7 +151,7 @@ struct AddFormView: View {
     }
     fileprivate var buttonComponent: some View {
         Button("Add"){
-            if isEmptySomething(isPremium: (AddFormViewModel.shared.isPremium == true) ? true : false){
+            if isEmptySomething(isPremium: isAccountPremium ){
                 isThereAnyEmptyField = true
             } else {
                 let formData = FormData(id: UUID(),
@@ -165,7 +165,7 @@ struct AddFormView: View {
                 if let selectedBackgroundItem{
                     commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
                 } // Premium user
-                if AddFormViewModel.shared.isPremium == true, let selectedBackgroundItem{
+                if isAccountPremium , let selectedBackgroundItem{
                     if let selectedCircleItem, !isCameraTookPhoto{
                         AddFormViewModel.shared.selectedPremiumItem = selectedCircleItem
                     } else {
@@ -192,7 +192,7 @@ struct AddFormView: View {
             ScrollView{
                 LazyVStack{
                     backgroundImageComponent
-                    if AddFormViewModel.shared.isPremium == true { /* Easier than force unwrapping */
+                    if isAccountPremium {
                         circleImageComponentPremium
                     } else {
                         circleImageComponent
@@ -249,7 +249,7 @@ struct AddFormView: View {
                                 selectedCircleImage = Image(uiImage: image)
                                 ImageViewModel.shared.selectedCircleImage = selectedCircleImage
                             }
-                        } else {
+                        } else if !isCameraTookPhoto {
                             invalidSelectedPhotoErrorShouldShow = true
                         }
                     }
@@ -262,6 +262,11 @@ struct AddFormView: View {
                         }
                     }
                 })
+                .onChange(of: AddFormViewModel.shared.isPremium, perform: { newValue in
+                    if let newValue{
+                        isAccountPremium = newValue
+                    }
+                })
                 .overlay{
                     if invalidSelectedPhotoErrorShouldShow {
                         getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
@@ -269,7 +274,7 @@ struct AddFormView: View {
                 }
                 .onAppear{
                     Task {
-                        try? await AddFormViewModel.shared.isAccountPremium()
+                        isAccountPremium = ((try? await AddFormViewModel.shared.isAccountPremium()) != nil)
                     }
                 }
             }
