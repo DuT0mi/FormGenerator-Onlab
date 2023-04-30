@@ -35,7 +35,7 @@ actor FormManager{
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
             try await uploadFormToDatabase(form: form)
         
-            for question in questions {
+        for question in questions {
                 guard let data = try? encoder.encode(question) else {throw URLError(.badURL)}
                 let dict: [String : Any] = [
                     Question.CodingKeys.formQuestion.rawValue : data

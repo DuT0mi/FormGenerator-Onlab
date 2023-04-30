@@ -45,6 +45,7 @@ struct PopupOverlay: View {
                         .stroke(.black, lineWidth: PopoverlayConstants.lineWidth)
                 )
         }
+        .disabled(showInfo ? true : false)
     }
         
     fileprivate var infoComponent: some View {
@@ -73,7 +74,7 @@ struct PopupOverlay: View {
                     viewModel.authProviders.contains(.google) {
                     ssoSection
                 } else {
-                    getemailSection()
+                    getEmailSection()
                 }
             }
             .padding()
@@ -92,11 +93,12 @@ extension PopupOverlay {
         buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
             Task {
                 try await viewModel.deleteUser()
+                print("delete")
                 try user.logout()
             }
         }
     }
-    func getemailSection() -> some View {
+    func getEmailSection() -> some View {
         Group{
             buttonTemplate(text: self.showInfo ? "at least 6 digit" : "Update password") {
                 Task{
@@ -113,8 +115,9 @@ extension PopupOverlay {
                 }
             }
             buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
-                Task {
-                    try await viewModel.deleteUser()                    
+                Task {                    
+                    try await viewModel.deleteUser()
+                    print("delete")
                     try user.logout()
                 }
             }

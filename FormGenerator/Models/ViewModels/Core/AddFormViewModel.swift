@@ -3,7 +3,7 @@ import _PhotosUI_SwiftUI
 
 @MainActor
 final class AddFormViewModel: ObservableObject{
-    @Published var isFormHasBeenAdded: Bool
+    @Published var isFormHasBeenAdded: (Bool, String?) = (false,nil)
     @Published var formDatas: FormData?
     @Published var selectedItem: PhotosPickerItem?
     @Published var selectedPremiumItem: PhotosPickerItem?
@@ -12,9 +12,7 @@ final class AddFormViewModel: ObservableObject{
     
     
    static let shared = AddFormViewModel()
-   private init(){
-        _isFormHasBeenAdded = .init(initialValue: false)
-    }
+  
     func saveProfileImage(item: PhotosPickerItem, formID: String){
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else {return}
