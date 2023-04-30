@@ -64,6 +64,7 @@
 		1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8529E43C94002EF2BA /* CoreDataController.swift */; };
 		1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8729E4410C002EF2BA /* AddQuestionView.swift */; };
 		1A514A8A29E4479B002EF2BA /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8929E4479B002EF2BA /* EditQuestionView.swift */; };
+		1A65770129FE820400D1EE81 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65770029FE820400D1EE81 /* Camera.swift */; };
 		1A6B321929C747D600551E8F /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B321829C747D600551E8F /* SpaceView.swift */; };
 		1A739E6A29CA30140031FD63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A739E6929CA30140031FD63 /* Alamofire */; };
 		1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650C29DC6D470023067A /* SettingsViewModel.swift */; };
@@ -206,6 +207,7 @@
 		1A514A8729E4410C002EF2BA /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
 		1A514A8929E4479B002EF2BA /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
 		1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID.xcdatamodel; sourceTree = "<group>"; };
+		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A6B321829C747D600551E8F /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		1A7E650C29DC6D470023067A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				1A319D2229B3AC3200183B94 /* Constants.swift */,
 				1A282EF629AE86DC00DAFD9B /* UtilityExtensions.swift */,
 				1A439E3729F8250600E486E6 /* Errors.swift */,
+				1A65770029FE820400D1EE81 /* Camera.swift */,
 			);
 			path = Additional;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
 				1A4D2B4F29F56D9C007DF17A /* PopoverlayView.swift in Sources */,
 				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
+				1A65770129FE820400D1EE81 /* Camera.swift in Sources */,
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
@@ -1128,6 +1132,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FormGenerator/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera can be used to set the background of an FormGenerator.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1171,6 +1176,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FormGenerator/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera can be used to set the background of an FormGenerator.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

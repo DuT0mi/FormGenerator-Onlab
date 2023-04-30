@@ -7,10 +7,11 @@ final class AddFormViewModel: ObservableObject{
     @Published var formDatas: FormData?
     @Published var selectedItem: PhotosPickerItem?
     @Published var selectedPremiumItem: PhotosPickerItem?
+    @Published var selectedPremiumItemDataIfCameraIsUsed: Data?
     @Published var isPremium: Bool?
     
     
-    static let shared = AddFormViewModel()
+   static let shared = AddFormViewModel()
    private init(){
         _isFormHasBeenAdded = .init(initialValue: false)
     }
@@ -26,7 +27,7 @@ final class AddFormViewModel: ObservableObject{
     }
     func savePremiumProfileImage(item: PhotosPickerItem, formID: String){
         Task {
-            guard let data = try await item.loadTransferable(type: Data.self) else {return}
+            guard let data = ((selectedPremiumItemDataIfCameraIsUsed) != nil) ? selectedPremiumItemDataIfCameraIsUsed : try await item.loadTransferable(type: Data.self) else {return}
             let (path, _) = try await FirebaseStorageManager.shared.savePremiumImage(data: data, formID: formID)
             let url = try await FirebaseStorageManager.shared.getUrlForImage(path: path)
             formDatas?.circleImagePath = path
