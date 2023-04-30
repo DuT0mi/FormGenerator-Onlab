@@ -17,10 +17,23 @@ struct AddFormView: View {
     @State private var photoSelectorLabel: String?
     @State private var invalidSelectedPhotoErrorShouldShow: Bool = false
     @State private var isAccountPremium: Bool = false
+    @State private var showCameraForCircleImagePhoto: Bool = false
+    @State private var isCameraTookPhoto: Bool = false
+    @State private var handledPickedImageData: Data?
     
     var backgroundImage = ImageConstants.templateBackgroundImage
     var circleImage = ImageConstants.templateCircleImage
     
+    
+    private func handlePickedImage(_ image: UIImage?){
+        if let imageData = image?.jpegData(compressionQuality: 1.0){
+            selectedCircleImage = Image(uiImage: UIImage(data: imageData)!)
+            handledPickedImageData = imageData
+            selectedCircleItem = nil
+            isCameraTookPhoto = true
+        }
+        showCameraForCircleImagePhoto = false
+    }
     private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
         content
             .onAppear {
@@ -34,13 +47,13 @@ struct AddFormView: View {
     private func isEmptySomething(isPremium: Bool) -> Bool{
         if isPremium{
             return(
-                formTitle.isEmpty                  ||
-                formCompanyName.isEmpty            ||
-                formDescription.isEmpty            ||
-                formType.isEmpty                   ||
-                (selectedBackgroundItem == nil)    ||
-                (selectedBackgroundImage == nil)   ||
-                (selectedCircleItem == nil)        ||
+                formTitle.isEmpty                                     ||
+                formCompanyName.isEmpty                               ||
+                formDescription.isEmpty                               ||
+                formType.isEmpty                                      ||
+                (selectedBackgroundItem == nil)                       ||
+                (selectedBackgroundImage == nil)                      ||
+                ((selectedCircleItem == nil) && (!isCameraTookPhoto)) ||
                 (selectedCircleImage == nil)
             )
         } else {
@@ -102,7 +115,7 @@ struct AddFormView: View {
     }
     fileprivate var cameraComponent: some View {
         Button {
-            //TODO: ?
+            showCameraForCircleImagePhoto = true
         } label: {
             Image(systemName: "camera.fill")
         }
@@ -126,6 +139,8 @@ struct AddFormView: View {
             }
             .onTapGesture {
                 self.selectedCircleImage = nil
+                self.handledPickedImageData = nil
+                self.isCameraTookPhoto = false
             }
     }
     fileprivate var circleImageComponent: some View {
@@ -135,7 +150,7 @@ struct AddFormView: View {
             .opacity(0.2)
     }
     fileprivate var buttonComponent: some View {
-        Button("Add"){ /* I have to use the < == true> because I don't want to force unwrapping. */
+        Button("Add"){
             if isEmptySomething(isPremium: (AddFormViewModel.shared.isPremium == true) ? true : false){
                 isThereAnyEmptyField = true
             } else {
@@ -150,9 +165,13 @@ struct AddFormView: View {
                 if let selectedBackgroundItem{
                     commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
                 } // Premium user
-                if AddFormViewModel.shared.isPremium == true, let selectedCircleItem, let selectedBackgroundItem{
+                if AddFormViewModel.shared.isPremium == true, let selectedBackgroundItem{
+                    if let selectedCircleItem, !isCameraTookPhoto{
+                        AddFormViewModel.shared.selectedPremiumItem = selectedCircleItem
+                    } else {
+                        AddFormViewModel.shared.selectedPremiumItemDataIfCameraIsUsed = handledPickedImageData
+                    }
                     commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
-                    AddFormViewModel.shared.selectedPremiumItem = selectedCircleItem
                 }
                 CoreDataController().addFormMetaData(context: managedObjectContext, formData: formData)
                 AddFormViewModel.shared.isFormHasBeenAdded = true
@@ -173,7 +192,7 @@ struct AddFormView: View {
             ScrollView{
                 LazyVStack{
                     backgroundImageComponent
-                    if AddFormViewModel.shared.isPremium == true { /* Easier than unwrapping */
+                    if AddFormViewModel.shared.isPremium == true { /* Easier than force unwrapping */
                         circleImageComponentPremium
                     } else {
                         circleImageComponent
@@ -235,6 +254,14 @@ struct AddFormView: View {
                         }
                     }
                 }
+                .onChange(of: handledPickedImageData, perform: { cameraData in
+                    if let cameraData {
+                        if let image = UIImage(data: cameraData){
+                            selectedCircleImage = Image(uiImage: image)
+                            ImageViewModel.shared.selectedCircleImage = selectedCircleImage
+                        }
+                    }
+                })
                 .overlay{
                     if invalidSelectedPhotoErrorShouldShow {
                         getPopUpContent(content: InvalidView(text: "Image format should be jpeg"), extratime: PopUpMessageTimer.onScreenTimeExtended)
@@ -244,6 +271,11 @@ struct AddFormView: View {
                     AddFormViewModel.shared.isAccountPremium()
                 }
             }
+            .sheet(isPresented: $showCameraForCircleImagePhoto, content: {
+                Camera { image in
+                    handlePickedImage(image)
+                }
+            })
             .edgesIgnoringSafeArea(.top)
     }
 }
