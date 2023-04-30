@@ -12,7 +12,6 @@ struct FormViewDetail: View {
     
     var body: some View {
             ScrollView{
-                
                 LazyVStack{
                     if let urlString = form.backgroundImageURL, let url = URL(string: urlString) {
                         AsyncImage(url: url){ image in
@@ -26,7 +25,7 @@ struct FormViewDetail: View {
                     }
                     if  let urlCircle = form.circleImageURL,
                         let url = URL(string: urlCircle),
-                        AddFormViewModel.shared.isPremium == true{
+                        isAccountPremium{
                         AsyncImage(url: url){ phase in
                             switch phase{
                                 case .success(let image):
@@ -88,9 +87,9 @@ struct FormViewDetail: View {
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
                 }
-                .onAppear{
-                    AddFormViewModel.shared.isAccountPremium()
-                }
+            }
+            .task{
+                isAccountPremium = ((try? await AddFormViewModel.shared.isAccountPremium()) != nil)
             }
             .edgesIgnoringSafeArea(.top)
     }

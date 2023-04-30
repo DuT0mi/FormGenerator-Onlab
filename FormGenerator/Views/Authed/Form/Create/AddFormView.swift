@@ -268,7 +268,9 @@ struct AddFormView: View {
                     }
                 }
                 .onAppear{
-                    AddFormViewModel.shared.isAccountPremium()
+                    Task {
+                        try? await AddFormViewModel.shared.isAccountPremium()
+                    }
                 }
             }
             .sheet(isPresented: $showCameraForCircleImagePhoto, content: {
