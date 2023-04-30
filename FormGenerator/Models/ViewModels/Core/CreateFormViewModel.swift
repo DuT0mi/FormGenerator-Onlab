@@ -52,7 +52,7 @@ final class CreateFormViewModel: ObservableObject {
     private func uploadToFireBaseStorage(selectedItem: PhotosPickerItem, formData: FormData) async throws {
         AddFormViewModel.shared.saveProfileImage(item: selectedItem, formID: formData.id.uuidString)
     }
-    private func uploadToFireBaseStoragePremiumItem(selectedItemPremium: PhotosPickerItem, formData: FormData) async throws {
+    private func uploadToFireBaseStoragePremiumItem(selectedItemPremium: PhotosPickerItem?, formData: FormData) async throws {
         AddFormViewModel.shared.savePremiumProfileImage(item: selectedItemPremium, formID: formData.id.uuidString)
     }
     private func commonUploadToFirebaseStorage(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
@@ -66,7 +66,7 @@ final class CreateFormViewModel: ObservableObject {
     }
     func createAndUploadFormPremium(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
         try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context)
-        try await uploadToFireBaseStoragePremiumItem(selectedItemPremium: AddFormViewModel.shared.selectedPremiumItem!, formData: AddFormViewModel.shared.formDatas!)
+        try await uploadToFireBaseStoragePremiumItem(selectedItemPremium: AddFormViewModel.shared.selectedPremiumItem, formData: AddFormViewModel.shared.formDatas!)
         try await uploadForm()
     }
 }
