@@ -1,7 +1,10 @@
 import Foundation
 
 enum SelectedType: String, CaseIterable{
-    case A
-    case B
-    case none
+    case Default
+    case Image
+    case MultipleChoice
+    case Text
+    case TrueOrFalse
+    case Voice
 }

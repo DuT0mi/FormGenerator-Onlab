@@ -8,10 +8,13 @@ struct FormPreview: View {
     var backgroundImage: String = ImageConstants.templateBackgroundImage
     var circleImage: String = ImageConstants.templateCircleImage
     
+    fileprivate var backgroundImageComponent: Image{
+         ImageViewModel.shared.selectedBackgroundImage!
+    }
     var body: some View {
             ScrollView{
                 LazyVStack{
-                    ImageViewModel.shared.selectedBackgroundImage!
+                    backgroundImageComponent
                         .resizable()
                         .frame(height: ImageConstants.backgroundImageFrameHeight)
                     CompanyCircleView(image: circleImage, optionalImage: isAccountPremium ? ImageViewModel.shared.selectedCircleImage : nil)

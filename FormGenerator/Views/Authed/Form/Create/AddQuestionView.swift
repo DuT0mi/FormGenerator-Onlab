@@ -5,7 +5,7 @@ struct AddQuestionView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
-    @State private var questionType: SelectedType = .none
+    @State private var questionType: SelectedType = .Default
     @State private var isQuestionEmpty: Bool = false
     
     private func checkIfUserHasAddedQuestion() -> Bool {
