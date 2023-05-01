@@ -94,8 +94,11 @@ struct AddFormView: View {
         }
 
     }
+    fileprivate var backgroundImageComponentIfThereIsValidImage: Image {
+        ((selectedBackgroundImage) != nil) ? selectedBackgroundImage! :  Image(backgroundImage)
+    }
     fileprivate var backgroundImageComponent: some View {
-        Image(backgroundImage)
+        backgroundImageComponentIfThereIsValidImage
             .resizable()
             .frame(height: ImageConstants.backgroundImageFrameHeight)
             .opacity(ImageConstants.backgroundImageOpacityFactor)

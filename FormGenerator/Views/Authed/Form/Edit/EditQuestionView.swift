@@ -5,7 +5,7 @@ struct EditQuestionView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.dismiss) private var dismiss
     @State private var questionTitle: String = ""
-    @State private var questionType: SelectedType = .none
+    @State private var questionType: SelectedType = .Default
     @State private var isQuestionEmpty: Bool = false
     
     var question: FetchedResults<QuestionCoreData>.Element
@@ -32,7 +32,7 @@ struct EditQuestionView: View {
                 }
             }
             .onAppear{
-                typeSelected(type: SelectedType(rawValue: question.type!) ?? .none)
+                typeSelected(type: SelectedType(rawValue: question.type!) ?? .Default)
             }
         }
     }

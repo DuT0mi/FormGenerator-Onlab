@@ -7,7 +7,7 @@ import PhotosUI
 final class CreateFormViewModel: ObservableObject {
     @Published private(set) var form: FormData?
     @Published var formText: String = ""
-    @Published var formType: SelectedType = .none
+    @Published var formType: SelectedType = .Default
     
     private var formQuestions: [Question] = []
     private var formMetaData: [FormData] = []
