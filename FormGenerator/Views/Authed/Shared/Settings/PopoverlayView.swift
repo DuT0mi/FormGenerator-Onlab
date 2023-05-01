@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PopupOverlay: View {
+    @Environment (\.managedObjectContext) private var managedObjectContext
     @ObservedObject var viewModel: SettingsViewModel
     @ObservedObject var user: UserViewModel
     @Binding var showError: Bool
@@ -92,7 +93,7 @@ extension PopupOverlay {
     var ssoSection: some View {
         buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
             Task {
-                try await viewModel.deleteUser()
+                try await viewModel.deleteUser(context: managedObjectContext)
                 print("delete")
                 try user.logout()
             }
@@ -116,8 +117,7 @@ extension PopupOverlay {
             }
             buttonTemplate(text: self.showInfo ? "Permamently? " : "Delete account") {
                 Task {                    
-                    try await viewModel.deleteUser()
-                    print("delete")
+                    try await viewModel.deleteUser(context: managedObjectContext)
                     try user.logout()
                 }
             }

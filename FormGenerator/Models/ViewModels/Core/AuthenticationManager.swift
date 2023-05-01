@@ -3,6 +3,7 @@ import FirebaseAuth
 import GoogleSignIn
 import GoogleSignInSwift
 import SwiftUI
+import CoreData
 
 enum AuthProviderOtpion: String { // String for rawValue
     case email = "password"
@@ -13,7 +14,6 @@ enum AuthProviderOtpion: String { // String for rawValue
 
 @MainActor
 final class AuthenticationManager{
-    @Environment (\.managedObjectContext) private var managedObjectContext
     fileprivate let signInAppleHelper = AppleSignInViewModel()
     
     private func setIDToUserDefaults(ID: String){
@@ -99,12 +99,12 @@ final class AuthenticationManager{
         }
         return AuthenticationDataResult(user: user)
     }
-    func deleteUser() async throws {
+    func deleteUser(context: NSManagedObjectContext) async throws {
         guard let user = Auth.auth().currentUser else {
             throw AppErrors.AuthenticationError.userIsNotAuthenticated
         }
         // Reset the coredata
-        CoreDataController().resetCoreData(context: managedObjectContext)
+        CoreDataController().resetCoreData(context: context)
         // Just from the authentication
         try await user.delete()
         // From the DB
