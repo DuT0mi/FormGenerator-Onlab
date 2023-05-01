@@ -2,7 +2,6 @@ import SwiftUI
 
 struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
-    @State private var isAccountPremium: Bool = false
     var form: FormData
     
     var backgroundImage: String = ImageConstants.templateBackgroundImage
@@ -24,8 +23,7 @@ struct FormViewDetail: View {
                         }
                     }
                     if  let urlCircle = form.circleImageURL,
-                        let url = URL(string: urlCircle),
-                        isAccountPremium{
+                        let url = URL(string: urlCircle){
                         AsyncImage(url: url){ phase in
                             switch phase{
                                 case .success(let image):
@@ -86,11 +84,6 @@ struct FormViewDetail: View {
                     .padding()
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
-                }
-            }
-            .onAppear{
-                Task{
-                    isAccountPremium = try await AccountManager.shared.getCompanyAccount(userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!).isPremium ?? false                    
                 }
             }
             .edgesIgnoringSafeArea(.top)

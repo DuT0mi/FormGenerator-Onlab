@@ -1,5 +1,5 @@
 import Foundation
-
+import CoreData
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
@@ -20,8 +20,8 @@ final class SettingsViewModel: ObservableObject {
             self.authProviders = providers
         }
     }
-    func deleteUser() async throws {
-        try await authManager.deleteUser()
+    func deleteUser(context: NSManagedObjectContext) async throws {
+        try await authManager.deleteUser(context: context)
     }
     func updatePassword(password: String) async throws {
         try await authManager.updatePassword(password: password)
