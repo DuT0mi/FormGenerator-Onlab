@@ -74,6 +74,7 @@
 		1A849BFE29EC60BC006F94C6 /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 1A849BFD29EC60BC006F94C6 /* SwiftUIPullToRefresh */; };
 		1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
+		1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */; };
 		1AA43E7129D33CD400235CAD /* EmailValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43E7029D33CD400235CAD /* EmailValidationTests.swift */; };
 		1AA43E7E29D3405E00235CAD /* LoginViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43E7D29D3405E00235CAD /* LoginViewTest.swift */; };
 		1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43E8629D3480E00235CAD /* EmailValidation.swift */; };
@@ -216,6 +217,7 @@
 		1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormViewModel.swift; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewModel.swift; sourceTree = "<group>"; };
 		1AA43E6E29D33CD400235CAD /* FormGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA43E7029D33CD400235CAD /* EmailValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationTests.swift; sourceTree = "<group>"; };
 		1AA43E7B29D3405E00235CAD /* FormGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,9 +366,8 @@
 		1A2411A029EAD40400AFF138 /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				1AC519BB29E2DDCA00665361 /* CreateFormView.swift */,
-				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
-				1A24119E29EAD3E800AFF138 /* AddFormView.swift */,
+				1AA3F5302A058A28009B29A0 /* FormParts */,
+				1AA3F52F2A058A1E009B29A0 /* Question */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -562,6 +563,23 @@
 			path = ErrorScreen;
 			sourceTree = "<group>";
 		};
+		1AA3F52F2A058A1E009B29A0 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		1AA3F5302A058A28009B29A0 /* FormParts */ = {
+			isa = PBXGroup;
+			children = (
+				1A24119E29EAD3E800AFF138 /* AddFormView.swift */,
+				1AC519BB29E2DDCA00665361 /* CreateFormView.swift */,
+			);
+			path = FormParts;
+			sourceTree = "<group>";
+		};
 		1AA43E6F29D33CD400235CAD /* FormGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +623,7 @@
 				1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */,
 				1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */,
 				1A439E3229F8102D00E486E6 /* ImageViewModel.swift */,
+				1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -936,6 +955,7 @@
 				1A65770129FE820400D1EE81 /* Camera.swift in Sources */,
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
+				1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
