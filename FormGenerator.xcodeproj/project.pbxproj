@@ -65,6 +65,8 @@
 		1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8729E4410C002EF2BA /* AddQuestionView.swift */; };
 		1A514A8A29E4479B002EF2BA /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8929E4479B002EF2BA /* EditQuestionView.swift */; };
 		1A65770129FE820400D1EE81 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65770029FE820400D1EE81 /* Camera.swift */; };
+		1A66E6112A06D28400BDA6C3 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */; };
+		1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */; };
 		1A6B321929C747D600551E8F /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6B321829C747D600551E8F /* SpaceView.swift */; };
 		1A739E6A29CA30140031FD63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A739E6929CA30140031FD63 /* Alamofire */; };
 		1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E650C29DC6D470023067A /* SettingsViewModel.swift */; };
@@ -209,6 +211,8 @@
 		1A514A8929E4479B002EF2BA /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
 		1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID.xcdatamodel; sourceTree = "<group>"; };
 		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
+		1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderView.swift; sourceTree = "<group>"; };
 		1A6B321829C747D600551E8F /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		1A7E650C29DC6D470023067A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		1A7E650F29DCA0D30023067A /* FormItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItemView.swift; sourceTree = "<group>"; };
@@ -567,6 +571,8 @@
 			isa = PBXGroup;
 			children = (
 				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
+				1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */,
+				1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -945,6 +951,7 @@
 				1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
 				1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */,
+				1A66E6112A06D28400BDA6C3 /* MultipleChoiceView.swift in Sources */,
 				1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */,
 				1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
@@ -975,6 +982,7 @@
 				1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */,
 				1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */,
 				1A41A3CC29EEF05B00CBF408 /* GoogleSignInViewModel.swift in Sources */,
+				1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
@@ -1153,6 +1161,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FormGenerator/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera can be used to set the background of an FormGenerator.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone can be used to record audio for FormGenerator.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1197,6 +1206,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FormGenerator/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera can be used to set the background of an FormGenerator.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone can be used to record audio for FormGenerator.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

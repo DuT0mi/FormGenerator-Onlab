@@ -9,6 +9,8 @@ final class AddQuestionViewModel: ObservableObject {
     @Published var questionType: SelectedType = .Default
     @Published var selectedImage: PhotosPickerItem?
     @Published var selectedConvertedImage: Image?
+    @Published var trueOrFalseQuestionTitle: String = ""
+    @Published var textFields: [TextFieldModel] = []
     
     required init(){  }
     
@@ -34,4 +36,22 @@ final class AddQuestionViewModel: ObservableObject {
             }
         }
     }
+    func addTextField() {
+        let textField = TextFieldModel(id: UUID(), text: "option: \(self.textFields.count)".uppercased())
+        textFields.append(textField)
+    }
+
+    func updateTextField(id: UUID, text: String) {
+        if let index = textFields.firstIndex(where: { $0.id == id }) {
+            textFields[index].text = text
+        }
+    }
+    func removeTextField(){
+        textFields.removeLast()
+    }
+}
+
+struct TextFieldModel {
+    let id: UUID
+    var text: String
 }

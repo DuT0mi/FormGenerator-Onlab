@@ -20,13 +20,13 @@ struct AddQuestionView: View {
         case .Image:
             return AnyView(selectedQuestionIsImage())
         case .MultipleChoice:
-            return AnyView(EmptyView())
+            return AnyView(MultipleChoiceView(viewModel: viewModel))
         case .Text:
             return AnyView(selectedQuestionIsText)
         case .TrueOrFalse:
-            return AnyView(EmptyView())
+            return AnyView(selectedQuestionIsTrueOrFalse)
         case .Voice:
-            return AnyView(EmptyView())
+            return AnyView(VoiceRecorderView())
         default:
             return AnyView(EmptyView())
         }
@@ -53,27 +53,26 @@ struct AddQuestionView: View {
     fileprivate var selectedQuestionIsText: some View {
         TextField("Enter your question:", text: $viewModel.questionTitle)
     }
+    fileprivate var selectedQuestionIsTrueOrFalse: some View {
+        TextField("Enter your question:", text: $viewModel.trueOrFalseQuestionTitle)
+    }
     fileprivate var questionTypeSelectorComponent: some View {
-            List{
-                Picker("Question Type", selection: $viewModel.questionType) {
-                    ForEach(SelectedType.allCases, id: \.self){
-                        type in
-                        Button(type.rawValue){
-                            typeSelected(type: type)
-                        }
+            Picker("Question Type", selection: $viewModel.questionType) {
+                ForEach(SelectedType.allCases, id: \.self){
+                    type in
+                    Button(type.rawValue){
+                        typeSelected(type: type)
                     }
                 }
-                .bold()
-                getUIForSelectedQuestionType()
             }
-            .listStyle(.inset)
+            .pickerStyle(.menu)
+            .bold()        
     }
     fileprivate var buttonComponent: some View {
         Button("Add"){
             if checkIfUserHasAddedQuestion(){
                 isQuestionEmpty = true
             } else{
-                // TODO: reset the vm
                 viewModel.addTextQuestion(context: managedObjectContext)
                 dismiss.callAsFunction()
             }
@@ -90,19 +89,20 @@ struct AddQuestionView: View {
     
     var body: some View {
         if networkManager.isNetworkReachable{
-            ZStack{
+            NavigationView{
                 VStack(spacing: 50){
                     questionTypeSelectorComponent
+                    getUIForSelectedQuestionType()
                     Spacer()
                     buttonComponent
                         .buttonStyle(.borderedProminent)
                         .buttonBorderShape(.capsule)
                         .padding()
                 }
-            }
-            .padding()
-            .onChange(of: viewModel.selectedImage) { _ in
-                viewModel.selectedImageConverter()
+                .padding()
+                .onChange(of: viewModel.selectedImage) { _ in
+                    viewModel.selectedImageConverter()
+                    }
             }
         } else {
             SpaceView()
