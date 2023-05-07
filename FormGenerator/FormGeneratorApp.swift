@@ -12,7 +12,7 @@ struct FormGeneratorApp: App {
     var body: some Scene {
         WindowGroup {
             FormGeneratorView(user:UserViewModel())
-                .environmentObject(networkManager)
+                .environmentObject(networkManager)             
         }
     }
 }
