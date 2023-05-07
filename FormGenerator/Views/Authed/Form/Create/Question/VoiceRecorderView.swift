@@ -2,6 +2,7 @@ import SwiftUI
 import AVFoundation
 
 struct VoiceRecorderView: View {
+    @ObservedObject var viewModel: AddQuestionViewModel
     @State private var isRecording: Bool = false
     @State private var isPlaying: Bool = false
     @State private var audioRecorder: AVAudioRecorder?
@@ -100,6 +101,7 @@ struct VoiceRecorderView: View {
         audioRecorder?.stop()
         isRecording = false
         recordedAudioURL = audioRecorder?.url
+        viewModel.recordedURL = recordedAudioURL
     }
     private func playRecording() {
         do {
@@ -119,6 +121,6 @@ struct VoiceRecorderView: View {
 
 struct VoiceRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        VoiceRecorderView()
+        VoiceRecorderView(viewModel: AddQuestionViewModel())
     }
 }

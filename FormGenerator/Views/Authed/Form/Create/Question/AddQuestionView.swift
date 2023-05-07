@@ -6,15 +6,9 @@ struct AddQuestionView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: AddQuestionViewModel = AddQuestionViewModel()
-    @State private var isQuestionEmpty: Bool = false
+    @State private var showAlert: Bool = false
     @State private var selectedImage: Image?
     
-    private func checkIfUserHasAddedQuestion() -> Bool {
-        viewModel.questionTitle.isEmpty
-    }
-    private func typeSelected(type: SelectedType){
-        viewModel.questionType = type
-    }
     private func getUIForSelectedQuestionType() -> some View {
         switch viewModel.questionType {
         case .Image:
@@ -26,7 +20,7 @@ struct AddQuestionView: View {
         case .TrueOrFalse:
             return AnyView(selectedQuestionIsTrueOrFalse)
         case .Voice:
-            return AnyView(VoiceRecorderView())
+            return AnyView(VoiceRecorderView(viewModel: viewModel))
         default:
             return AnyView(EmptyView())
         }
@@ -35,8 +29,11 @@ struct AddQuestionView: View {
     private func selectedQuestionIsImage() -> some View {
         HStack{
             PhotosPicker(selection: $viewModel.selectedImage) {
-                Image(systemName: "photo")
-                    .foregroundColor(.accentColor)
+                HStack{
+                    Image(systemName: "photo")
+                        .foregroundColor(.accentColor)
+                    Text("in jpeg format").italic()
+                }
             }
             Spacer()
             if (viewModel.selectedConvertedImage != nil) {
@@ -61,7 +58,7 @@ struct AddQuestionView: View {
                 ForEach(SelectedType.allCases, id: \.self){
                     type in
                     Button(type.rawValue){
-                        typeSelected(type: type)
+                        viewModel.typeSelected(type: type)
                     }
                 }
             }
@@ -70,17 +67,17 @@ struct AddQuestionView: View {
     }
     fileprivate var buttonComponent: some View {
         Button("Add"){
-            if checkIfUserHasAddedQuestion(){
-                isQuestionEmpty = true
+            if viewModel.checkAllPossibleError(){
+                showAlert = true
             } else{
                 viewModel.addTextQuestion(context: managedObjectContext)
                 dismiss.callAsFunction()
             }
         }
-        .alert(isPresented: $isQuestionEmpty){
+        .alert(isPresented: $showAlert){
             Alert(
                 title: Text("Invalid parameter"),
-                message: Text("You should write something to the question dialog."),
+                message: Text("You have to fill properly all of the bare minimum reqirements of the selected question type"),
                 dismissButton: .destructive(Text("Got it"))
                 
             )

@@ -4,7 +4,7 @@ struct MultipleChoiceView: View {
     @ObservedObject var viewModel: AddQuestionViewModel
     @State private var textFieldCount: Int?
     fileprivate var textComponent: some View{
-        TextField("Enter you question: ", text: $viewModel.questionTitle)
+        TextField("Enter you question: ", text: $viewModel.questionTitleMultiple)
     }
 
     var body: some View {
