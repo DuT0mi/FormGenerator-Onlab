@@ -14,7 +14,7 @@ struct FormData: Identifiable, Codable, Hashable{
     var circleImagePath: String?
     var circleImageURL: String?
     
-    enum CodingKeys: String, CodingKey { // String for rawValue
+    enum CodingKeys: String, CodingKey {
         case id = "id"
         case title = "title"
         case type = "type"

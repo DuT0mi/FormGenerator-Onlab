@@ -1,6 +1,5 @@
 import SwiftUI
 
-// Model for the SpaceView animation
 struct Star: Identifiable, Equatable {
     let id = UUID()
     let color: Color

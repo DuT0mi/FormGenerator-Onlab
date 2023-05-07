@@ -1,6 +1,5 @@
 import Foundation
 
-
 protocol Account {
     var userID: String { get set}        // Allowed Read-Write
     var email: String?  { get set }       // Allowed Read-Write

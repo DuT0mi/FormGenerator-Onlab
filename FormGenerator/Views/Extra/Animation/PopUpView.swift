@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct PopUpView: View{
     
     var body: some View {

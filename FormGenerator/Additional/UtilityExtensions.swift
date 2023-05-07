@@ -112,9 +112,3 @@ struct AnimatedActionButton: View {
     }
     return controller
 }
-// MARK: XOR
-extension Bool {
-    static func ^(lhs: Bool, rhs: Bool) -> Bool {
-        return lhs != rhs
-    }
-}
