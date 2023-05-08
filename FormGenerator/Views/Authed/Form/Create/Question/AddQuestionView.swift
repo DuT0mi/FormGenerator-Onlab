@@ -70,7 +70,7 @@ struct AddQuestionView: View {
             if viewModel.checkAllPossibleError(){
                 showAlert = true
             } else{
-                viewModel.addTextQuestion(context: managedObjectContext)
+                viewModel.addQuestion(context: managedObjectContext)
                 dismiss.callAsFunction()
             }
         }

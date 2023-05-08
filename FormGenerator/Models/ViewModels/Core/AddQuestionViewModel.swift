@@ -12,7 +12,7 @@ final class AddQuestionViewModel: ObservableObject {
     // Type: Image
     @Published var selectedImage: PhotosPickerItem?
     @Published var selectedConvertedImage: Image?
-    @Published var imageError: Bool = false //TODO: UI for bad image format
+    @Published var imageError: Bool = false
     // Type: True Or False
     @Published var trueOrFalseQuestionTitle: String = ""
     // Type: Multiple Choice
@@ -35,9 +35,28 @@ final class AddQuestionViewModel: ObservableObject {
         textFields = []
         recordedURL = nil
     }
+    func addQuestion(context: NSManagedObjectContext){
+        switch questionType {
+            case .Default:
+                break
+            case .Image:
+                break
+            case .MultipleChoice:
+                break
+            case .Text:
+                addTextBasedQuestion(context: context, isTrueOrFalse: false)
+            case .TrueOrFalse:
+                addTextBasedQuestion(context: context)
+            case .Voice:
+                break
+        }
+        reset(reset: true)
+    }
     
-    func addTextQuestion(context: NSManagedObjectContext){
-        CoreDataController().addQuestion(context: context, question: self.questionTitle, type: self.questionType.rawValue)
+    
+    
+    private func addTextBasedQuestion(context: NSManagedObjectContext, isTrueOrFalse: Bool = true){
+        CoreDataController().addQuestion(context: context, question: isTrueOrFalse ? self.trueOrFalseQuestionTitle : self.questionTitle , type: self.questionType.rawValue)
         reset(reset: true)
     }
     
