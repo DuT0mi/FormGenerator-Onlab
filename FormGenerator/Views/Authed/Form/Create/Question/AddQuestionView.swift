@@ -8,6 +8,7 @@ struct AddQuestionView: View {
     @StateObject private var viewModel: AddQuestionViewModel = AddQuestionViewModel()
     @State private var showAlert: Bool = false
     @State private var selectedImage: Image?
+    @State private var pickedImage: PhotosPickerItem?
     
     private func getUIForSelectedQuestionType() -> some View {
         switch viewModel.questionType {
@@ -27,23 +28,29 @@ struct AddQuestionView: View {
     }
     
     private func selectedQuestionIsImage() -> some View {
-        HStack{
-            PhotosPicker(selection: $viewModel.selectedImage) {
-                HStack{
-                    Image(systemName: "photo")
-                        .foregroundColor(.accentColor)
-                    Text("in jpeg format").italic()
+        VStack{
+            HStack{
+                PhotosPicker(selection: $viewModel.selectedImage, matching: .images, photoLibrary: .shared()) {
+                    HStack{
+                        Image(systemName: "photo")
+                            .foregroundColor(.accentColor)
+                        Text("in jpeg format").italic()
+                    }
+                }
+                Spacer()
+                if (viewModel.selectedConvertedImage != nil) {
+                    viewModel.selectedConvertedImage?
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .onTapGesture {
+                            viewModel.selectedConvertedImage = nil
+                        }
+                        .onAppear{
+                            self.pickedImage = viewModel.selectedImage
+                        }
                 }
             }
-            Spacer()
-            if (viewModel.selectedConvertedImage != nil) {
-                viewModel.selectedConvertedImage?
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .onTapGesture {
-                        viewModel.selectedConvertedImage = nil
-                    }
-            }
+            TextField("Enter you question:", text: $viewModel.questionForImage)
         }
     }
 
@@ -70,7 +77,8 @@ struct AddQuestionView: View {
             if viewModel.checkAllPossibleError(){
                 showAlert = true
             } else{
-                viewModel.addQuestion(context: managedObjectContext)
+                
+                viewModel.addQuestion(context: managedObjectContext,pickedImage: pickedImage)
                 dismiss.callAsFunction()
             }
         }

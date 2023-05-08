@@ -44,6 +44,19 @@ class CoreDataController: ObservableObject {
             save(context: context)
         }
     }
+    func addQuestionWithImage(context: NSManagedObjectContext, questionTitle title :String, imageData: Data, type: String){
+        context.performAndWait {
+            let imageQuestion = QuestionCoreData(context: context)
+                imageQuestion.id = UUID()
+                imageQuestion.imgData = imageData
+                imageQuestion.question = title
+                imageQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+                imageQuestion.qDate = Date()
+                imageQuestion.type = type
+            
+            save(context: context)
+        }
+    }
     func addQuestion(context: NSManagedObjectContext, question paramQ: String, type: String){
         context.performAndWait {
             let question = QuestionCoreData(context: context)

@@ -231,6 +231,7 @@
 		1AA43E8629D3480E00235CAD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
+		1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_wImage.xcdatamodel; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
 		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
 		1AC519BD29E2E18700665361 /* FormListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewModel.swift; sourceTree = "<group>"; };
@@ -1843,6 +1844,7 @@
 		1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */,
 				1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */,
 				1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */,
 				1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */,

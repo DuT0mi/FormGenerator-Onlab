@@ -49,8 +49,7 @@ struct EditQuestionView: View {
             Alert(
                 title: Text("Invalid parameter"),
                 message: Text("You should write something to the question dialog."),
-                dismissButton: .destructive(Text("Got it"))
-                
+                dismissButton: .destructive(Text("Got it")) 
             )
         }
     }

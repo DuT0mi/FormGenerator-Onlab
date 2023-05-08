@@ -10,6 +10,7 @@ final class AddQuestionViewModel: ObservableObject {
     // Type: Text
     @Published var questionTitle: String = ""
     // Type: Image
+    @Published var questionForImage: String = ""
     @Published var selectedImage: PhotosPickerItem?
     @Published var selectedConvertedImage: Image?
     @Published var imageError: Bool = false
@@ -35,12 +36,12 @@ final class AddQuestionViewModel: ObservableObject {
         textFields = []
         recordedURL = nil
     }
-    func addQuestion(context: NSManagedObjectContext){
+    func addQuestion(context: NSManagedObjectContext, pickedImage: PhotosPickerItem? = nil){
         switch questionType {
             case .Default:
                 break
             case .Image:
-                break
+                addQuestionWithImage(context: context, image: pickedImage!)
             case .MultipleChoice:
                 break
             case .Text:
@@ -53,11 +54,17 @@ final class AddQuestionViewModel: ObservableObject {
         reset(reset: true)
     }
     
-    
-    
     private func addTextBasedQuestion(context: NSManagedObjectContext, isTrueOrFalse: Bool = true){
         CoreDataController().addQuestion(context: context, question: isTrueOrFalse ? self.trueOrFalseQuestionTitle : self.questionTitle , type: self.questionType.rawValue)
-        reset(reset: true)
+    }
+    private func addQuestionWithImage(context: NSManagedObjectContext, image: PhotosPickerItem){
+        Task{
+            if let data = try? await image.loadTransferable(type: Data.self){
+                if let image = UIImage(data: data), let imageData = image.pngData(){                    
+                    CoreDataController().addQuestionWithImage(context: context, questionTitle: questionForImage, imageData: imageData, type: self.questionType.rawValue)
+                }
+            }
+        }
     }
     
     func selectedImageConverter(){
@@ -117,8 +124,10 @@ final class AddQuestionViewModel: ObservableObject {
         textFields.isEmpty
     }
     private func checkIfUserHasAddedBadImageFormat() -> Bool {
-        self.imageError             ||
-        (self.selectedImage == nil)
+        self.imageError                     ||
+        self.selectedImage == nil           ||
+        self.selectedConvertedImage == nil  ||
+        self.questionForImage.isEmpty
     }
 
 
