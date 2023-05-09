@@ -74,7 +74,7 @@
 		1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7E651129DCA74F0023067A /* FormViewDetail.swift */; };
 		1A849BFB29EC44A1006F94C6 /* AddFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */; };
 		1A849BFE29EC60BC006F94C6 /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 1A849BFD29EC60BC006F94C6 /* SwiftUIPullToRefresh */; };
-		1A94628B2A083CF7003F4C05 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94628A2A083CF7003F4C05 /* QuestionType.swift */; };
+		1A94628B2A083CF7003F4C05 /* MultipleChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94628A2A083CF7003F4C05 /* MultipleChoiceModel.swift */; };
 		1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */; };
 		1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D202529B4B20100127A91 /* UserViewModel.swift */; };
 		1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */; };
@@ -210,6 +210,8 @@
 		1A514A8529E43C94002EF2BA /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		1A514A8729E4410C002EF2BA /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
 		1A514A8929E4479B002EF2BA /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
+		1A523AA42A0A6742007924F6 /* question_form_audio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_audio.xcdatamodel; sourceTree = "<group>"; };
+		1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_updated.xcdatamodel; sourceTree = "<group>"; };
 		1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID.xcdatamodel; sourceTree = "<group>"; };
 		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
@@ -220,7 +222,7 @@
 		1A7E651129DCA74F0023067A /* FormViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewDetail.swift; sourceTree = "<group>"; };
 		1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form.xcdatamodel; sourceTree = "<group>"; };
 		1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFormViewModel.swift; sourceTree = "<group>"; };
-		1A94628A2A083CF7003F4C05 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		1A94628A2A083CF7003F4C05 /* MultipleChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModel.swift; sourceTree = "<group>"; };
 		1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerViewModel.swift; sourceTree = "<group>"; };
 		1A9D202529B4B20100127A91 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		1AA43E8629D3480E00235CAD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
+		1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_wImage.xcdatamodel; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
 		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
 		1AC519BD29E2E18700665361 /* FormListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewModel.swift; sourceTree = "<group>"; };
@@ -511,7 +514,7 @@
 		1A514A8129E43BF4002EF2BA /* Questions */ = {
 			isa = PBXGroup;
 			children = (
-				1A94628A2A083CF7003F4C05 /* QuestionType.swift */,
+				1A94628A2A083CF7003F4C05 /* MultipleChoiceModel.swift */,
 				1A514A7F29E42759002EF2BA /* Question.swift */,
 				1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */,
 			);
@@ -560,6 +563,16 @@
 				1AC519C229E2ED2B00665361 /* UI */,
 			);
 			path = Form;
+			sourceTree = "<group>";
+		};
+		1A94628C2A084AEF003F4C05 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */,
+				1AC519C529E2F7DD00665361 /* FormManager.swift */,
+				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		1A96427329C76A1100C30A2F /* ErrorScreen */ = {
@@ -618,19 +631,17 @@
 		1AA43E8529D347C400235CAD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1A94628C2A084AEF003F4C05 /* Singleton */,
 				1A9D202529B4B20100127A91 /* UserViewModel.swift */,
 				1A96427929C76F9200C30A2F /* NetworkManagerViewModel.swift */,
 				1AE4016A29C8E9CF004FAA89 /* AuthenticationManager.swift */,
-				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
 				1A7E650C29DC6D470023067A /* SettingsViewModel.swift */,
 				1AC519BD29E2E18700665361 /* FormListViewModel.swift */,
 				1AC519C329E2F12800665361 /* CreateFormViewModel.swift */,
-				1AC519C529E2F7DD00665361 /* FormManager.swift */,
 				1A514A8529E43C94002EF2BA /* CoreDataController.swift */,
 				1A849BFA29EC44A1006F94C6 /* AddFormViewModel.swift */,
 				1A41A3CB29EEF05B00CBF408 /* GoogleSignInViewModel.swift */,
 				1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */,
-				1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */,
 				1A439E3229F8102D00E486E6 /* ImageViewModel.swift */,
 				1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */,
 			);
@@ -945,7 +956,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AC519C429E2F12800665361 /* CreateFormViewModel.swift in Sources */,
-				1A94628B2A083CF7003F4C05 /* QuestionType.swift in Sources */,
+				1A94628B2A083CF7003F4C05 /* MultipleChoiceModel.swift in Sources */,
 				1A514A8029E42759002EF2BA /* Question.swift in Sources */,
 				1ACDA0C829D1E6C1008E60D8 /* LoadingTextView.swift in Sources */,
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
@@ -1835,12 +1846,15 @@
 		1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */,
+				1A523AA42A0A6742007924F6 /* question_form_audio.xcdatamodel */,
+				1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */,
 				1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */,
 				1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */,
 				1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */,
 				1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */,
 			);
-			currentVersion = 1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */;
+			currentVersion = 1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */;
 			path = QuestionCD.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

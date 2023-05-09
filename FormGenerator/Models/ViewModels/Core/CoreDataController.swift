@@ -30,6 +30,10 @@ class CoreDataController: ObservableObject {
             }catch{ }
         }
     }
+    func deleteQuestion(context: NSManagedObjectContext, question: QuestionCoreData){
+        context.delete(question)
+        save(context: context)
+    }
     func addFormMetaData(context: NSManagedObjectContext, formData: FormData){
         context.performAndWait {
             resetFormData(context: context) // For getting the latest always
@@ -40,6 +44,44 @@ class CoreDataController: ObservableObject {
             form.cID = formData.companyID
             form.cName = formData.companyName
             form.title = formData.title
+            
+            save(context: context)
+        }
+    }
+    func addQuestionWithImage(context: NSManagedObjectContext, questionTitle title :String, imageData: Data, type: String){
+        context.performAndWait {
+            let imageQuestion = QuestionCoreData(context: context)
+                imageQuestion.id = UUID()
+                imageQuestion.imgData = imageData
+                imageQuestion.question = title
+                imageQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+                imageQuestion.qDate = Date()
+                imageQuestion.type = type
+            save(context: context)
+        }
+    }
+    func addQuestionWithAudio(context: NSManagedObjectContext, url: URL, type: String){
+        context.performAndWait {
+            let audioQuestion = QuestionCoreData(context: context)
+            audioQuestion.id = UUID()
+            audioQuestion.qDate = Date()
+            audioQuestion.type = type
+            audioQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+            audioQuestion.audioURL = url
+            
+            save(context: context)
+        }
+    }
+    func addQuestionWithMultipleOptions(context: NSManagedObjectContext, options: [TextFieldModel], type: String, question: String){
+        context.performAndWait {
+            let data = try? JSONEncoder().encode(options) as NSObject
+            let multipleChoiceQuestion = QuestionCoreData(context: context)
+                multipleChoiceQuestion.id = UUID()
+                multipleChoiceQuestion.qDate = Date()
+                multipleChoiceQuestion.multipleOptions = data
+                multipleChoiceQuestion.question = question
+                multipleChoiceQuestion.type = type
+                multipleChoiceQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
             
             save(context: context)
         }
@@ -57,14 +99,42 @@ class CoreDataController: ObservableObject {
         }
     }
     
-    func editQuestion(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String, type: String){
+    func editQuestionTypeTextBased(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String){
         context.performAndWait {
             question.qDate = Date()
             question.question = paramQ
-            question.type = type
             save(context: context)
         }
     }
+    func editQuestionTypeImage(context: NSManagedObjectContext, question: QuestionCoreData, title: String, imageData: Data){
+        context.performAndWait {
+            question.qDate = Date()
+            question.imgData = imageData
+            question.question = title
+            
+            
+            save(context: context)
+        }
+    }
+    func editQuestionWithMultipleFields(context: NSManagedObjectContext, question: QuestionCoreData, options: [TextFieldModel], title: String){
+        context.performAndWait {
+            let data = try? JSONEncoder().encode(options) as NSObject
+                question.qDate = Date()
+                question.multipleOptions = data
+                question.question = title
+    
+            save(context: context)
+        }
+    }
+    func editQuestionWithAudio(context: NSManagedObjectContext, url: URL,  question: QuestionCoreData){
+        context.performAndWait {
+            question.qDate = Date()
+            question.audioURL = url
+            
+            save(context: context)
+        }
+    }
+    
     func resetCoreData(context: NSManagedObjectContext) {
         context.perform{
             // Fetch all entities from Core Data and delete them

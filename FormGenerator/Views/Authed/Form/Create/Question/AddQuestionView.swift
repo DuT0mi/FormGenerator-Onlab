@@ -8,6 +8,8 @@ struct AddQuestionView: View {
     @StateObject private var viewModel: AddQuestionViewModel = AddQuestionViewModel()
     @State private var showAlert: Bool = false
     @State private var selectedImage: Image?
+    @State private var pickedImage: PhotosPickerItem?
+    @State private var recordedURL: URL?
     
     private func getUIForSelectedQuestionType() -> some View {
         switch viewModel.questionType {
@@ -20,30 +22,36 @@ struct AddQuestionView: View {
         case .TrueOrFalse:
             return AnyView(selectedQuestionIsTrueOrFalse)
         case .Voice:
-            return AnyView(VoiceRecorderView(viewModel: viewModel))
+            return AnyView(VoiceRecorderView(viewModel: viewModel, recordedURL: $recordedURL))
         default:
             return AnyView(EmptyView())
         }
     }
     
     private func selectedQuestionIsImage() -> some View {
-        HStack{
-            PhotosPicker(selection: $viewModel.selectedImage) {
-                HStack{
-                    Image(systemName: "photo")
-                        .foregroundColor(.accentColor)
-                    Text("in jpeg format").italic()
+        VStack{
+            HStack{
+                PhotosPicker(selection: $viewModel.selectedImage, matching: .images, photoLibrary: .shared()) {
+                    HStack{
+                        Image(systemName: "photo")
+                            .foregroundColor(.accentColor)
+                        Text("in jpeg format").italic()
+                    }
+                }
+                Spacer()
+                if (viewModel.selectedConvertedImage != nil) {
+                    viewModel.selectedConvertedImage?
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .onTapGesture {
+                            viewModel.selectedConvertedImage = nil
+                        }
+                        .onAppear{
+                            self.pickedImage = viewModel.selectedImage
+                        }
                 }
             }
-            Spacer()
-            if (viewModel.selectedConvertedImage != nil) {
-                viewModel.selectedConvertedImage?
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .onTapGesture {
-                        viewModel.selectedConvertedImage = nil
-                    }
-            }
+            TextField("Enter you question:", text: $viewModel.questionForImage)
         }
     }
 
@@ -70,7 +78,7 @@ struct AddQuestionView: View {
             if viewModel.checkAllPossibleError(){
                 showAlert = true
             } else{
-                viewModel.addTextQuestion(context: managedObjectContext)
+                viewModel.addQuestion(context: managedObjectContext,pickedImage: pickedImage, recordedURL: recordedURL)
                 dismiss.callAsFunction()
             }
         }
@@ -78,8 +86,7 @@ struct AddQuestionView: View {
             Alert(
                 title: Text("Invalid parameter"),
                 message: Text("You have to fill properly all of the bare minimum reqirements of the selected question type"),
-                dismissButton: .destructive(Text("Got it"))
-                
+                dismissButton: .destructive(Text("Got it"))                
             )
         }
     }

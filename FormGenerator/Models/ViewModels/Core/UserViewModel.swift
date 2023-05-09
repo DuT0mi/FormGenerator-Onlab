@@ -7,7 +7,7 @@ final class UserViewModel: ObservableObject {
         @Published var email: String = ""
         @Published var password: String = ""
         @Published var alert: Bool = false
-        // object
+
         fileprivate var authenticationManager: AuthenticationManager = AuthenticationManager()
     
     // Variables used for interact with the User

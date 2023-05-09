@@ -5,7 +5,7 @@ import GoogleSignInSwift
 import SwiftUI
 import CoreData
 
-enum AuthProviderOtpion: String { // String for rawValue
+enum AuthProviderOtpion: String {
     case email = "password"
     case google = "google.com"
     case apple = "apple.com"

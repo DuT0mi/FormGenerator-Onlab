@@ -10,8 +10,10 @@
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <entity name="QuestionCoreData" representedClassName="QuestionCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="audioURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imgData" optional="YES" attributeType="Binary"/>
+        <attribute name="multipleOptions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="qDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="question" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>

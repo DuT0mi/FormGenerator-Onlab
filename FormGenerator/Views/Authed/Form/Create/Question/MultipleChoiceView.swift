@@ -3,13 +3,14 @@ import SwiftUI
 struct MultipleChoiceView: View {
     @ObservedObject var viewModel: AddQuestionViewModel
     @State private var textFieldCount: Int?
+    
     fileprivate var textComponent: some View{
         TextField("Enter you question: ", text: $viewModel.questionTitleMultiple)
     }
 
     var body: some View {
         ScrollView{
-            LazyVStack{
+            VStack{
                 textComponent
                     .padding(.vertical)
                 ForEach(viewModel.textFields, id: \.id) { textField in
@@ -21,6 +22,9 @@ struct MultipleChoiceView: View {
                 }
                 .onChange(of: viewModel.textFields.count) { newValue in
                     textFieldCount = newValue
+                }
+                .onAppear{
+                    textFieldCount = viewModel.textFields.count
                 }
                 
             }

@@ -31,7 +31,7 @@ actor FormManager{
     private func uploadFormToDatabase(form: FormData) async throws {
         try formDocument(formID: (form.id.uuidString)).setData(from: form, merge:false)
     }
-    /// First upload the Form itself, then the questions to it
+    // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
             try await uploadFormToDatabase(form: form)
         

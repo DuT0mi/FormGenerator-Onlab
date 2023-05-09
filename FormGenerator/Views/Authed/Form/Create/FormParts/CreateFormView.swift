@@ -21,8 +21,7 @@ struct CreateFormView: View {
     fileprivate var submitButton: some View {
         Button("Submit Form"){
             if isThereAtLeastOneQuestion(),
-               AddFormViewModel.shared.isFormHasBeenAdded.1 == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
-            {
+               AddFormViewModel.shared.isFormHasBeenAdded.1 == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue){
                 dismiss.callAsFunction()
                 Task{
                     if AddFormViewModel.shared.isPremium == false{

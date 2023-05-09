@@ -7,6 +7,7 @@ final class FormListViewModel: ObservableObject {
     @Published private(set) var account: Account?
     @Published private(set) var isAccountLoaded: Bool
     @Published private(set) var allFormCountOnServer: Int?
+    
     private let authManager: AuthenticationManager = AuthenticationManager()
     private var lastDocument: DocumentSnapshot?
     
