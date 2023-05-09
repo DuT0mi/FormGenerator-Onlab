@@ -9,6 +9,9 @@ struct VoiceRecorderView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var recordedAudioURL: URL?
     @State private var fillColor: Color = .red
+    @Binding var recordedURL: URL?
+    
+    var templateURL: URL?
     
     fileprivate var waveComponent: some View {
             Image(systemName: "waveform")
@@ -59,7 +62,7 @@ struct VoiceRecorderView: View {
                         
                     }
                     .padding()
-                } else if recordedAudioURL != nil, !isRecording {
+                } else if (recordedAudioURL != nil || templateURL != nil ), !isRecording{
                     Button {
                         playRecording()
                     } label: {
@@ -102,10 +105,11 @@ struct VoiceRecorderView: View {
         isRecording = false
         recordedAudioURL = audioRecorder?.url
         viewModel.recordedURL = recordedAudioURL
+        recordedURL = recordedAudioURL
     }
     private func playRecording() {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: recordedAudioURL!)
+            audioPlayer = try AVAudioPlayer(contentsOf: templateURL != nil ? templateURL! : recordedAudioURL!)
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
             isPlaying = true
@@ -121,6 +125,6 @@ struct VoiceRecorderView: View {
 
 struct VoiceRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        VoiceRecorderView(viewModel: AddQuestionViewModel())
+        VoiceRecorderView(viewModel: AddQuestionViewModel(), recordedURL: .constant(nil))
     }
 }

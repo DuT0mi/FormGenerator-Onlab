@@ -1,6 +1,6 @@
 import Foundation
 
-struct TextFieldModel {
+struct TextFieldModel: Codable {
     let id: UUID
     var text: String
 }

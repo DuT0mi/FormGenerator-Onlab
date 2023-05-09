@@ -36,37 +36,45 @@ final class AddQuestionViewModel: ObservableObject {
         textFields = []
         recordedURL = nil
     }
-    func addQuestion(context: NSManagedObjectContext, pickedImage: PhotosPickerItem? = nil){
+    func updateFields(fields: [TextFieldModel]){
+        self.textFields = fields
+    }
+    func addQuestion(context: NSManagedObjectContext, pickedImage: PhotosPickerItem? = nil, recordedURL: URL? = nil){
         switch questionType {
             case .Default:
                 break
             case .Image:
                 addQuestionWithImage(context: context, image: pickedImage!)
             case .MultipleChoice:
-                break
+                addQuestionWithMultipleOptions(context: context)
             case .Text:
                 addTextBasedQuestion(context: context, isTrueOrFalse: false)
             case .TrueOrFalse:
                 addTextBasedQuestion(context: context)
             case .Voice:
-                break
+            addQuestionWithAudio(context: context, audioURL: recordedURL!)
         }
         reset(reset: true)
     }
     
     private func addTextBasedQuestion(context: NSManagedObjectContext, isTrueOrFalse: Bool = true){
-        CoreDataController().addQuestion(context: context, question: isTrueOrFalse ? self.trueOrFalseQuestionTitle : self.questionTitle , type: self.questionType.rawValue)
+        CoreDataController().addQuestion(context: context, question: isTrueOrFalse ? self.trueOrFalseQuestionTitle : self.questionTitle , type: questionType.rawValue)
     }
     private func addQuestionWithImage(context: NSManagedObjectContext, image: PhotosPickerItem){
         Task{
             if let data = try? await image.loadTransferable(type: Data.self){
                 if let image = UIImage(data: data), let imageData = image.pngData(){                    
-                    CoreDataController().addQuestionWithImage(context: context, questionTitle: questionForImage, imageData: imageData, type: self.questionType.rawValue)
+                    CoreDataController().addQuestionWithImage(context: context, questionTitle: questionForImage, imageData: imageData, type: SelectedType.Image.rawValue)
                 }
             }
         }
     }
-    
+    private func addQuestionWithAudio(context: NSManagedObjectContext, audioURL url: URL){
+        CoreDataController().addQuestionWithAudio(context: context, url: url, type: questionType.rawValue)
+    }
+    private func addQuestionWithMultipleOptions(context: NSManagedObjectContext){
+        CoreDataController().addQuestionWithMultipleOptions(context: context, options: textFields, type: questionType.rawValue, question: questionTitleMultiple)
+    }
     func selectedImageConverter(){
         Task{
             if let data = try? await selectedImage?.loadTransferable(type: Data.self){

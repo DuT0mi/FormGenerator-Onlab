@@ -9,6 +9,7 @@ struct AddQuestionView: View {
     @State private var showAlert: Bool = false
     @State private var selectedImage: Image?
     @State private var pickedImage: PhotosPickerItem?
+    @State private var recordedURL: URL?
     
     private func getUIForSelectedQuestionType() -> some View {
         switch viewModel.questionType {
@@ -21,7 +22,7 @@ struct AddQuestionView: View {
         case .TrueOrFalse:
             return AnyView(selectedQuestionIsTrueOrFalse)
         case .Voice:
-            return AnyView(VoiceRecorderView(viewModel: viewModel))
+            return AnyView(VoiceRecorderView(viewModel: viewModel, recordedURL: $recordedURL))
         default:
             return AnyView(EmptyView())
         }
@@ -77,8 +78,7 @@ struct AddQuestionView: View {
             if viewModel.checkAllPossibleError(){
                 showAlert = true
             } else{
-                
-                viewModel.addQuestion(context: managedObjectContext,pickedImage: pickedImage)
+                viewModel.addQuestion(context: managedObjectContext,pickedImage: pickedImage, recordedURL: recordedURL)
                 dismiss.callAsFunction()
             }
         }

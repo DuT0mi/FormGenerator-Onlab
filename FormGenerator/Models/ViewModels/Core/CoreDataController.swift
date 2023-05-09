@@ -53,6 +53,31 @@ class CoreDataController: ObservableObject {
                 imageQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
                 imageQuestion.qDate = Date()
                 imageQuestion.type = type
+            save(context: context)
+        }
+    }
+    func addQuestionWithAudio(context: NSManagedObjectContext, url: URL, type: String){
+        context.performAndWait {
+            let audioQuestion = QuestionCoreData(context: context)
+            audioQuestion.id = UUID()
+            audioQuestion.qDate = Date()
+            audioQuestion.type = type
+            audioQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+            audioQuestion.audioURL = url
+            
+            save(context: context)
+        }
+    }
+    func addQuestionWithMultipleOptions(context: NSManagedObjectContext, options: [TextFieldModel], type: String, question: String){
+        context.performAndWait {
+            let data = try? JSONEncoder().encode(options) as NSObject
+            let multipleChoiceQuestion = QuestionCoreData(context: context)
+                multipleChoiceQuestion.id = UUID()
+                multipleChoiceQuestion.qDate = Date()
+                multipleChoiceQuestion.multipleOptions = data
+                multipleChoiceQuestion.question = question
+                multipleChoiceQuestion.type = type
+                multipleChoiceQuestion.uid = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
             
             save(context: context)
         }

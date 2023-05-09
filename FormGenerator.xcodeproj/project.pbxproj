@@ -210,6 +210,8 @@
 		1A514A8529E43C94002EF2BA /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		1A514A8729E4410C002EF2BA /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
 		1A514A8929E4479B002EF2BA /* EditQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuestionView.swift; sourceTree = "<group>"; };
+		1A523AA42A0A6742007924F6 /* question_form_audio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_audio.xcdatamodel; sourceTree = "<group>"; };
+		1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_updated.xcdatamodel; sourceTree = "<group>"; };
 		1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID.xcdatamodel; sourceTree = "<group>"; };
 		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
@@ -1844,13 +1846,15 @@
 		1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */,
+				1A523AA42A0A6742007924F6 /* question_form_audio.xcdatamodel */,
 				1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */,
 				1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */,
 				1A2411A329EAEE7F00AFF138 /* QuestionCD_wUID_wDate.xcdatamodel */,
 				1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */,
 				1A514A8329E43C12002EF2BA /* QuestionCD.xcdatamodel */,
 			);
-			currentVersion = 1A849BF729EC1F23006F94C6 /* question_form.xcdatamodel */;
+			currentVersion = 1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */;
 			path = QuestionCD.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
