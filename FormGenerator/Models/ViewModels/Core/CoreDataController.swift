@@ -30,6 +30,10 @@ class CoreDataController: ObservableObject {
             }catch{ }
         }
     }
+    func deleteQuestion(context: NSManagedObjectContext, question: QuestionCoreData){
+        context.delete(question)
+        save(context: context)
+    }
     func addFormMetaData(context: NSManagedObjectContext, formData: FormData){
         context.performAndWait {
             resetFormData(context: context) // For getting the latest always
@@ -95,14 +99,42 @@ class CoreDataController: ObservableObject {
         }
     }
     
-    func editQuestion(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String, type: String){
+    func editQuestionTypeTextBased(context: NSManagedObjectContext, question: QuestionCoreData, question paramQ: String){
         context.performAndWait {
             question.qDate = Date()
             question.question = paramQ
-            question.type = type
             save(context: context)
         }
     }
+    func editQuestionTypeImage(context: NSManagedObjectContext, question: QuestionCoreData, title: String, imageData: Data){
+        context.performAndWait {
+            question.qDate = Date()
+            question.imgData = imageData
+            question.question = title
+            
+            
+            save(context: context)
+        }
+    }
+    func editQuestionWithMultipleFields(context: NSManagedObjectContext, question: QuestionCoreData, options: [TextFieldModel], title: String){
+        context.performAndWait {
+            let data = try? JSONEncoder().encode(options) as NSObject
+                question.qDate = Date()
+                question.multipleOptions = data
+                question.question = title
+    
+            save(context: context)
+        }
+    }
+    func editQuestionWithAudio(context: NSManagedObjectContext, url: URL,  question: QuestionCoreData){
+        context.performAndWait {
+            question.qDate = Date()
+            question.audioURL = url
+            
+            save(context: context)
+        }
+    }
+    
     func resetCoreData(context: NSManagedObjectContext) {
         context.perform{
             // Fetch all entities from Core Data and delete them

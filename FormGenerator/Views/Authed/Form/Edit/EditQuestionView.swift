@@ -49,6 +49,8 @@ struct EditQuestionView: View {
                     Image(systemName: "wrongwaysign")
                         .resizable()
                         .foregroundColor(.red)
+                        .frame(width: 100, height: 100)
+                        .opacity(viewModel.selectedConvertedImage != nil ? 0.2 : 1)
                 }
             }
             HStack{
@@ -69,6 +71,7 @@ struct EditQuestionView: View {
                         }
                         .onAppear{
                             self.pickedImage = viewModel.selectedImage
+                            viewModel.questionForImage = question.question!
                         }
                 }
             }
@@ -77,15 +80,32 @@ struct EditQuestionView: View {
     private func voiceTypeComponent() -> AnyView{
         AnyView(VoiceRecorderView(viewModel: viewModel, recordedURL: $recordedURL, templateURL: question.audioURL))
     }
+    private func getBindedTitle() -> Binding<String>{
+        switch viewModel.questionType {
+            case .Text:
+                return $viewModel.questionTitle
+            case .Image:
+                return $viewModel.questionForImage
+            case .MultipleChoice:
+                return $viewModel.questionTitleMultiple
+            case .TrueOrFalse:
+                return $viewModel.trueOrFalseQuestionTitle
+            default:
+                return $viewModel.questionTitle
+                
+        }
+    }
     fileprivate var questionComponent: some View {
         HStack{
-            TextField("\(question.question ?? viewModel.questionType.rawValue)", text: $viewModel.questionTitle)
-                .onAppear{
-                    viewModel.questionTitle = question.question ?? viewModel.questionType.rawValue
-                    if viewModel.questionType == .MultipleChoice {
-                        loadCurrentFieldsAsIntent()
+            if viewModel.questionType != .Voice, viewModel.questionType != .Default{
+                TextField("\(question.question ?? viewModel.questionType.rawValue)", text: getBindedTitle())
+                    .onAppear{
+                        viewModel.questionTitle = question.question ?? viewModel.questionType.rawValue
+                        if viewModel.questionType == .MultipleChoice {
+                            loadCurrentFieldsAsIntent()
+                        }
                     }
-                }
+            }
             Menu("Type: \(viewModel.questionType.rawValue)"){
                 ForEach(SelectedType.allCases, id: \.self){
                     type in
@@ -95,39 +115,38 @@ struct EditQuestionView: View {
                 }
             }
             .onAppear{
-                viewModel.typeSelected(type: SelectedType(rawValue: question.type!) ?? .Default)
+                viewModel.typeSelected(type: SelectedType(rawValue: question.type ?? viewModel.questionType.rawValue) ?? .Default)
             }
         }
-    } // DONE
+    }
     fileprivate var buttonComponent: some View {
         Button("Edit"){
             if viewModel.checkAllPossibleError(){
                 showError = true
-            } else {//TODO: that
-//                CoreDataController().editQuestion(context: managedObjectContext,question: question, question: questionTitle, type: questionType.rawValue)
+            } else {
+                viewModel.editQuestion(context: managedObjectContext, question: question, pickedImage: pickedImage, recordedURL: recordedURL, oldType: question.type!)
                 dismiss.callAsFunction()
             }
         }
         .alert(isPresented: $showError){
             Alert(
                 title: Text("Invalid parameter"),
-                message: Text("You should write something to the question dialog."),
+                message: Text("You have to fill properly all of the bare minimum reqirements of the selected question type."),
                 dismissButton: .destructive(Text("Got it")) 
             )
         }
-    } // TODO: a
-    
+    }
     var body: some View {
         if networkManager.isNetworkReachable{
             NavigationView{
                 VStack(spacing: QuestionConstants.editQuestionStackSpacingParameter){
-                    if viewModel.questionType != .Voice{
                         questionComponent
+                        getUIForSelectedQuestionType()
+                    if viewModel.questionType != .Default{
+                        buttonComponent
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
                     }
-                    getUIForSelectedQuestionType()
-                    buttonComponent
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
                     Spacer()
                 }
             }

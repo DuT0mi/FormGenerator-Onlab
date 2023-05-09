@@ -52,7 +52,7 @@ final class AddQuestionViewModel: ObservableObject {
             case .TrueOrFalse:
                 addTextBasedQuestion(context: context)
             case .Voice:
-            addQuestionWithAudio(context: context, audioURL: recordedURL!)
+                addQuestionWithAudio(context: context, audioURL: recordedURL!)
         }
         reset(reset: true)
     }
@@ -75,12 +75,61 @@ final class AddQuestionViewModel: ObservableObject {
     private func addQuestionWithMultipleOptions(context: NSManagedObjectContext){
         CoreDataController().addQuestionWithMultipleOptions(context: context, options: textFields, type: questionType.rawValue, question: questionTitleMultiple)
     }
+    
+    
+    func editQuestion(context: NSManagedObjectContext,question: QuestionCoreData,pickedImage: PhotosPickerItem? = nil, recordedURL: URL? = nil, oldType: String){
+        if oldType != questionType.rawValue {
+            // Create the newer one
+            addQuestion(context: context, pickedImage: pickedImage, recordedURL: recordedURL)
+            // Delete the old
+            CoreDataController().deleteQuestion(context: context, question: question)
+        }
+        switch questionType {
+            case .Default:
+                break
+            case .Image:
+                editQuestionWithImage(context: context, question: question, image: pickedImage!)
+            case .MultipleChoice:
+                editQuestionWithMultipleFields(context: context, question: question)
+            case .Text:
+                editQuestionTypeText(context: context, question: question)
+            case .TrueOrFalse:
+                editQuestionTypeTrueOrFalse(context: context, question: question)
+            case .Voice:
+                editQuestionAudio(context: context, question: question, audioURL: recordedURL!)
+        }
+        reset(reset: true)
+    }
+    private func editQuestionWithImage(context: NSManagedObjectContext, question: QuestionCoreData, image: PhotosPickerItem){
+        Task{
+            if let data = try? await image.loadTransferable(type: Data.self){
+                if let image = UIImage(data: data), let imageData = image.pngData(){
+                    CoreDataController().editQuestionTypeImage(context: context, question: question, title: questionForImage, imageData: imageData)
+                }
+            }
+        }
+    }
+    private func editQuestionWithMultipleFields(context: NSManagedObjectContext, question: QuestionCoreData){
+        CoreDataController().editQuestionWithMultipleFields(context: context, question: question, options: textFields, title: questionTitleMultiple)
+    }
+    private func editQuestionAudio(context: NSManagedObjectContext, question: QuestionCoreData, audioURL url: URL){
+        CoreDataController().editQuestionWithAudio(context: context, url: url, question: question)
+    }
+    private func editQuestionTypeText(context: NSManagedObjectContext, question: QuestionCoreData){
+        CoreDataController().editQuestionTypeTextBased(context: context, question: question, question: questionTitle)
+    }
+    private func editQuestionTypeTrueOrFalse(context: NSManagedObjectContext, question: QuestionCoreData){
+        CoreDataController().editQuestionTypeTextBased(context: context, question: question, question: trueOrFalseQuestionTitle)
+    }
+    
+    
     func selectedImageConverter(){
         Task{
             if let data = try? await selectedImage?.loadTransferable(type: Data.self){
                 let image = UIImage(data: data)
                 if let image {
                     selectedConvertedImage = Image(uiImage: image)
+                    imageError = false
                 } else {
                     imageError = true
                 }

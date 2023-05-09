@@ -86,8 +86,7 @@ struct AddQuestionView: View {
             Alert(
                 title: Text("Invalid parameter"),
                 message: Text("You have to fill properly all of the bare minimum reqirements of the selected question type"),
-                dismissButton: .destructive(Text("Got it"))
-                
+                dismissButton: .destructive(Text("Got it"))                
             )
         }
     }
