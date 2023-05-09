@@ -71,7 +71,7 @@ struct EditQuestionView: View {
                         }
                         .onAppear{
                             self.pickedImage = viewModel.selectedImage
-                            viewModel.questionForImage = question.question!
+                            viewModel.questionForImage = question.question ?? ""
                         }
                 }
             }

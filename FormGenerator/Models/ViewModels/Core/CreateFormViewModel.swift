@@ -27,8 +27,9 @@ final class CreateFormViewModel: ObservableObject {
     }
     
     private func createForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
+        print(allQData)
         allQData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
-            self.formQuestions.append(Question(id: data.id!, formQuestion: data.question!, type: data.type!))
+            self.formQuestions.append(Question(id: data.id!, formQuestion: data.question ?? "nil", type: data.type!))
         }
         allFData.filter({$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
             self.form = FormData(
