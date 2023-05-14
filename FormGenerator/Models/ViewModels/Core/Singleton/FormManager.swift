@@ -31,6 +31,10 @@ actor FormManager{
     private func uploadFormToDatabase(form: FormData) async throws {
         try formDocument(formID: (form.id.uuidString)).setData(from: form, merge:false)
     }
+    
+    func uploadMultipleChoicesToTheProperQuestion(formID: String, questionID: String, array: [String]) async throws{
+        try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).updateData(["choices" : array])
+    }
     // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
             try await uploadFormToDatabase(form: form)

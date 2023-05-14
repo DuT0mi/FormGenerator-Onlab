@@ -14,6 +14,13 @@ final class AddFormViewModel: ObservableObject{
     
    static let shared = AddFormViewModel()
     
+    func saveMultipleChoice(texfields: [TextFieldModel], formID: String, questionID: String){
+        Task {
+            let choices: [String] = texfields.map { $0.text }
+            print(choices)
+            try await FormManager.shared.uploadMultipleChoicesToTheProperQuestion(formID: formID, questionID: questionID, array: choices)
+        }
+    }
     func saveQuestionImage(data: Data, formID: String, questionID: String){
         Task{
             let (path, _) = try await FirebaseStorageManager.shared.saveQuestionImage(data: data, formID: formID, questionID: questionID)

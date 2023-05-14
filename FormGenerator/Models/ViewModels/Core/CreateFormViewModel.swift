@@ -32,9 +32,15 @@ final class CreateFormViewModel: ObservableObject {
                 Question(id: data.id!,
                          formQuestion: data.question ?? "nil",
                          type: data.type!))
-
+            /* If the type is <Image> */
             if data.imgData != nil {
                 AddFormViewModel.shared.saveQuestionImage(data: data.imgData!, formID: AddFormViewModel.shared.formDatas?.id.uuidString ?? "", questionID: data.id?.uuidString ?? "")
+            }
+            /* If the type is <Multiple> */
+            if data.multipleOptions != nil {
+                if let dataDecoded = try? JSONDecoder().decode([TextFieldModel].self, from: data.multipleOptions as! Data){                    
+                    AddFormViewModel.shared.saveMultipleChoice(texfields: dataDecoded, formID: AddFormViewModel.shared.formDatas?.id.uuidString ?? "", questionID: data.id?.uuidString ?? "")
+                }
             }
         }
         allFData.filter({$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
