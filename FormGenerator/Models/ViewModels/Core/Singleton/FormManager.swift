@@ -27,13 +27,14 @@ actor FormManager{
         formCollection.document(formID)
     }
     
-    
     private func uploadFormToDatabase(form: FormData) async throws {
         try formDocument(formID: (form.id.uuidString)).setData(from: form, merge:false)
     }
-    
+    func uploadAudioFile(url path : URL, formID: String, questionID: String) async throws {
+        try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).updateData(["audio_path" : path.absoluteString])
+    }
     func uploadMultipleChoicesToTheProperQuestion(formID: String, questionID: String, array: [String]) async throws{
-        try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).updateData(["choices" : array])
+        try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).setData(["choices" : array], merge: true)
     }
     // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
@@ -44,8 +45,7 @@ actor FormManager{
                 let dict: [String : Any] = [
                     Question.CodingKeys.formQuestion.rawValue : data
                 ]
-                try await formSubCollectionOfQuestionDocument(formID: form.id.uuidString, questionID: question.id.uuidString).setData(dict)
-            
+                try await formSubCollectionOfQuestionDocument(formID: form.id.uuidString, questionID: question.id.uuidString).setData(dict, merge: true)
             }
     }
     func downloadAllForm(limit: Int, lastDocument: DocumentSnapshot?) async throws -> (forms: [FormData], lastDocument: DocumentSnapshot?){

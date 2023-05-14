@@ -14,10 +14,17 @@ final class AddFormViewModel: ObservableObject{
     
    static let shared = AddFormViewModel()
     
+    func saveAudioFile(audioURL url : URL, formID: String, questionID: String){
+        Task {
+            let (path, _) = try await FirebaseStorageManager.shared.saveAudioFile(url: url, formID: formID, questionID: questionID)
+            let urlReturned = try await FirebaseStorageManager.shared.getUrlForImage(path: path)
+            try await FormManager.shared.uploadAudioFile(url: urlReturned, formID: formID, questionID: questionID)
+        }
+    }
+    
     func saveMultipleChoice(texfields: [TextFieldModel], formID: String, questionID: String){
         Task {
             let choices: [String] = texfields.map { $0.text }
-            print(choices)
             try await FormManager.shared.uploadMultipleChoicesToTheProperQuestion(formID: formID, questionID: questionID, array: choices)
         }
     }

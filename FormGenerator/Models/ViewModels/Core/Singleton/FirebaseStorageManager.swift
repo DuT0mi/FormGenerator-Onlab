@@ -19,7 +19,23 @@ final class FirebaseStorageManager {
     private func formQuestionImageReference(formID: String, questionID: String) -> StorageReference{
         storage.child("forms").child(formID).child("questions").child(questionID).child("images")
     }
+    private func formQuestionAudioReference(formID: String, questionID: String) -> StorageReference{
+        storage.child("forms").child(formID).child("questions").child(questionID).child("audio")
+    }
     
+    func saveAudioFile(url: URL, formID: String, questionID: String) async throws  ->(path: String, name: String) {
+        let audioData = try Data(contentsOf: url)
+        let meta = StorageMetadata()
+        meta.contentType = "audio/m4a"
+        
+        let path = "\(UUID().uuidString).m4a"
+        
+        let returnedMetaData = try await formQuestionAudioReference(formID: formID, questionID: questionID).child(path).putDataAsync(audioData, metadata: meta)
+        guard let returnedPath = returnedMetaData.path,let returnedName = returnedMetaData.name else {
+            throw URLError(.badServerResponse)
+        }
+        return (returnedPath, returnedName)
+    }
     func saveQuestionImage(data: Data, formID: String, questionID: String) async throws  -> (path: String, name: String){
         let meta = StorageMetadata()
         meta.contentType = "image/jpeg"
