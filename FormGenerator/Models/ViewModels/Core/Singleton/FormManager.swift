@@ -41,6 +41,7 @@ actor FormManager{
                     Question.CodingKeys.formQuestion.rawValue : data
                 ]
                 try await formSubCollectionOfQuestionDocument(formID: form.id.uuidString, questionID: question.id.uuidString).setData(dict)
+            
             }
     }
     func downloadAllForm(limit: Int, lastDocument: DocumentSnapshot?) async throws -> (forms: [FormData], lastDocument: DocumentSnapshot?){
@@ -65,6 +66,12 @@ actor FormManager{
             FormData.CodingKeys.circleImageURL.rawValue : url as Any
         ]
         try await formDocument(formID: formID).updateData(data)
+    }
+    func updateFormQuestionImagePath(formID: String, url: String?, questionID: String) async throws {
+        let data: [String: Any] = [
+            Question.CodingKeys.imageURL.rawValue : url as Any
+        ]
+        try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).updateData(data)
     }
     func getAllFormCount() async throws -> Int {
         try await formCollection.aggregationCount()

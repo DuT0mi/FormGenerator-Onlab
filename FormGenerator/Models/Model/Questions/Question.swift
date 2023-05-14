@@ -9,6 +9,7 @@ struct Question: Identifiable, Codable{
         case id
         case formQuestion
         case type
+        case imageURL = "image_url"
     }
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
