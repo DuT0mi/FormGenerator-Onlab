@@ -27,10 +27,26 @@ final class CreateFormViewModel: ObservableObject {
     }
     
     private func createForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
-        print(allQData)
         allQData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
-            self.formQuestions.append(Question(id: data.id!, formQuestion: data.question ?? "nil", type: data.type!))
-        }
+            
+            self.formQuestions.append(
+                Question(id: data.id!,
+                         formQuestion: data.question ?? "nil",
+                         type: data.type!))
+            
+            if data.type == SelectedType.MultipleChoice.rawValue {
+                if let dataDecoded = try? JSONDecoder().decode([TextFieldModel].self, from: data.multipleOptions as! Data){
+                    AddFormViewModel.shared.saveMultipleChoice(texfields: dataDecoded, formID: AddFormViewModel.shared.formDatas?.id.uuidString ?? "", questionID: data.id?.uuidString ?? "")
+                }
+            } else
+            if data.type == SelectedType.Image.rawValue {
+                AddFormViewModel.shared.saveQuestionImage(data: data.imgData!, formID: AddFormViewModel.shared.formDatas?.id.uuidString ?? "", questionID: data.id?.uuidString ?? "")
+            } else
+            
+            if data.type == SelectedType.Voice.rawValue {
+                AddFormViewModel.shared.saveAudioFile(audioURL: data.audioURL!, formID: AddFormViewModel.shared.formDatas?.id.uuidString ?? "", questionID: data.id?.uuidString ?? "")
+            }
+        }        
         allFData.filter({$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
             self.form = FormData(
                             id: AddFormViewModel.shared.formDatas?.id ?? UUID(),

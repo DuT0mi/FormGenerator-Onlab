@@ -5,6 +5,7 @@ import _PhotosUI_SwiftUI
 final class AddFormViewModel: ObservableObject{
     @Published var isFormHasBeenAdded: (Bool, String?) = (false,nil)
     @Published var formDatas: FormData?
+    @Published var questionImage: String?
     @Published var selectedItem: PhotosPickerItem?
     @Published var selectedPremiumItem: PhotosPickerItem?
     @Published var selectedPremiumItemDataIfCameraIsUsed: Data?
@@ -12,7 +13,29 @@ final class AddFormViewModel: ObservableObject{
     
     
    static let shared = AddFormViewModel()
-  
+    
+    func saveAudioFile(audioURL url : URL, formID: String, questionID: String){
+        Task {
+            let (path, _) = try await FirebaseStorageManager.shared.saveAudioFile(url: url, formID: formID, questionID: questionID)
+            let urlReturned = try await FirebaseStorageManager.shared.getUrlForImage(path: path)
+            try await FormManager.shared.uploadAudioFile(url: urlReturned, formID: formID, questionID: questionID)
+        }
+    }
+    
+    func saveMultipleChoice(texfields: [TextFieldModel], formID: String, questionID: String){
+        Task {
+            let choices: [String] = texfields.map { $0.text }
+            try await FormManager.shared.uploadMultipleChoicesToTheProperQuestion(formID: formID, questionID: questionID, array: choices)
+        }
+    }
+    func saveQuestionImage(data: Data, formID: String, questionID: String){
+        Task{
+            let (path, _) = try await FirebaseStorageManager.shared.saveQuestionImage(data: data, formID: formID, questionID: questionID)
+            let url = try await FirebaseStorageManager.shared.getUrlForImage(path: path)
+            self.questionImage? = url.absoluteString
+            try await FormManager.shared.updateFormQuestionImagePath(formID: formID, url: url.absoluteString, questionID: questionID)
+        }
+    }
     func saveProfileImage(item: PhotosPickerItem, formID: String){
         Task {
             guard let data = try await item.loadTransferable(type: Data.self) else {return}
