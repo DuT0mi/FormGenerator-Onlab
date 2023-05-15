@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
+    @State private var showStartingView: Bool = false
     var form: FormData
     
     var backgroundImage: String = ImageConstants.templateBackgroundImage
@@ -26,30 +27,30 @@ struct FormViewDetail: View {
                         let url = URL(string: urlCircle){
                         AsyncImage(url: url){ phase in
                             switch phase{
-                                case .success(let image):
+                            case .success(let image):
                                 
                                 CompanyCircleView(image: circleImage, optionalImage: image)
                                     .offset(y: -100)
                                     .padding(.bottom, -100)
                                 
-                                case .empty:
-                                    ProgressView()
+                            case .empty:
+                                ProgressView()
                                     .frame(width: IC.defaultWidth, height: IC.defaultHeight)
-                                case .failure(let error):
-                                    Text(error.localizedDescription)
-                                    
+                            case .failure(let error):
+                                Text(error.localizedDescription)
                                 
-                                @unknown default:
-                                    ProgressView()
+                                
+                            @unknown default:
+                                ProgressView()
                                     .frame(width: IC.defaultWidth, height: IC.defaultHeight)
-                                }
+                            }
                         }
                     } else {
                         CompanyCircleView(image: circleImage, optionalImage: nil)
                             .offset(y: -100)
                             .padding(.bottom, -100)
                     }
-
+                    
                     
                     LazyVStack(alignment: .leading){
                         HStack{
@@ -79,7 +80,7 @@ struct FormViewDetail: View {
                     .padding()
                     
                     Button("Start form"){
-                        // TODO: Add content here
+                        showStartingView = true
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
@@ -87,6 +88,10 @@ struct FormViewDetail: View {
                 }
             }
             .edgesIgnoringSafeArea(.top)
+            .fullScreenCover(isPresented: $showStartingView) {
+                StartFormView(formID: form.id.uuidString)
+            }
+            
     }
 }
 

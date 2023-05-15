@@ -141,6 +141,8 @@
 		1AA43EFD29D3561D00235CAD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA43EFC29D3561D00235CAD /* GoogleSignInSwift */; };
 		1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43EFE29D361C800235CAD /* PasswordValidation.swift */; };
 		1AA43F0129D3682B00235CAD /* PasswordValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */; };
+		1AA59B1D2A12A02300FD988F /* StartFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1C2A12A02300FD988F /* StartFormView.swift */; };
+		1AA59B1F2A12A17700FD988F /* StartFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */; };
 		1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */; };
 		1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BB29E2DDCA00665361 /* CreateFormView.swift */; };
 		1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BD29E2E18700665361 /* FormListViewModel.swift */; };
@@ -233,6 +235,8 @@
 		1AA43E8629D3480E00235CAD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
+		1AA59B1C2A12A02300FD988F /* StartFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormView.swift; sourceTree = "<group>"; };
+		1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormViewModel.swift; sourceTree = "<group>"; };
 		1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_wImage.xcdatamodel; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
 		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
@@ -557,6 +561,7 @@
 		1A7E650E29DC9F0D0023067A /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				1AA59B1B2A12A00300FD988F /* Fill */,
 				1A439E3429F81B2800E486E6 /* Invalid */,
 				1A2411A029EAD40400AFF138 /* Create */,
 				1A24119D29EAD3D600AFF138 /* Edit */,
@@ -644,6 +649,7 @@
 				1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */,
 				1A439E3229F8102D00E486E6 /* ImageViewModel.swift */,
 				1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */,
+				1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -653,6 +659,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AA59B1B2A12A00300FD988F /* Fill */ = {
+			isa = PBXGroup;
+			children = (
+				1AA59B1C2A12A02300FD988F /* StartFormView.swift */,
+			);
+			path = Fill;
 			sourceTree = "<group>";
 		};
 		1AC519C229E2ED2B00665361 /* UI */ = {
@@ -962,6 +976,7 @@
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
 				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
+				1AA59B1F2A12A17700FD988F /* StartFormViewModel.swift in Sources */,
 				1A849BFB29EC44A1006F94C6 /* AddFormViewModel.swift in Sources */,
 				1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
@@ -1012,6 +1027,7 @@
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
 				1AC519C129E2EB6300665361 /* FormData.swift in Sources */,
 				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,
+				1AA59B1D2A12A02300FD988F /* StartFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
