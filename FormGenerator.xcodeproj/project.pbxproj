@@ -143,6 +143,7 @@
 		1AA43F0129D3682B00235CAD /* PasswordValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */; };
 		1AA59B1D2A12A02300FD988F /* StartFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1C2A12A02300FD988F /* StartFormView.swift */; };
 		1AA59B1F2A12A17700FD988F /* StartFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */; };
+		1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */; };
 		1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */; };
 		1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BB29E2DDCA00665361 /* CreateFormView.swift */; };
 		1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BD29E2E18700665361 /* FormListViewModel.swift */; };
@@ -237,6 +238,7 @@
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
 		1AA59B1C2A12A02300FD988F /* StartFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormView.swift; sourceTree = "<group>"; };
 		1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormViewModel.swift; sourceTree = "<group>"; };
+		1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDownloadingModel.swift; sourceTree = "<group>"; };
 		1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_wImage.xcdatamodel; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
 		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 			children = (
 				1AC519C029E2EB6300665361 /* FormData.swift */,
 				1A439E3929F8760E00E486E6 /* SelectedTypeData.swift */,
+				1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
 				1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */,
+				1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
