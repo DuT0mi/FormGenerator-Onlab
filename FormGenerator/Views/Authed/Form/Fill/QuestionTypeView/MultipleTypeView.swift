@@ -1,28 +1,5 @@
 import SwiftUI
 
-struct CircleOption: Identifiable, Equatable {
-    let id: UUID = UUID()
-    let multilpleTypeValue: String?
-    let trueOrFalseTypeValue: Bool?
-    
-    init(multilpleTypeValue: String? = nil, trueOrFalseTypeValue: Bool? = nil) {
-        self.multilpleTypeValue = multilpleTypeValue
-        self.trueOrFalseTypeValue = trueOrFalseTypeValue
-    }
-}
-
-@MainActor
-final class MultipleTypeViewModel: ObservableObject{
-    @Published var options: [CircleOption] = []
-    @Published var selectedOption: String?
-    
-    func loadQuestions(choices: [String]){
-        options.reserveCapacity(choices.count)
-        choices.forEach { options.append(CircleOption(multilpleTypeValue: $0.description)) }
-    }
-    
-}
-
 struct MultipleTypeView: View {
     @StateObject private var viewModel: MultipleTypeViewModel = MultipleTypeViewModel()
     
@@ -42,8 +19,7 @@ struct MultipleTypeView: View {
                         Circle()
                             .foregroundColor(option.multilpleTypeValue == viewModel.selectedOption ? .accentColor : .gray)
                             .frame(width: 25, height: 25)
-                        Text(option.multilpleTypeValue ?? "")
-                            .foregroundColor(.black)
+                        Text(option.multilpleTypeValue ?? "")                            
                         Spacer()
                     }
                 }

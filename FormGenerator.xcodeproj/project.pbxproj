@@ -67,6 +67,10 @@
 		1A5DBDAC2A13ACDA001F7698 /* MultipleTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAB2A13ACDA001F7698 /* MultipleTypeView.swift */; };
 		1A5DBDAE2A13B6E4001F7698 /* TrueOrFalseTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAD2A13B6E4001F7698 /* TrueOrFalseTypeView.swift */; };
 		1A5DBDB02A13BA03001F7698 /* AudioTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAF2A13BA03001F7698 /* AudioTypeView.swift */; };
+		1A5DBDB22A140917001F7698 /* CircleOptionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */; };
+		1A5DBDB42A140939001F7698 /* MultipleTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */; };
+		1A5DBDB62A140966001F7698 /* TrueOrFalseTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */; };
+		1A5DBDB82A14098C001F7698 /* AudioTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */; };
 		1A65770129FE820400D1EE81 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65770029FE820400D1EE81 /* Camera.swift */; };
 		1A66E6112A06D28400BDA6C3 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */; };
 		1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */; };
@@ -224,6 +228,10 @@
 		1A5DBDAB2A13ACDA001F7698 /* MultipleTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTypeView.swift; sourceTree = "<group>"; };
 		1A5DBDAD2A13B6E4001F7698 /* TrueOrFalseTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueOrFalseTypeView.swift; sourceTree = "<group>"; };
 		1A5DBDAF2A13BA03001F7698 /* AudioTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTypeView.swift; sourceTree = "<group>"; };
+		1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOptionStyle.swift; sourceTree = "<group>"; };
+		1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTypeViewModel.swift; sourceTree = "<group>"; };
+		1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueOrFalseTypeViewModel.swift; sourceTree = "<group>"; };
+		1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTypeViewModel.swift; sourceTree = "<group>"; };
 		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderView.swift; sourceTree = "<group>"; };
@@ -533,6 +541,7 @@
 				1A94628A2A083CF7003F4C05 /* MultipleChoiceModel.swift */,
 				1A514A7F29E42759002EF2BA /* Question.swift */,
 				1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */,
+				1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */,
 			);
 			path = Questions;
 			sourceTree = "<group>";
@@ -663,6 +672,9 @@
 				1A439E3229F8102D00E486E6 /* ImageViewModel.swift */,
 				1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */,
 				1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */,
+				1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */,
+				1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */,
+				1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1034,6 +1046,7 @@
 				1A439E3629F81B3700E486E6 /* InvalidView.swift in Sources */,
 				1AA59B262A12DB5800FD988F /* TextType.swift in Sources */,
 				1A439E3329F8102D00E486E6 /* ImageViewModel.swift in Sources */,
+				1A5DBDB62A140966001F7698 /* TrueOrFalseTypeViewModel.swift in Sources */,
 				1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
 				1A5DBDB02A13BA03001F7698 /* AudioTypeView.swift in Sources */,
@@ -1045,9 +1058,12 @@
 				1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
+				1A5DBDB22A140917001F7698 /* CircleOptionStyle.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
+				1A5DBDB82A14098C001F7698 /* AudioTypeViewModel.swift in Sources */,
 				1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */,
 				1A24119F29EAD3E800AFF138 /* AddFormView.swift in Sources */,
+				1A5DBDB42A140939001F7698 /* MultipleTypeViewModel.swift in Sources */,
 				1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */,
 				1A439E2F29F7E23300E486E6 /* FirebaseStorageManager.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,

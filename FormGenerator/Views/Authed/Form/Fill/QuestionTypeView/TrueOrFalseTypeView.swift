@@ -1,9 +1,5 @@
 import SwiftUI
 
-@MainActor
-final class TrueOrFalseTypeViewModel: ObservableObject{
-    @Published var selectedOption: Bool?
-}
 struct TrueOrFalseTypeView: View {
     @StateObject private var viewModel: TrueOrFalseTypeViewModel = TrueOrFalseTypeViewModel()
     var question: String
@@ -20,6 +16,7 @@ struct TrueOrFalseTypeView: View {
                             viewModel.selectedOption = true
                         }
                     Text("True")
+                        .foregroundColor(.accentColor)
                     Spacer()
                 }
                 HStack{
@@ -30,6 +27,7 @@ struct TrueOrFalseTypeView: View {
                             viewModel.selectedOption = false
                         }
                     Text("False")
+                        .foregroundColor(.accentColor)
                     Spacer()
                 }
         }

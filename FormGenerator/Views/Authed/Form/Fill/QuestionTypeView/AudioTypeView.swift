@@ -1,11 +1,6 @@
 import SwiftUI
 import AVFoundation
 
-@MainActor
-final class AudioTypeViewModel: ObservableObject {
-    @Published var answer: String = ""
-}
-
 struct AudioTypeView: View {
     @StateObject private var viewModel: AudioTypeViewModel = AudioTypeViewModel()
     @State private var audioPlayer: AVPlayer?
