@@ -97,16 +97,18 @@ struct FormViewDetail: View {
 
 struct FormViewDetailt_Previews: PreviewProvider {
     static var previews: some View {
-        FormViewDetail(form:
-                        FormData(id: UUID(),
-                                 title: "title",
-                                 type: "type",
-                                 companyID: "companyID",
-                                 companyName: "",
-                                 description: "description",
-                                 answers: "answers",
-                                 backgroundImagePath: "",
-                                 backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
-        .environmentObject(NetworkManagerViewModel())
+        NavigationView{
+            FormViewDetail(form:
+                            FormData(id: UUID(),
+                                     title: "title",
+                                     type: "type",
+                                     companyID: "companyID",
+                                     companyName: "",
+                                     description: "description",
+                                     answers: "answers",
+                                     backgroundImagePath: "",
+                                     backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
+            .environmentObject(NetworkManagerViewModel())
+        }
     }
 }

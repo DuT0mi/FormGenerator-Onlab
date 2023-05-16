@@ -112,3 +112,11 @@ struct AnimatedActionButton: View {
     }
     return controller
 }
+extension Text{
+    func downloadedQuestionTemplateModifier() -> some View{
+        return self
+            .font(.title3)
+            .bold()
+            .italic()
+    }
+}
