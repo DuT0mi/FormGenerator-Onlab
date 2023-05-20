@@ -3,6 +3,7 @@ import SwiftUI
 struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     @State private var showStartingView: Bool = false
+    @State private var userHasAlreadySubmittedTheForm: Bool = false
     var form: FormData
     
     var backgroundImage: String = ImageConstants.templateBackgroundImage
@@ -79,12 +80,28 @@ struct FormViewDetail: View {
                     }
                     .padding()
                     
-                    Button("Start form"){
+                    Button{
                         showStartingView = true
+                        userHasAlreadySubmittedTheForm = true
+                    }label: {
+                        if !userHasAlreadySubmittedTheForm{
+                            Text("Start form")
+                        } else {
+                            Label("You have already submitted the form!", systemImage: "exclamationmark.triangle.fill")
+                                .foregroundColor(.red)
+                        }
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
+                    .disabled(userHasAlreadySubmittedTheForm ? true : false)
+                }
+                .task {
+                    await FormManager.shared.checkUserIfHasAlreadyAnswered(formID: form.id.uuidString, userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!) { hasAnswered in
+                        if hasAnswered{
+                            userHasAlreadySubmittedTheForm = hasAnswered
+                        }
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.top)

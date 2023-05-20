@@ -79,6 +79,17 @@ actor FormManager{
             .getDocumentsWithSnapshot(as: FormData.self)
             
     }
+    func checkUserIfHasAlreadyAnswered(formID: String, userID: String, completion: @escaping (Bool) -> Void) {
+        let docRef = answerCollectionReference(formID: formID).document(userID)
+        docRef.getDocument { document, error in
+            if let document = document, document.exists {
+                completion(document.documentID == userID)
+            } else {
+                completion(false)
+            }
+        }
+    }
+
     func downloadOneForm(formID: String) async throws -> FormData{
         let formsQuery: Query = self.getAllFormQuery()
         
