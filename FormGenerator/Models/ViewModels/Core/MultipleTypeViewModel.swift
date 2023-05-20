@@ -8,6 +8,7 @@ final class MultipleTypeViewModel: ObservableObject{
     func loadQuestions(choices: [String]){
         options.reserveCapacity(choices.count)
         choices.forEach { options.append(CircleOption(multilpleTypeValue: $0.description)) }
+        selectedOption = options.first?.multilpleTypeValue
     }
     
 }
