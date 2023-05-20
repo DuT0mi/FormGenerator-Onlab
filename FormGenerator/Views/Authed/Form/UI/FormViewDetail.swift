@@ -100,6 +100,7 @@ struct FormViewDetailt_Previews: PreviewProvider {
         NavigationView{
             FormViewDetail(form:
                             FormData(id: UUID(),
+                                     time: 10,
                                      title: "title",
                                      type: "type",
                                      companyID: "companyID",

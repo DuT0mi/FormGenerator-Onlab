@@ -158,6 +158,7 @@ struct AddFormView: View {
                 isThereAnyEmptyField = true
             } else {
                 let formData = FormData(id: UUID(),
+                                        time: 0,
                                         title: formTitle,
                                         type: formType,
                                         companyID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!,

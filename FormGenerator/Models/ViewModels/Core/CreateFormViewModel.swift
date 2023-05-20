@@ -26,7 +26,7 @@ final class CreateFormViewModel: ObservableObject {
         }
     }
     
-    private func createForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
+    private func createForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext, time: Int) async throws {
         allQData.filter({$0.uid == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
             
             self.formQuestions.append(
@@ -50,6 +50,7 @@ final class CreateFormViewModel: ObservableObject {
         allFData.filter({$0.cID == UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)}).forEach { data in
             self.form = FormData(
                             id: AddFormViewModel.shared.formDatas?.id ?? UUID(),
+                            time: time,
                             title: data.title ?? "Title",
                             type: data.type ?? "None",
                             companyID: account?.userID ?? "Error",
@@ -71,17 +72,17 @@ final class CreateFormViewModel: ObservableObject {
     private func uploadToFireBaseStoragePremiumItem(selectedItemPremium: PhotosPickerItem?, formData: FormData) async throws {
         AddFormViewModel.shared.savePremiumProfileImage(item: selectedItemPremium, formID: formData.id.uuidString)
     }
-    private func commonUploadToFirebaseStorage(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
-        try await createForm(allQData: allQData, allFData: allFData, context: context)
+    private func commonUploadToFirebaseStorage(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext, time: Int) async throws {
+        try await createForm(allQData: allQData, allFData: allFData, context: context, time: time)
         try await uploadToFireBaseStorage(selectedItem: AddFormViewModel.shared.selectedItem!, formData: AddFormViewModel.shared.formDatas!)
     }
     
-    func createAndUploadForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
-        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context)
+    func createAndUploadForm(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext, time: Int) async throws {
+        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context, time: time)
         try await uploadForm()
     }
-    func createAndUploadFormPremium(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext) async throws {
-        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context)
+    func createAndUploadFormPremium(allQData: FetchedResults<QuestionCoreData>,allFData: FetchedResults<FormCoreData>, context: NSManagedObjectContext, time: Int) async throws {
+        try await commonUploadToFirebaseStorage(allQData: allQData, allFData: allFData, context: context, time: time)
         try await uploadToFireBaseStoragePremiumItem(selectedItemPremium: AddFormViewModel.shared.selectedPremiumItem, formData: AddFormViewModel.shared.formDatas!)
         try await uploadForm()
     }
