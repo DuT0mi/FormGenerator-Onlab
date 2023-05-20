@@ -55,7 +55,7 @@ actor FormManager{
         for data in datas {
             dictionary[data.qID] = data.answer
         }
-        try await answerSubCollectionDocument(formID: formID, userID: userID!).setData(dictionary, merge: true)
+        try await answerSubCollectionDocument(formID: formID, userID: userID!).setData(dictionary)
         
     }
     // First upload the Form itself, then the questions to it

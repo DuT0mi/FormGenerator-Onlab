@@ -104,8 +104,7 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                      type: "type",
                                      companyID: "companyID",
                                      companyName: "",
-                                     description: "description",
-                                     answers: "answers",
+                                     description: "description",                                     
                                      backgroundImagePath: "",
                                      backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
             .environmentObject(NetworkManagerViewModel())

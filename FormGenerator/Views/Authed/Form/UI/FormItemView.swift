@@ -48,7 +48,7 @@ struct FormItemView: View {
 struct FormItemView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            FormItemView(form: FormData(id: UUID(), title: "title", type: "", companyID: "", companyName: "", description: "", answers: "", backgroundImagePath: "", backgroundImageURL: "https://picsum.photos/200/300"))
+            FormItemView(form: FormData(id: UUID(), title: "title", type: "", companyID: "", companyName: "", description: "", backgroundImagePath: "", backgroundImageURL: "https://picsum.photos/200/300"))
                 .frame(width: 250)
         }
     }
