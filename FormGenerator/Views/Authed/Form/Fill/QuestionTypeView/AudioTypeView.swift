@@ -8,10 +8,10 @@ struct AudioTypeView: View {
     @State private var audioPlayer: AVPlayer?
     @State private var isPlaying: Bool = false
     
-    var audioPath: String
+    var question: DownloadedQuestion
     
     private func playRecording() {
-        guard let url = URL(string: audioPath) else {return}
+        guard let url = URL(string: question.audio_path!) else {return}
         let audioPlayerItem = AVPlayerItem(url: url)
         audioPlayer = AVPlayer(playerItem: audioPlayerItem)
         audioPlayer?.play()
@@ -47,7 +47,7 @@ struct AudioTypeView: View {
             Image(systemName: "rectangle.filled.and.hand.point.up.left")
                 .onTapGesture {
                     symbolColorChange = true
-                    observer.answers.append(viewModel.answer)
+                    observer.answers.append((viewModel.answer, question.id!))
                     
                 }
                 .foregroundColor(symbolColorChange ? .green : .gray)
@@ -60,6 +60,6 @@ struct AudioTypeView: View {
 
 struct AudioTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        AudioTypeView(observer: StartFormViewModel(), audioPath:"a")
+        AudioTypeView(observer: StartFormViewModel(), question: DownloadedQuestion(id: "1", formQuestion: "Hello", type: "aa", choices: ["a"], audio_path: "", image_url: "https://picsum.photos/200/300"))
     }
 }

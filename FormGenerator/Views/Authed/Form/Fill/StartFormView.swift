@@ -13,16 +13,16 @@ struct StartFormView: View {
             return AnyView(ImageType(viewModel: viewModel, question: question))
             
         case SelectedType.Text.rawValue:
-            return AnyView(TextType(viewModel: viewModel, question: question.formQuestion!))
+            return AnyView(TextType(viewModel: viewModel, question: question))
             
         case SelectedType.MultipleChoice.rawValue:
-            return AnyView(MultipleTypeView(observer: viewModel, question: question.formQuestion!, choices: question.choices!))
+            return AnyView(MultipleTypeView(observer: viewModel, question: question))
             
         case SelectedType.TrueOrFalse.rawValue:
-            return AnyView(TrueOrFalseTypeView(observed: viewModel, question: question.formQuestion!))
+            return AnyView(TrueOrFalseTypeView(observed: viewModel, question: question))
             
         case SelectedType.Voice.rawValue:
-            return AnyView(AudioTypeView(observer: viewModel, audioPath: question.audio_path!))
+            return AnyView(AudioTypeView(observer: viewModel, question: question))
             
         default:
             return AnyView(EmptyView())
@@ -36,6 +36,7 @@ struct StartFormView: View {
                     }
                     Button{                        
                         viewModel.showAnswers()
+                        viewModel.uploadAnswer(formID: formID!)
                         dismiss.callAsFunction()
                     } label: {
                         Text("Submit!")

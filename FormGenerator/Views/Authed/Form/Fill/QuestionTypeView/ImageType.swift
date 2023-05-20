@@ -31,7 +31,8 @@ struct ImageType: View {
                 Image(systemName: "rectangle.filled.and.hand.point.up.left")
                     .onTapGesture {
                         symbolColorChange = true
-                        viewModel.answers.append(answer)
+                        //viewModel.answers.append(answer)
+                        viewModel.answers.append((answer,question.id!))
                     }
                     .foregroundColor(symbolColorChange ? .green : .gray)
                     .disabled(symbolColorChange ? true : false)

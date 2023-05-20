@@ -26,6 +26,13 @@ actor FormManager{
     private func questionCollectionReference(formID: String) -> CollectionReference {
         formDocument(formID: formID).collection("form_questions")
     }
+    
+    private func answerCollectionReference(formID: String) -> CollectionReference{
+        formDocument(formID: formID).collection("form_answers")
+    }
+    private func answerSubCollectionDocument(formID: String, userID: String) -> DocumentReference{
+        formDocument(formID: formID).collection("form_answers").document(userID)
+    }
     private func formSubCollectionOfQuestionDocument(formID: String, questionID: String) -> DocumentReference{
         formDocument(formID: formID).collection("form_questions").document(questionID)
     }
@@ -41,6 +48,15 @@ actor FormManager{
     }
     func uploadMultipleChoicesToTheProperQuestion(formID: String, questionID: String, array: [String]) async throws{
         try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).setData(["choices" : array], merge: true)
+    }
+    func uploadAnswers(formID: String, datas: [(answer: String, qID: String)]) async throws {
+        let userID = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+        var dictionary: [String: Any] = [:]
+        for data in datas {
+            dictionary[data.qID] = data.answer
+        }
+        try await answerSubCollectionDocument(formID: formID, userID: userID!).setData(dictionary, merge: true)
+        
     }
     // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
