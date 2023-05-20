@@ -20,6 +20,19 @@ actor FormManager{
     private func getAllFormQuery() -> Query {
         formCollection
     }
+    private func getAllQuestionQuery(formID: String) -> Query {
+        questionCollectionReference(formID: formID)
+    }
+    private func questionCollectionReference(formID: String) -> CollectionReference {
+        formDocument(formID: formID).collection("form_questions")
+    }
+    
+    private func answerCollectionReference(formID: String) -> CollectionReference{
+        formDocument(formID: formID).collection("form_answers")
+    }
+    private func answerSubCollectionDocument(formID: String, userID: String) -> DocumentReference{
+        formDocument(formID: formID).collection("form_answers").document(userID)
+    }
     private func formSubCollectionOfQuestionDocument(formID: String, questionID: String) -> DocumentReference{
         formDocument(formID: formID).collection("form_questions").document(questionID)
     }
@@ -36,14 +49,23 @@ actor FormManager{
     func uploadMultipleChoicesToTheProperQuestion(formID: String, questionID: String, array: [String]) async throws{
         try await formSubCollectionOfQuestionDocument(formID: formID, questionID: questionID).setData(["choices" : array], merge: true)
     }
+    func uploadAnswers(formID: String, datas: [(answer: String, qID: String)]) async throws {
+        let userID = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
+        var dictionary: [String: Any] = [:]
+        for data in datas {
+            dictionary[data.qID] = data.answer
+        }
+        try await answerSubCollectionDocument(formID: formID, userID: userID!).setData(dictionary)
+        
+    }
     // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
             try await uploadFormToDatabase(form: form)
-        
         for question in questions {
-                guard let data = try? encoder.encode(question) else {throw URLError(.badURL)}
                 let dict: [String : Any] = [
-                    Question.CodingKeys.formQuestion.rawValue : data
+                    Question.CodingKeys.formQuestion.rawValue   : question.formQuestion,
+                    Question.CodingKeys.type.rawValue           : question.type,
+                    Question.CodingKeys.id.rawValue             : question.id.uuidString
                 ]
                 try await formSubCollectionOfQuestionDocument(formID: form.id.uuidString, questionID: question.id.uuidString).setData(dict, merge: true)
             }
@@ -56,6 +78,12 @@ actor FormManager{
             .startIfExists(afterDocument: lastDocument)
             .getDocumentsWithSnapshot(as: FormData.self)
             
+    }
+    func downloadAllQuesition(formID: String) async throws -> [DownloadedQuestion] {
+        let questionQuery: Query = self.getAllQuestionQuery(formID: formID)
+                
+        return try await questionQuery
+            .getDocuments(as: DownloadedQuestion.self)
     }
     func updateFormProfileImagePath(formID: String, path: String?, url: String?) async throws {
         let data: [String: Any] = [
@@ -79,6 +107,9 @@ actor FormManager{
     }
     func getAllFormCount() async throws -> Int {
         try await formCollection.aggregationCount()
+    }
+    func getAllQuestionCount(formID: String) async throws -> Int {
+        try await questionCollectionReference(formID: formID).aggregationCount()
     }
 
 }

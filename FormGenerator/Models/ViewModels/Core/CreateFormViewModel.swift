@@ -54,8 +54,7 @@ final class CreateFormViewModel: ObservableObject {
                             type: data.type ?? "None",
                             companyID: account?.userID ?? "Error",
                             companyName: data.cName ?? "Company Name",
-                            description: data.cDesc ?? "Description",
-                            answers: data.answers ?? "Answers",
+                            description: data.cDesc ?? "Description",                            
                             backgroundImagePath: AddFormViewModel.shared.formDatas?.backgroundImagePath ?? "",
                             backgroundImageURL: AddFormViewModel.shared.formDatas?.backgroundImageURL ?? "",
                             circleImagePath: AddFormViewModel.shared.formDatas?.circleImagePath ?? "",
@@ -64,7 +63,7 @@ final class CreateFormViewModel: ObservableObject {
         
     }
     private func uploadForm() async throws {
-        try await FormManager.shared.uploadQuestionsToTheProperFormToDatabase(form: form!, questions: formQuestions)
+        try await FormManager.shared.uploadQuestionsToTheProperFormToDatabase(form: form!, questions: formQuestions)        
     }
     private func uploadToFireBaseStorage(selectedItem: PhotosPickerItem, formData: FormData) async throws {
         AddFormViewModel.shared.saveProfileImage(item: selectedItem, formID: formData.id.uuidString)

@@ -8,7 +8,6 @@ struct FormData: Identifiable, Codable, Hashable{
     let companyID: String
     let companyName: String
     let description: String
-    var answers: String
     var backgroundImagePath: String?
     var backgroundImageURL: String?
     var circleImagePath: String?
@@ -20,7 +19,6 @@ struct FormData: Identifiable, Codable, Hashable{
         case type = "type"
         case companyID = "company_id"
         case description = "description"
-        case answers = "answers"
         case companyName = "company_name"
         case backgroundImagePath = "background_image_path"
         case backgroundImageURL = "background_image_url"

@@ -39,7 +39,6 @@ class CoreDataController: ObservableObject {
             resetFormData(context: context) // For getting the latest always
            let form = FormCoreData(context: context)
             form.type = formData.type
-            form.answers = formData.answers
             form.cDesc = formData.description
             form.cID = formData.companyID
             form.cName = formData.companyName

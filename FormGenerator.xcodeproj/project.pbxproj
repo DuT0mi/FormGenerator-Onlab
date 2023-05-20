@@ -64,6 +64,13 @@
 		1A514A8629E43C94002EF2BA /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8529E43C94002EF2BA /* CoreDataController.swift */; };
 		1A514A8829E4410C002EF2BA /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8729E4410C002EF2BA /* AddQuestionView.swift */; };
 		1A514A8A29E4479B002EF2BA /* EditQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514A8929E4479B002EF2BA /* EditQuestionView.swift */; };
+		1A5DBDAC2A13ACDA001F7698 /* MultipleTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAB2A13ACDA001F7698 /* MultipleTypeView.swift */; };
+		1A5DBDAE2A13B6E4001F7698 /* TrueOrFalseTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAD2A13B6E4001F7698 /* TrueOrFalseTypeView.swift */; };
+		1A5DBDB02A13BA03001F7698 /* AudioTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDAF2A13BA03001F7698 /* AudioTypeView.swift */; };
+		1A5DBDB22A140917001F7698 /* CircleOptionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */; };
+		1A5DBDB42A140939001F7698 /* MultipleTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */; };
+		1A5DBDB62A140966001F7698 /* TrueOrFalseTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */; };
+		1A5DBDB82A14098C001F7698 /* AudioTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */; };
 		1A65770129FE820400D1EE81 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A65770029FE820400D1EE81 /* Camera.swift */; };
 		1A66E6112A06D28400BDA6C3 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */; };
 		1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */; };
@@ -141,6 +148,11 @@
 		1AA43EFD29D3561D00235CAD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA43EFC29D3561D00235CAD /* GoogleSignInSwift */; };
 		1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43EFE29D361C800235CAD /* PasswordValidation.swift */; };
 		1AA43F0129D3682B00235CAD /* PasswordValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */; };
+		1AA59B1D2A12A02300FD988F /* StartFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1C2A12A02300FD988F /* StartFormView.swift */; };
+		1AA59B1F2A12A17700FD988F /* StartFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */; };
+		1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */; };
+		1AA59B242A12D70300FD988F /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B232A12D70300FD988F /* ImageType.swift */; };
+		1AA59B262A12DB5800FD988F /* TextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA59B252A12DB5800FD988F /* TextType.swift */; };
 		1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */; };
 		1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BB29E2DDCA00665361 /* CreateFormView.swift */; };
 		1AC519BE29E2E18700665361 /* FormListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC519BD29E2E18700665361 /* FormListViewModel.swift */; };
@@ -213,6 +225,13 @@
 		1A523AA42A0A6742007924F6 /* question_form_audio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_audio.xcdatamodel; sourceTree = "<group>"; };
 		1A523AA52A0A6B6F007924F6 /* question_form_updated.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_updated.xcdatamodel; sourceTree = "<group>"; };
 		1A5944F929E99CB000F7BCF4 /* QuestionCD_wUID.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuestionCD_wUID.xcdatamodel; sourceTree = "<group>"; };
+		1A5DBDAB2A13ACDA001F7698 /* MultipleTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTypeView.swift; sourceTree = "<group>"; };
+		1A5DBDAD2A13B6E4001F7698 /* TrueOrFalseTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueOrFalseTypeView.swift; sourceTree = "<group>"; };
+		1A5DBDAF2A13BA03001F7698 /* AudioTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTypeView.swift; sourceTree = "<group>"; };
+		1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleOptionStyle.swift; sourceTree = "<group>"; };
+		1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTypeViewModel.swift; sourceTree = "<group>"; };
+		1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueOrFalseTypeViewModel.swift; sourceTree = "<group>"; };
+		1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTypeViewModel.swift; sourceTree = "<group>"; };
 		1A65770029FE820400D1EE81 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderView.swift; sourceTree = "<group>"; };
@@ -233,6 +252,11 @@
 		1AA43E8629D3480E00235CAD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		1AA43EFE29D361C800235CAD /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		1AA43F0029D3682B00235CAD /* PasswordValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationTests.swift; sourceTree = "<group>"; };
+		1AA59B1C2A12A02300FD988F /* StartFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormView.swift; sourceTree = "<group>"; };
+		1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFormViewModel.swift; sourceTree = "<group>"; };
+		1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDownloadingModel.swift; sourceTree = "<group>"; };
+		1AA59B232A12D70300FD988F /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		1AA59B252A12DB5800FD988F /* TextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextType.swift; sourceTree = "<group>"; };
 		1AA9AAC42A098AF8004664E2 /* question_form_wImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = question_form_wImage.xcdatamodel; sourceTree = "<group>"; };
 		1AAB7E4529DEF53C00C9B9A1 /* CompanyCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCircleView.swift; sourceTree = "<group>"; };
 		1AC519BB29E2DDCA00665361 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
@@ -517,6 +541,7 @@
 				1A94628A2A083CF7003F4C05 /* MultipleChoiceModel.swift */,
 				1A514A7F29E42759002EF2BA /* Question.swift */,
 				1A514A8229E43C12002EF2BA /* QuestionCD.xcdatamodeld */,
+				1A5DBDB12A140917001F7698 /* CircleOptionStyle.swift */,
 			);
 			path = Questions;
 			sourceTree = "<group>";
@@ -542,6 +567,7 @@
 			children = (
 				1AC519C029E2EB6300665361 /* FormData.swift */,
 				1A439E3929F8760E00E486E6 /* SelectedTypeData.swift */,
+				1AA59B202A12C35300FD988F /* QuestionDownloadingModel.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -557,6 +583,7 @@
 		1A7E650E29DC9F0D0023067A /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				1AA59B1B2A12A00300FD988F /* Fill */,
 				1A439E3429F81B2800E486E6 /* Invalid */,
 				1A2411A029EAD40400AFF138 /* Create */,
 				1A24119D29EAD3D600AFF138 /* Edit */,
@@ -644,6 +671,10 @@
 				1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */,
 				1A439E3229F8102D00E486E6 /* ImageViewModel.swift */,
 				1AA3F5332A05A7D3009B29A0 /* AddQuestionViewModel.swift */,
+				1AA59B1E2A12A17700FD988F /* StartFormViewModel.swift */,
+				1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */,
+				1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */,
+				1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -653,6 +684,27 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AA59B1B2A12A00300FD988F /* Fill */ = {
+			isa = PBXGroup;
+			children = (
+				1AA59B222A12D6DB00FD988F /* QuestionTypeView */,
+				1AA59B1C2A12A02300FD988F /* StartFormView.swift */,
+			);
+			path = Fill;
+			sourceTree = "<group>";
+		};
+		1AA59B222A12D6DB00FD988F /* QuestionTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				1AA59B232A12D70300FD988F /* ImageType.swift */,
+				1AA59B252A12DB5800FD988F /* TextType.swift */,
+				1A5DBDAB2A13ACDA001F7698 /* MultipleTypeView.swift */,
+				1A5DBDAD2A13B6E4001F7698 /* TrueOrFalseTypeView.swift */,
+				1A5DBDAF2A13BA03001F7698 /* AudioTypeView.swift */,
+			);
+			path = QuestionTypeView;
 			sourceTree = "<group>";
 		};
 		1AC519C229E2ED2B00665361 /* UI */ = {
@@ -962,6 +1014,7 @@
 				1A96427A29C76F9200C30A2F /* NetworkManagerViewModel.swift in Sources */,
 				1A7E651229DCA74F0023067A /* FormViewDetail.swift in Sources */,
 				1A6B321929C747D600551E8F /* SpaceView.swift in Sources */,
+				1AA59B1F2A12A17700FD988F /* StartFormViewModel.swift in Sources */,
 				1A849BFB29EC44A1006F94C6 /* AddFormViewModel.swift in Sources */,
 				1A514A8429E43C12002EF2BA /* QuestionCD.xcdatamodeld in Sources */,
 				1ADFF44129BC8D860071F54C /* IntroView.swift in Sources */,
@@ -969,6 +1022,7 @@
 				1A66E6112A06D28400BDA6C3 /* MultipleChoiceView.swift in Sources */,
 				1A4CEDC129DB68DB0086DA80 /* StandardAccount.swift in Sources */,
 				1A4CEDBE29DB66700086DA80 /* Account.swift in Sources */,
+				1A5DBDAC2A13ACDA001F7698 /* MultipleTypeView.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A439E3829F8250600E486E6 /* Errors.swift in Sources */,
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
@@ -978,6 +1032,7 @@
 				1ADFF45029BCF69F0071F54C /* RecentsFormsView.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
 				1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */,
+				1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
@@ -989,9 +1044,12 @@
 				1A41A3CE29EEFE0000CBF408 /* AppleSignInViewModel.swift in Sources */,
 				1AC519BC29E2DDCA00665361 /* CreateFormView.swift in Sources */,
 				1A439E3629F81B3700E486E6 /* InvalidView.swift in Sources */,
+				1AA59B262A12DB5800FD988F /* TextType.swift in Sources */,
 				1A439E3329F8102D00E486E6 /* ImageViewModel.swift in Sources */,
+				1A5DBDB62A140966001F7698 /* TrueOrFalseTypeViewModel.swift in Sources */,
 				1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
+				1A5DBDB02A13BA03001F7698 /* AudioTypeView.swift in Sources */,
 				1A4CEDC329DB6A790086DA80 /* CompanyAccount.swift in Sources */,
 				1A439E3A29F8760E00E486E6 /* SelectedTypeData.swift in Sources */,
 				1AAB7E4629DEF53C00C9B9A1 /* CompanyCircleView.swift in Sources */,
@@ -1000,9 +1058,12 @@
 				1A66E6132A06EA4100BDA6C3 /* VoiceRecorderView.swift in Sources */,
 				1A282EF729AE86DC00DAFD9B /* UtilityExtensions.swift in Sources */,
 				1AA43EFF29D361C800235CAD /* PasswordValidation.swift in Sources */,
+				1A5DBDB22A140917001F7698 /* CircleOptionStyle.swift in Sources */,
 				1ADFF44A29BCF6230071F54C /* FormsListView.swift in Sources */,
+				1A5DBDB82A14098C001F7698 /* AudioTypeViewModel.swift in Sources */,
 				1A7E650D29DC6D470023067A /* SettingsViewModel.swift in Sources */,
 				1A24119F29EAD3E800AFF138 /* AddFormView.swift in Sources */,
+				1A5DBDB42A140939001F7698 /* MultipleTypeViewModel.swift in Sources */,
 				1AA43E8729D3480E00235CAD /* EmailValidation.swift in Sources */,
 				1A439E2F29F7E23300E486E6 /* FirebaseStorageManager.swift in Sources */,
 				1A298FE129BE3222007DE28F /* TemplateAuthView.swift in Sources */,
@@ -1010,8 +1071,11 @@
 				1A2411A229EAD83A00AFF138 /* FormPreview.swift in Sources */,
 				1A2C2FBA29BDDFC3008ED194 /* SignupView.swift in Sources */,
 				1A9D202629B4B20100127A91 /* UserViewModel.swift in Sources */,
+				1AA59B242A12D70300FD988F /* ImageType.swift in Sources */,
 				1AC519C129E2EB6300665361 /* FormData.swift in Sources */,
+				1A5DBDAE2A13B6E4001F7698 /* TrueOrFalseTypeView.swift in Sources */,
 				1A319D2329B3AC3200183B94 /* Constants.swift in Sources */,
+				1AA59B1D2A12A02300FD988F /* StartFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

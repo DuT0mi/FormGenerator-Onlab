@@ -1,6 +1,6 @@
 import Foundation
 
-struct Question: Identifiable, Codable{
+struct Question: Identifiable, Codable, Hashable{
     let id: UUID
     var formQuestion: String
     let type: String

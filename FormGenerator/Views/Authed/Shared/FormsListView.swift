@@ -13,7 +13,7 @@ struct FormsListView: View {
                         LazyVGrid(columns: columns){
                             ForEach(viewModel.forms){form in
                                 NavigationLink{
-                                    FormViewDetail(form: form)
+                                    FormViewDetail(form: form)                                    
                                 }label: {
                                     FormItemView(form: form)
                                 }

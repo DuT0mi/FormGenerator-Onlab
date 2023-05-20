@@ -162,8 +162,7 @@ struct AddFormView: View {
                                         type: formType,
                                         companyID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!,
                                         companyName: formCompanyName,
-                                        description: formDescription,
-                                        answers: "answers")
+                                        description: formDescription)
                 
                 if let selectedBackgroundItem{
                     commonDataSave(formData: formData, selectedItem: selectedBackgroundItem)
