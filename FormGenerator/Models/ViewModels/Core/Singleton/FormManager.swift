@@ -79,6 +79,17 @@ actor FormManager{
             .getDocumentsWithSnapshot(as: FormData.self)
             
     }
+    func downloadOneForm(formID: String) async throws -> FormData{
+        let formsQuery: Query = self.getAllFormQuery()
+        
+        return try await
+                formsQuery
+                    .whereField(FormData.CodingKeys.id.rawValue, isEqualTo: formID)
+                    .getDocumentsWithSnapshot(as: FormData.self)
+                    .forms
+                    .first!
+                    
+    }
     func downloadAllQuesition(formID: String) async throws -> [DownloadedQuestion] {
         let questionQuery: Query = self.getAllQuestionQuery(formID: formID)
                 

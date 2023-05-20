@@ -1,7 +1,5 @@
 import SwiftUI
 
-//MARK: credits: https://stackoverflow.com/questions/66601955/is-there-support-for-something-like-timepicker-hours-mins-secs-in-swiftui
-
 struct AddTimerView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: TimerViewModel 
