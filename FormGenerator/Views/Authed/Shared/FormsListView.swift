@@ -15,7 +15,7 @@ struct FormsListView: View {
                                 NavigationLink{
                                     FormViewDetail(form: form)                                    
                                 }label: {
-                                    FormItemView(form: form)
+                                    FormItemView(form: form)                                    
                                 }
                                 if form == viewModel.forms.last{
                                     if let formsOnServerCount = viewModel.allFormCountOnServer, formsOnServerCount != viewModel.forms.count{
@@ -25,7 +25,7 @@ struct FormsListView: View {
                                             }
                                     }
                                 }
-                            }
+                            }                            
                         }
                         .padding()
                         .task{

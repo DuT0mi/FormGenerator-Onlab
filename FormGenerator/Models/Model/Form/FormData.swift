@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FormData: Identifiable, Codable, Hashable{
     let id: UUID
+    let time: Int
     let title: String
     let type: String
     let companyID: String
@@ -15,6 +16,7 @@ struct FormData: Identifiable, Codable, Hashable{
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
+        case time = "time_to_fill_in_seconds"
         case title = "title"
         case type = "type"
         case companyID = "company_id"

@@ -46,6 +46,10 @@
 		1A319D1F29B39F2D00183B94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D1E29B39F2D00183B94 /* FirebaseStorage */; };
 		1A319D2129B39F2D00183B94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D2029B39F2D00183B94 /* FirebaseStorageCombine-Community */; };
 		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
+		1A40AA242A18F72700586817 /* AddTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA232A18F72700586817 /* AddTimerView.swift */; };
+		1A40AA282A1905C300586817 /* TimeViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA272A1905C300586817 /* TimeViewBase.swift */; };
+		1A40AA2A2A19067E00586817 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA292A19067E00586817 /* TimerViewModel.swift */; };
+		1A40AA2D2A190CB200586817 /* TimerCountDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA2C2A190CB200586817 /* TimerCountDown.swift */; };
 		1A41A3CC29EEF05B00CBF408 /* GoogleSignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41A3CB29EEF05B00CBF408 /* GoogleSignInViewModel.swift */; };
 		1A41A3CE29EEFE0000CBF408 /* AppleSignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */; };
 		1A439E2F29F7E23300E486E6 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */; };
@@ -204,6 +208,10 @@
 		1A2C2FB929BDDFC3008ED194 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		1A319CE929B39CE100183B94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1A40AA232A18F72700586817 /* AddTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerView.swift; sourceTree = "<group>"; };
+		1A40AA272A1905C300586817 /* TimeViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewBase.swift; sourceTree = "<group>"; };
+		1A40AA292A19067E00586817 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		1A40AA2C2A190CB200586817 /* TimerCountDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountDown.swift; sourceTree = "<group>"; };
 		1A41A3CB29EEF05B00CBF408 /* GoogleSignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInViewModel.swift; sourceTree = "<group>"; };
 		1A41A3CD29EEFE0000CBF408 /* AppleSignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInViewModel.swift; sourceTree = "<group>"; };
 		1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
@@ -499,6 +507,16 @@
 			path = Additional;
 			sourceTree = "<group>";
 		};
+		1A40AA2B2A190C8F00586817 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				1A40AA232A18F72700586817 /* AddTimerView.swift */,
+				1A40AA272A1905C300586817 /* TimeViewBase.swift */,
+				1A40AA2C2A190CB200586817 /* TimerCountDown.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		1A41A3D129EF106400CBF408 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +631,7 @@
 		1AA3F52F2A058A1E009B29A0 /* Question */ = {
 			isa = PBXGroup;
 			children = (
+				1A40AA2B2A190C8F00586817 /* Timer */,
 				1A514A8729E4410C002EF2BA /* AddQuestionView.swift */,
 				1A66E6102A06D28400BDA6C3 /* MultipleChoiceView.swift */,
 				1A66E6122A06EA4100BDA6C3 /* VoiceRecorderView.swift */,
@@ -675,6 +694,7 @@
 				1A5DBDB32A140939001F7698 /* MultipleTypeViewModel.swift */,
 				1A5DBDB52A140966001F7698 /* TrueOrFalseTypeViewModel.swift */,
 				1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */,
+				1A40AA292A19067E00586817 /* TimerViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1025,6 +1045,7 @@
 				1A5DBDAC2A13ACDA001F7698 /* MultipleTypeView.swift in Sources */,
 				1A282EE629AE79BF00DAFD9B /* FormGeneratorView.swift in Sources */,
 				1A439E3829F8250600E486E6 /* Errors.swift in Sources */,
+				1A40AA242A18F72700586817 /* AddTimerView.swift in Sources */,
 				1A2C2FB829BDDE31008ED194 /* LoginView.swift in Sources */,
 				1A4D2B4F29F56D9C007DF17A /* PopoverlayView.swift in Sources */,
 				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
@@ -1034,6 +1055,7 @@
 				1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */,
 				1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
+				1A40AA2A2A19067E00586817 /* TimerViewModel.swift in Sources */,
 				1A282EE429AE79BF00DAFD9B /* FormGeneratorApp.swift in Sources */,
 				1AE4016D29C8EA96004FAA89 /* AuthenticationDataResult.swift in Sources */,
 				1A4CEDC829DB75C30086DA80 /* AccountManager.swift in Sources */,
@@ -1046,6 +1068,8 @@
 				1A439E3629F81B3700E486E6 /* InvalidView.swift in Sources */,
 				1AA59B262A12DB5800FD988F /* TextType.swift in Sources */,
 				1A439E3329F8102D00E486E6 /* ImageViewModel.swift in Sources */,
+				1A40AA282A1905C300586817 /* TimeViewBase.swift in Sources */,
+				1A40AA2D2A190CB200586817 /* TimerCountDown.swift in Sources */,
 				1A5DBDB62A140966001F7698 /* TrueOrFalseTypeViewModel.swift in Sources */,
 				1ACDA0CA29D1F8A6008E60D8 /* Star.swift in Sources */,
 				1AE94CFD29C2210B00589D55 /* PopUpView.swift in Sources */,
