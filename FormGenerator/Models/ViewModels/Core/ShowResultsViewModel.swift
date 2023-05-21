@@ -6,12 +6,26 @@ struct DownloadedAnswer:Codable{
 
 }
 
+struct TextBasedData{
+    let id: UUID
+    let questionTitle: String
+    let answers: [String]
+    
+    init(questionTitle: String, answers: [String], id: UUID = UUID()) {
+        self.questionTitle = questionTitle
+        self.answers = answers
+        self.id = id
+    }
+}
+
 
 @MainActor
 final class ShowResultsViewModel: ObservableObject{
-    @Published var isWorking: Bool = false
-    @Published var question: [DownloadedQuestion] = []
-    @Published var answers: [DownloadedAnswer] = []
+    // State flags
+    @Published private(set) var isWorking: Bool = false
+    // Common source
+    @Published private(set) var questions: [DownloadedQuestion] = []
+    @Published private(set) var answers: [DownloadedAnswer] = []
     
     
     func downloadComponents(formID: String) async throws {
@@ -20,12 +34,11 @@ final class ShowResultsViewModel: ObservableObject{
         try await downloadAnswers(formID: formID)
         isWorking.toggle()
     }
-    
     private func downloadQuestionsForAForm(formID: String) async throws{
-            if question.isEmpty{
+            if questions.isEmpty{
                 let size: Int = try await FormManager.shared.getAllQuestionCount(formID: formID)
-                question.reserveCapacity(size)
-                self.question =  try await FormManager.shared.downloadAllQuesition(formID: formID)
+                questions.reserveCapacity(size)
+                self.questions =  try await FormManager.shared.downloadAllQuesition(formID: formID)
             }
     }
     private func downloadAnswers(formID: String) async throws {
@@ -38,6 +51,6 @@ final class ShowResultsViewModel: ObservableObject{
                 for index in qIDs.indices{
                     self.answers.append(DownloadedAnswer(id: qIDs[index], answer: ans[index] as! String))
                 }
-     }
-    }
+            }
+        }
 }
