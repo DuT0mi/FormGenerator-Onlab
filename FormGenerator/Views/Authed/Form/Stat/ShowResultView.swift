@@ -42,6 +42,11 @@ struct ShowResultView: View {
         VStack{
             Text("answers")
                 .bold()
+            if question.type == SelectedType.Image.rawValue{
+                ImageType(viewModel: .init(), question: question, notMocked: false)
+            } else if question.type == SelectedType.Voice.rawValue{
+                AudioTypeView(observer: .init(), question: question, notMocked: false)
+            }
             ForEach(viewModel.answers, id: \.answer){ answer in
                 if question.id == answer.id{
                     Text(answer.answer)
@@ -72,13 +77,13 @@ struct ShowResultView: View {
             .chartXAxis {
                 AxisMarks(values: .automatic) { _ in
                 AxisValueLabel()
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.red)
               }
             }
             .chartYAxis {
               AxisMarks(values: .automatic) { _ in
                 AxisValueLabel()
-                      .foregroundStyle(.black)
+                      .foregroundStyle(.red)
               }
             }
             .frame(width: 175, height: 300)
@@ -98,7 +103,7 @@ struct ShowResultView: View {
     }
     private func drawMultipleChart(question: DownloadedQuestion) -> some View{
         var dataMap = question.choices!.compactMap{
-            ($0 , 0, UUID()) //MARK: 0 = value, 1 = count, 2 = id
+            ($0 , 0, UUID()) //MARK: 0. = value, 1. = count, 2. = id
         }
         viewModel.answers.forEach { answer in
             if answer.id == question.id{
@@ -127,13 +132,13 @@ struct ShowResultView: View {
             .chartXAxis {
                 AxisMarks(values: .automatic) { _ in
                 AxisValueLabel()
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.red)
               }
             }
             .chartYAxis {
               AxisMarks(values: .automatic) { _ in
                 AxisValueLabel()
-                      .foregroundStyle(.black)
+                      .foregroundStyle(.red)
               }
             }
             .frame(width: 175, height: 300)
