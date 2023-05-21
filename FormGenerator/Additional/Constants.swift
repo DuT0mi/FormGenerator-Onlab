@@ -46,6 +46,7 @@ struct AppConstants {
     static let backgroundColor: Color =  Color.blue.opacity(0.2)
     static let TRUE: String = "true"
     static let FALSE: String = "false"
+    static let undefined: String = "Undefined option"
 }
 
 // Constants for the error screen (space view)

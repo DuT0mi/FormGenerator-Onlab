@@ -1,10 +1,16 @@
 import SwiftUI
 import Charts
 
-struct AnswersByTrueOrFalse{
-    let id: UUID = UUID()
+struct AnswersBasedOnOptions{
+    let id: UUID
     let count: Int
     let value: String
+    
+    init(count: Int, value: String, id: UUID = UUID()) {
+        self.count = count
+        self.value = value
+        self.id = id
+    }
 }
 
 struct ShowResultView: View {
@@ -20,7 +26,8 @@ struct ShowResultView: View {
         switch question.type{
             case SelectedType.Image.rawValue:
                 return AnyView(drawAnswersTextBased(question: question))
-            case SelectedType.MultipleChoice.rawValue: break
+            case SelectedType.MultipleChoice.rawValue:
+                return AnyView(drawMultipleChart(question: question))
             case SelectedType.Text.rawValue:
                 return AnyView(drawAnswersTextBased(question: question))
             case SelectedType.TrueOrFalse.rawValue:
@@ -46,9 +53,9 @@ struct ShowResultView: View {
         var countTrue: Int = 0
         var countFalse: Int = 0
         countLogicalValues(trueValues: &countTrue, falseValues: &countFalse, question: question)
-        let data: [AnswersByTrueOrFalse] = [
-            AnswersByTrueOrFalse(count: countFalse, value: AppConstants.FALSE),
-            AnswersByTrueOrFalse(count: countTrue, value: AppConstants.TRUE)
+        let data: [AnswersBasedOnOptions] = [
+            AnswersBasedOnOptions(count: countFalse, value: AppConstants.FALSE),
+            AnswersBasedOnOptions(count: countTrue, value: AppConstants.TRUE)
         ]
         return VStack{
             Chart(data, id:\.id){
@@ -87,6 +94,50 @@ struct ShowResultView: View {
                     falseValues += 1
                 }
             }
+        }
+    }
+    private func drawMultipleChart(question: DownloadedQuestion) -> some View{
+        var dataMap = question.choices!.compactMap{
+            ($0 , 0, UUID()) //MARK: 0 = value, 1 = count, 2 = id
+        }
+        viewModel.answers.forEach { answer in
+            if answer.id == question.id{
+                for data in dataMap.indices{
+                    if dataMap[data].0 == answer.answer{
+                        dataMap[data].1 += 1
+                    }
+                }
+            }
+        }
+        let data: [AnswersBasedOnOptions] = dataMap.compactMap {
+            AnswersBasedOnOptions(count: $0.1, value: $0.0.isEmpty ? AppConstants.undefined : $0.0, id: $0.2)
+        }
+        return VStack{
+            Chart(data, id:\.id){
+                BarMark(
+                    x: .value("Value", $0.value),
+                    y: .value("Quantity", $0.count)
+                )
+                .foregroundStyle(by: .value("Value", $0.value))
+            }
+            .chartPlotStyle(content: { chartPlot in
+                chartPlot
+                    .background(.gray)
+            })
+            .chartXAxis {
+                AxisMarks(values: .automatic) { _ in
+                AxisValueLabel()
+                        .foregroundStyle(.black)
+              }
+            }
+            .chartYAxis {
+              AxisMarks(values: .automatic) { _ in
+                AxisValueLabel()
+                      .foregroundStyle(.black)
+              }
+            }
+            .frame(width: 175, height: 300)
+            .padding()
         }
     }
     
