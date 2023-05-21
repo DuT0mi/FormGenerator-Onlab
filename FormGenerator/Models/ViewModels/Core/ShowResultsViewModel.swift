@@ -3,11 +3,7 @@ import Foundation
 struct DownloadedAnswer:Codable{
     var id: String
     var answer: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "answered_questions_id"
-        case answer
-    }
+
 }
 
 
@@ -17,26 +13,31 @@ final class ShowResultsViewModel: ObservableObject{
     @Published var question: [DownloadedQuestion] = []
     @Published var answers: [DownloadedAnswer] = []
     
-    func downloadQuestionsForAForm(formID: String){
-        Task{
+    
+    func downloadComponents(formID: String) async throws {
+        isWorking.toggle()
+        try await downloadQuestionsForAForm(formID: formID)
+        try await downloadAnswers(formID: formID)
+        isWorking.toggle()
+    }
+    
+    private func downloadQuestionsForAForm(formID: String) async throws{
             if question.isEmpty{
-                isWorking.toggle()
                 let size: Int = try await FormManager.shared.getAllQuestionCount(formID: formID)
                 question.reserveCapacity(size)
-                question =  try await FormManager.shared.downloadAllQuesition(formID: formID)
-                isWorking.toggle()
-                print("QUESTIONS: \(question)")
+                self.question =  try await FormManager.shared.downloadAllQuesition(formID: formID)
             }
-        }
     }
-    func downloadAnswers(formID: String){
-        Task{
-            let downloaedDocuments = try await FormManager.shared.downloadAllAnswers(formID: formID)
-            for document in downloaedDocuments {
+    private func downloadAnswers(formID: String) async throws {
+            let downloadedDocuments = try await FormManager.shared.downloadAllAnswers(formID: formID)
+            for document in downloadedDocuments {
                 guard let data = document.data() else{ continue }
-                print("KEY: \(data.keys)")
-                print("VALUE: \(data.values)")
-            }
-        }
+                let qIDs = data.keys
+                let ans = data.values
+                 
+                for index in qIDs.indices{
+                    self.answers.append(DownloadedAnswer(id: qIDs[index], answer: ans[index] as! String))
+                }
+     }
     }
 }

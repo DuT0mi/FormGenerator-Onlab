@@ -6,14 +6,16 @@ struct ShowResultView: View {
     
     var body: some View {
         ScrollView {
-            VStack{
-                Text("here")
-                // switch the question types
+            VStack{                
+                if viewModel.isWorking{
+                    ProgressView()
+                }else {
+                    Text("Loaded")
+                }
             }
-            .onAppear{
+            .task{
                 //Download && generate
-                viewModel.downloadAnswers(formID: form!.id.uuidString)
-                viewModel.downloadQuestionsForAForm(formID: form!.id.uuidString)
+                try? await viewModel.downloadComponents(formID: form!.id.uuidString)
             }
         }
         
