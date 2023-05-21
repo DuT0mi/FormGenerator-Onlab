@@ -47,6 +47,8 @@
 		1A319D2129B39F2D00183B94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 1A319D2029B39F2D00183B94 /* FirebaseStorageCombine-Community */; };
 		1A319D2329B3AC3200183B94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A319D2229B3AC3200183B94 /* Constants.swift */; };
 		1A3CD46C2A1A2CD600B586E1 /* FormStatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CD46B2A1A2CD600B586E1 /* FormStatisticsViewModel.swift */; };
+		1A3CD46F2A1A36E500B586E1 /* ShowResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CD46E2A1A36E500B586E1 /* ShowResultView.swift */; };
+		1A3CD4712A1A385700B586E1 /* ShowResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CD4702A1A385700B586E1 /* ShowResultsViewModel.swift */; };
 		1A40AA242A18F72700586817 /* AddTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA232A18F72700586817 /* AddTimerView.swift */; };
 		1A40AA282A1905C300586817 /* TimeViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA272A1905C300586817 /* TimeViewBase.swift */; };
 		1A40AA2A2A19067E00586817 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40AA292A19067E00586817 /* TimerViewModel.swift */; };
@@ -210,6 +212,8 @@
 		1A319CE929B39CE100183B94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A319D2229B3AC3200183B94 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A3CD46B2A1A2CD600B586E1 /* FormStatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStatisticsViewModel.swift; sourceTree = "<group>"; };
+		1A3CD46E2A1A36E500B586E1 /* ShowResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultView.swift; sourceTree = "<group>"; };
+		1A3CD4702A1A385700B586E1 /* ShowResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultsViewModel.swift; sourceTree = "<group>"; };
 		1A40AA232A18F72700586817 /* AddTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerView.swift; sourceTree = "<group>"; };
 		1A40AA272A1905C300586817 /* TimeViewBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewBase.swift; sourceTree = "<group>"; };
 		1A40AA292A19067E00586817 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
@@ -509,6 +513,14 @@
 			path = Additional;
 			sourceTree = "<group>";
 		};
+		1A3CD46D2A1A36D900B586E1 /* Stat */ = {
+			isa = PBXGroup;
+			children = (
+				1A3CD46E2A1A36E500B586E1 /* ShowResultView.swift */,
+			);
+			path = Stat;
+			sourceTree = "<group>";
+		};
 		1A40AA2B2A190C8F00586817 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +615,7 @@
 		1A7E650E29DC9F0D0023067A /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				1A3CD46D2A1A36D900B586E1 /* Stat */,
 				1AA59B1B2A12A00300FD988F /* Fill */,
 				1A439E3429F81B2800E486E6 /* Invalid */,
 				1A2411A029EAD40400AFF138 /* Create */,
@@ -698,6 +711,7 @@
 				1A5DBDB72A14098C001F7698 /* AudioTypeViewModel.swift */,
 				1A40AA292A19067E00586817 /* TimerViewModel.swift */,
 				1A3CD46B2A1A2CD600B586E1 /* FormStatisticsViewModel.swift */,
+				1A3CD4702A1A385700B586E1 /* ShowResultsViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1054,8 +1068,10 @@
 				1ADFF44829BCF06C0071F54C /* HomeView.swift in Sources */,
 				1A65770129FE820400D1EE81 /* Camera.swift in Sources */,
 				1ADFF45029BCF69F0071F54C /* FormStatisticsView.swift in Sources */,
+				1A3CD4712A1A385700B586E1 /* ShowResultsViewModel.swift in Sources */,
 				1A4CEDC629DB70E30086DA80 /* CodingKeys.swift in Sources */,
 				1AA3F5342A05A7D3009B29A0 /* AddQuestionViewModel.swift in Sources */,
+				1A3CD46F2A1A36E500B586E1 /* ShowResultView.swift in Sources */,
 				1AA59B212A12C35300FD988F /* QuestionDownloadingModel.swift in Sources */,
 				1ADFF45229BCF6BA0071F54C /* SettingsView.swift in Sources */,
 				1A40AA2A2A19067E00586817 /* TimerViewModel.swift in Sources */,
