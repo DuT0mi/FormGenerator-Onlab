@@ -17,6 +17,7 @@ struct FormStatisticsView: View {
                                 }label: {
                                     FormItemView(form: form)
                                 }
+                                .padding()
                                 if form == viewModel.forms.last{
                                     if let formsOnServerCount = viewModel.allFormCountOnServer, formsOnServerCount != viewModel.forms.count{
                                         ProgressView()

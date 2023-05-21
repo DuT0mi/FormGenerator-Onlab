@@ -44,6 +44,8 @@ class ValidationContent{
 struct AppConstants {
     static let appVersionNumber: Double = 1.0
     static let backgroundColor: Color =  Color.blue.opacity(0.2)
+    static let TRUE: String = "true"
+    static let FALSE: String = "false"
 }
 
 // Constants for the error screen (space view)
