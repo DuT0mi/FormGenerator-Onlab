@@ -45,7 +45,7 @@ struct HomeView: View {
                 
                 if accountType == .Company{
                     NavigationStack{
-                        RecentsFormsView()
+                        FormStatisticsView()
                     }
                     .tabItem {
                         Label("Stats", systemImage: "list.bullet.clipboard")
