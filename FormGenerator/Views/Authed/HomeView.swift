@@ -5,6 +5,7 @@ struct HomeView: View {
     @ObservedObject var user: UserViewModel
     @State private var selection: Tab = .all
     @State private var shouldShowSuccessView: Bool = true
+    @State private var accountType: AccountType = .Standard
     /// Which contexts are involved in the popup message only works when the user is signed in without autologin, also works well when just pressing the login button and then re-login without closign the app
     private func getPopUpContent<TimeType>(content: some View, extratime: TimeType ) -> some View {
         content
@@ -15,6 +16,12 @@ struct HomeView: View {
                     }
                 }
             }
+    }
+    private func loadCurrentAccount() async throws {
+        let authManager: AuthenticationManager = AuthenticationManager()
+        let authDataResult = try authManager.getAuthenticatedUser()
+        let(account,_) = try await AccountManager.shared.getUserByJustID(userID: authDataResult.uid)
+        self.accountType = account?.type ?? .Standard
     }
     private enum Tab{
         case all
@@ -35,13 +42,16 @@ struct HomeView: View {
                         Label("All", systemImage: "tray")
                     }
                     .tag(Tab.all)
-                NavigationStack{
-                    RecentsFormsView()
-                }
+                
+                if accountType == .Company{
+                    NavigationStack{
+                        RecentsFormsView()
+                    }
                     .tabItem {
-                        Label("Recents", systemImage: "clock")
+                        Label("Stats", systemImage: "list.bullet.clipboard")
                     }
                     .tag(Tab.recent)
+                }
                 NavigationStack{
                     SettingsView(user: user)
                 }
@@ -49,6 +59,12 @@ struct HomeView: View {
                         Label("Profile",systemImage:"person.crop.circle.fill")
                     }
                     .tag(Tab.profile)
+            }
+            .onAppear {
+                Task{
+                    // Can not be .task because can throwsm and that is not conforming to @Sendable
+                    try await loadCurrentAccount()
+                }
             }
             .overlay{
                 if shouldShowSuccessView {
