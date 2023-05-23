@@ -3,7 +3,7 @@ import Foundation
 @MainActor
 final class StartFormViewModel: ObservableObject {
     @Published var questionsFormDB: [DownloadedQuestion] = []
-    @Published var answers: [(String, String)] = []
+    @Published var answers: [(String, String)] = [] // (questionID, answer)
     @Published var formData: FormData?
     @Published var isLoading: Bool = false
     

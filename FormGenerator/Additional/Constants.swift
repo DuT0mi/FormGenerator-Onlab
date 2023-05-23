@@ -44,6 +44,10 @@ class ValidationContent{
 struct AppConstants {
     static let appVersionNumber: Double = 1.0
     static let backgroundColor: Color =  Color.blue.opacity(0.2)
+    static let TRUE: String = "true"
+    static let FALSE: String = "false"
+    static let undefined: String = "Undefined option"
+    static let randomPicURL: String = "https://picsum.photos/200/300"
 }
 
 // Constants for the error screen (space view)

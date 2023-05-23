@@ -6,11 +6,14 @@ struct ImageType: View {
     @ObservedObject var viewModel: StartFormViewModel
     
     var question: DownloadedQuestion
+    var notMocked: Bool = true
     
     var body: some View {
         VStack{
-            Text(question.formQuestion!)
+            if notMocked{
+                Text(question.formQuestion!)
                     .downloadedQuestionTemplateModifier()
+            }
         
             if let url = URL(string: question.image_url ?? "https://picsum.photos/200/300"){
                 AsyncImage(url: url){ image in
@@ -22,22 +25,24 @@ struct ImageType: View {
                         .frame(width: 225, height: 150)
                 }
             }
-            HStack{
-                TextField("Enter your answer: ", text: $answer)
-                    .lineLimit(nil)
-                    .padding()
-                    .disabled(symbolColorChange ? true : false)
-
-                Image(systemName: "rectangle.filled.and.hand.point.up.left")
-                    .onTapGesture {
-                        symbolColorChange = true
-                        //viewModel.answers.append(answer)
-                        viewModel.answers.append((answer,question.id!))
-                    }
-                    .foregroundColor(symbolColorChange ? .green : .gray)
-                    .disabled(symbolColorChange ? true : false)
+            if notMocked{
+                HStack{
+                    TextField("Enter your answer: ", text: $answer)
+                        .lineLimit(nil)
+                        .padding()
+                        .disabled(symbolColorChange ? true : false)
+                    
+                    Image(systemName: "rectangle.filled.and.hand.point.up.left")
+                        .onTapGesture {
+                            symbolColorChange = true
+                            //viewModel.answers.append(answer)
+                            viewModel.answers.append((answer,question.id!))
+                        }
+                        .foregroundColor(symbolColorChange ? .green : .gray)
+                        .disabled(symbolColorChange ? true : false)
+                }
+                .padding(.trailing)
             }
-            .padding(.trailing)
         }
     }
 }

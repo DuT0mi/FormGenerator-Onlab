@@ -126,6 +126,7 @@ struct FormViewDetailt_Previews: PreviewProvider {
                                      backgroundImagePath: "",
                                      backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
             .environmentObject(NetworkManagerViewModel())
+            .environmentObject(DemoData())
         }
     }
 }

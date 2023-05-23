@@ -23,6 +23,9 @@ actor FormManager{
     private func getAllQuestionQuery(formID: String) -> Query {
         questionCollectionReference(formID: formID)
     }
+    private func getAllAnswersQuery(formID: String) -> Query{
+        answerCollectionReference(formID: formID)
+    }
     private func questionCollectionReference(formID: String) -> CollectionReference {
         formDocument(formID: formID).collection("form_questions")
     }
@@ -51,12 +54,13 @@ actor FormManager{
     }
     func uploadAnswers(formID: String, datas: [(answer: String, qID: String)]) async throws {
         let userID = UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)
-        var dictionary: [String: Any] = [:]
         for data in datas {
-            dictionary[data.qID] = data.answer
+            let dict: [String: Any] = [
+                data.qID    : data.answer
+            ]
+            try await answerSubCollectionDocument(formID: formID, userID: userID!)
+                .setData(dict, merge: true)
         }
-        try await answerSubCollectionDocument(formID: formID, userID: userID!).setData(dictionary)
-        
     }
     // First upload the Form itself, then the questions to it
     func uploadQuestionsToTheProperFormToDatabase(form: FormData, questions: [Question]) async throws{
@@ -107,6 +111,12 @@ actor FormManager{
         return try await questionQuery
             .getDocuments(as: DownloadedQuestion.self)
     }
+    func downloadAllAnswers(formID: String) async throws -> [DocumentSnapshot] {
+        let collectionRef = answerCollectionReference(formID: formID)
+        let querySnapshot = try await collectionRef.getDocuments()
+        return querySnapshot.documents
+    }
+
     func updateFormProfileImagePath(formID: String, path: String?, url: String?) async throws {
         let data: [String: Any] = [
             FormData.CodingKeys.backgroundImagePath.rawValue : path as Any,

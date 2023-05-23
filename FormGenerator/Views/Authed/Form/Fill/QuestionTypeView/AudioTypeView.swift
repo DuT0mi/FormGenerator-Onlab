@@ -9,6 +9,7 @@ struct AudioTypeView: View {
     @State private var isPlaying: Bool = false
     
     var question: DownloadedQuestion
+    var notMocked: Bool = true
     
     private func playRecording() {
         guard let url = URL(string: question.audio_path!) else {return}
@@ -41,18 +42,20 @@ struct AudioTypeView: View {
                     }
                 }
             }
-            TextField("Enter your answer: ", text: $viewModel.answer)
-                .lineLimit(nil)
-                .disabled(symbolColorChange ? true : false)
-            Image(systemName: "rectangle.filled.and.hand.point.up.left")
-                .onTapGesture {
-                    symbolColorChange = true
-                    observer.answers.append((viewModel.answer, question.id!))
-                    
-                }
-                .foregroundColor(symbolColorChange ? .green : .gray)
-                .disabled(symbolColorChange ? true : false)
-                .padding()
+            if notMocked{
+                TextField("Enter your answer: ", text: $viewModel.answer)
+                    .lineLimit(nil)
+                    .disabled(symbolColorChange ? true : false)
+                Image(systemName: "rectangle.filled.and.hand.point.up.left")
+                    .onTapGesture {
+                        symbolColorChange = true
+                        observer.answers.append((viewModel.answer, question.id!))
+                        
+                    }
+                    .foregroundColor(symbolColorChange ? .green : .gray)
+                    .disabled(symbolColorChange ? true : false)
+                    .padding()
+            }
         }
         .padding()
     }
