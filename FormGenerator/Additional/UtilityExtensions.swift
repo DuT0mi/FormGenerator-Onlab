@@ -3,6 +3,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Combine
 
 // Homemade View, makes an oppurtinity to show and unshow the password's field
 struct SecureTextField: View {
@@ -25,14 +26,6 @@ struct SecureTextField: View {
         }
     }
 }
-
-// Reaching the db easily
-extension Database {
-    class var root: DatabaseReference {
-        return database().reference()
-    }
-}
-
 // For downloading Form's data from the server, and decode
 extension Query {
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable{

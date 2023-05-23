@@ -1,6 +1,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Combine
 
 actor FormManager{
     // MARK: Singleton
@@ -20,6 +21,7 @@ actor FormManager{
     private func getAllFormQuery() -> Query {
         formCollection
     }
+
     private func getAllQuestionQuery(formID: String) -> Query {
         questionCollectionReference(formID: formID)
     }
@@ -93,7 +95,12 @@ actor FormManager{
             }
         }
     }
-
+    func closeForm(formID: String) async throws{
+        let data: [String : Any] = [
+            FormData.CodingKeys.isAvailable.rawValue : false
+        ]
+        try await formDocument(formID: formID).updateData(data)
+    }
     func downloadOneForm(formID: String) async throws -> FormData{
         let formsQuery: Query = self.getAllFormQuery()
         

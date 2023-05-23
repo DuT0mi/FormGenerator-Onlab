@@ -15,8 +15,28 @@ struct AnswersBasedOnOptions{
 
 struct ShowResultView: View {
     @StateObject private var viewModel: ShowResultsViewModel = ShowResultsViewModel()
+    @State private var isNotFormClosed: Bool = true
     var form: FormData?
     
+    @ViewBuilder
+    private var contextMenu: some View{
+         Menu {
+             if isNotFormClosed{
+                 AnimatedActionButton(title: "Close form", systemImage: "lock"){
+                     Task{
+                         try? await FormManager.shared.closeForm(formID:form!.id.uuidString)
+                         isNotFormClosed = false
+                     }
+                 }
+             }else {
+                 AnimatedActionButton(title: "Form has been closed", systemImage: "lock.doc"){
+                     
+                 }
+             }
+         }label: {
+             Text("Options")
+         }
+    }
     private func drawTitle(question: DownloadedQuestion) -> some View {
         Text("Title: \(question.formQuestion == "nil" ? "Voice" : question.formQuestion!)")
             .bold()
@@ -165,12 +185,32 @@ struct ShowResultView: View {
                try? await viewModel.downloadComponents(formID: form!.id.uuidString)
             }
         }
-        
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button{
+                        
+                } label: {
+                    Label("Remove", systemImage: "doc.badge.gearshape")
+                }
+                .contextMenu{
+                    contextMenu
+                }
+            }
+
+        }
+        .onAppear{
+            Task{
+                isNotFormClosed =  try await FormManager.shared.downloadOneForm(formID: form!.id.uuidString).isAvailable
+            }
+        }
     }
 }
-
+/*
 struct ShowResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowResultView()
+        NavigationView{
+            ShowResultView()
+        }
     }
 }
+*/

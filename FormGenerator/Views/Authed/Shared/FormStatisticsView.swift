@@ -11,18 +11,23 @@ struct FormStatisticsView: View {
             NavigationStack{
                     ScrollView{
                         LazyVGrid(columns: columns){
-                            ForEach(viewModel.forms){form in
-                                NavigationLink{                                    
-                                    ShowResultView(form: form)
-                                }label: {
-                                    FormItemView(form: form)
-                                }
-                                .padding()
-                                if form == viewModel.forms.last{
-                                    if let formsOnServerCount = viewModel.allFormCountOnServer, formsOnServerCount != viewModel.forms.count{
-                                        ProgressView()
-                                            .onAppear{
-                                                viewModel.downloadAllForm()
+                            if viewModel.forms.count == 0{
+                                Text("Try our app and create a form!")
+                                    .font(.headline)
+                            }else{
+                                ForEach(viewModel.forms){form in
+                                    NavigationLink{
+                                        ShowResultView(form: form)
+                                    }label: {
+                                        FormItemView(form: form)
+                                    }
+                                    .padding()
+                                    if form == viewModel.forms.last{
+                                        if let formsOnServerCount = viewModel.allFormCountOnServer, formsOnServerCount != viewModel.forms.count{
+                                            ProgressView()
+                                                .onAppear{
+                                                    viewModel.downloadAllForm()
+                                                }
                                         }
                                     }
                                 }

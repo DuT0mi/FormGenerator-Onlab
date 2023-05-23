@@ -39,11 +39,11 @@ final class SettingsViewModel: ObservableObject {
             try await authManager.resetPassword(email: email )
         }
     func togglePremiumStatus(newValue: Bool){
-        guard let account else { return /* TODO: handling error */ }
+        guard let account else { return }
         Task {
             // Update
             try await AccountManager.shared.updateAccountPremiumStatus(userID: account.userID, isPremium: newValue)
-            // Refetch the current use
+            // Refetch the current user
             self.account = try await AccountManager.shared.getCompanyAccount(userID: account.userID)            
         }
     }
