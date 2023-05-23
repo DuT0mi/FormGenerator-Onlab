@@ -4,6 +4,7 @@ struct FormViewDetail: View {
     @EnvironmentObject var networkManager: NetworkManagerViewModel
     @State private var showStartingView: Bool = false
     @State private var userHasAlreadySubmittedTheForm: Bool = false
+    @State private var isFormAvailable: Bool = true
     var form: FormData
     
     var backgroundImage: String = ImageConstants.templateBackgroundImage
@@ -84,9 +85,13 @@ struct FormViewDetail: View {
                         showStartingView = true
                         userHasAlreadySubmittedTheForm = true
                     }label: {
-                        if !userHasAlreadySubmittedTheForm{
+                        if !userHasAlreadySubmittedTheForm && isFormAvailable{
                             Text("Start form")
-                        } else {
+                        } else if !isFormAvailable{
+                            Label("That form is no more available!", systemImage: "exclamationmark.triangle.fill")
+                                .foregroundColor(.black)
+                        }
+                         else {
                             Label("You have already submitted the form!", systemImage: "exclamationmark.triangle.fill")
                                 .foregroundColor(.red)
                         }
@@ -94,7 +99,7 @@ struct FormViewDetail: View {
                     .padding()
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
-                    .disabled(userHasAlreadySubmittedTheForm ? true : false)
+                    .disabled((userHasAlreadySubmittedTheForm || !isFormAvailable) ? true : false)
                 }
                 .task {
                     await FormManager.shared.checkUserIfHasAlreadyAnswered(formID: form.id.uuidString, userID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!) { hasAnswered in
@@ -102,6 +107,12 @@ struct FormViewDetail: View {
                             userHasAlreadySubmittedTheForm = hasAnswered
                         }
                     }
+                }
+            }
+            .onAppear{
+                Task{
+                    isFormAvailable = try await FormManager.shared.downloadOneForm(formID: form.id.uuidString).isAvailable
+                    print("FORM: \(isFormAvailable)")
                 }
             }
             .edgesIgnoringSafeArea(.top)
@@ -112,21 +123,21 @@ struct FormViewDetail: View {
     }
 }
 
-struct FormViewDetailt_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            FormViewDetail(form:
-                            FormData(id: UUID(),
-                                     time: 10,
-                                     title: "title",
-                                     type: "type",
-                                     companyID: "companyID",
-                                     companyName: "",
-                                     description: "description",                                     
-                                     backgroundImagePath: "",
-                                     backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
-            .environmentObject(NetworkManagerViewModel())
-            .environmentObject(DemoData())
-        }
-    }
-}
+//struct FormViewDetailt_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView{
+//            FormViewDetail(form:
+//                            FormData(id: UUID(),
+//                                     time: 10,
+//                                     title: "title",
+//                                     type: "type",
+//                                     companyID: "companyID",
+//                                     companyName: "",
+//                                     description: "description",
+//                                     backgroundImagePath: "",
+//                                     backgroundImageURL: "https://picsum.photos/200/300",circleImageURL: "https://picsum.photos/200/300"))
+//            .environmentObject(NetworkManagerViewModel())
+//            .environmentObject(DemoData())
+//        }
+//    }
+//}

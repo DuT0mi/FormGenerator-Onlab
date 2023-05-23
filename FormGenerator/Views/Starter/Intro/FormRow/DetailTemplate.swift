@@ -95,6 +95,7 @@ struct DetailTemplate_Previews: PreviewProvider {
             DetailTemplate(form:
                             FormData(id: UUID(),
                                      time: 10,
+                                     isAvailable: true,
                                      title: "title",
                                      type: "type",
                                      companyID: "companyID",

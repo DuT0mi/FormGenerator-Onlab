@@ -4,8 +4,8 @@ struct FormRowView: View {
     var forms: [FormData]{
         get {
             [
-            FormData(id: UUID(), time: 23, title: "                     Basic", type: "Type", companyID: UUID().uuidString, companyName: "Company name", description: "Description", backgroundImageURL: AppConstants.randomPicURL),
-            FormData(id: UUID(), time: 54, title: "                     Premium", type: "Type premium", companyID: UUID().uuidString, companyName: "Company name premium", description: "Description premium", backgroundImageURL: AppConstants.randomPicURL, circleImageURL: AppConstants.randomPicURL)
+                FormData(id: UUID(), time: 23, isAvailable: true, title: "                     Basic", type: "Type", companyID: UUID().uuidString, companyName: "Company name", description: "Description", backgroundImageURL: AppConstants.randomPicURL),
+                FormData(id: UUID(), time: 54, isAvailable: true, title: "                     Premium", type: "Type premium", companyID: UUID().uuidString, companyName: "Company name premium", description: "Description premium", backgroundImageURL: AppConstants.randomPicURL, circleImageURL: AppConstants.randomPicURL)
             ]
         }
     }

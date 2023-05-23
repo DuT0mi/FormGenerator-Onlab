@@ -159,6 +159,7 @@ struct AddFormView: View {
             } else {
                 let formData = FormData(id: UUID(),
                                         time: 0,
+                                        isAvailable: true,
                                         title: formTitle,
                                         type: formType,
                                         companyID: UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue)!,

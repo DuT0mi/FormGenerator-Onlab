@@ -51,6 +51,7 @@ final class CreateFormViewModel: ObservableObject {
             self.form = FormData(
                             id: AddFormViewModel.shared.formDatas?.id ?? UUID(),
                             time: time,
+                            isAvailable: true,
                             title: data.title ?? "Title",
                             type: data.type ?? "None",
                             companyID: account?.userID ?? "Error",
