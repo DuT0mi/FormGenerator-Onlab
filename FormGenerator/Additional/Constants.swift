@@ -47,6 +47,7 @@ struct AppConstants {
     static let TRUE: String = "true"
     static let FALSE: String = "false"
     static let undefined: String = "Undefined option"
+    static let randomPicURL: String = "https://picsum.photos/200/300"
 }
 
 // Constants for the error screen (space view)

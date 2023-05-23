@@ -1,0 +1,20 @@
+[
+    {
+       "id": 0,
+       "title": "Create",
+       "description" : "Create your own form",
+       "imageName" : "createPic"
+    },
+    {
+       "id": 1,
+       "title": "Fill",
+       "description" : "Start the form",
+       "imageName" : "fillPic"
+    },
+    {
+       "id": 2,
+       "title": "Statistics",
+       "description" : "See the statistics",
+       "imageName" : "statPic"
+    }
+]
