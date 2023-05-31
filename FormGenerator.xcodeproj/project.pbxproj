@@ -663,7 +663,6 @@
 			isa = PBXGroup;
 			children = (
 				1ACDA0C929D1F8A6008E60D8 /* Star.swift */,
-				1A47EBEF2A1CA1850052EC8D /* DemoData.swift */,
 				1A47EBF12A1CA1C10052EC8D /* DemoItem.swift */,
 				1A47EC082A1CBC790052EC8D /* DemoQuestion.swift */,
 			);
@@ -712,6 +711,7 @@
 		1A94628C2A084AEF003F4C05 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				1A47EBEF2A1CA1850052EC8D /* DemoData.swift */,
 				1A439E2E29F7E23300E486E6 /* FirebaseStorageManager.swift */,
 				1AC519C529E2F7DD00665361 /* FormManager.swift */,
 				1A4CEDC729DB75C30086DA80 /* AccountManager.swift */,
