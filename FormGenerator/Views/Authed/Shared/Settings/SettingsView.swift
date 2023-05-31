@@ -23,8 +23,8 @@ struct SettingsView: View {
         Section {
             Text("Text")
             Text("Account type: \(viewModel.account?.type.rawValue ?? "" ) ")
-            Text("userID with vm: " + (viewModel.account?.userID ?? "ures"))
-            Text("userID with default: " + (UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue) ?? "ures"))
+           // Text("userID with vm: " + (viewModel.account?.userID ?? "ures"))
+           // Text("userID with default: " + (UserDefaults.standard.string(forKey: UserConstants.currentUserID.rawValue) ?? "ures"))
         } header: {
             Text("Profile")
         }
