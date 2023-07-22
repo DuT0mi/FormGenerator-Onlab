@@ -10,7 +10,7 @@ FormGenerator is an iOS app (target >= iOS 16) that provides creating and managi
   - PhotosUI
   - Combine
   - Firebase packages for signing and CRUD operations
-  - Core Data for temporarily savings
+  - Core Data for temporary savings
   - XCTest for Unit and Integration test
   - Google packages for SSO
   - I guess these are, but maybe can be found more
@@ -20,3 +20,11 @@ FormGenerator is an iOS app (target >= iOS 16) that provides creating and managi
 - Homemade backend
 - Better UI/UX
 - More animation
+- More technology
+  - DI (resolver or swinject)
+  - Moya
+  - swiftlint
+  - firebase analytics
+  - firebase crashlytics
+  - CI/CD
+  - ...
