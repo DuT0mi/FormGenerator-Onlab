@@ -23,8 +23,9 @@ FormGenerator is an iOS app (target >= iOS 16) that provides creating and managi
 - More technology
   - DI (resolver or swinject)
   - Moya
-  - swiftlint
+  - swiftlint for decrease redundant and unnecessary lines
   - firebase analytics
   - firebase crashlytics
   - CI/CD
-  - ...
+  - better separation
+  - -> rewrite :)
